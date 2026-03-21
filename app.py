@@ -13,11 +13,20 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
-from star_catalog import CONSTELLATION_REGIONS, get_constellation_region, get_region_stars
+from star_catalog import CONSTELLATION_REGIONS, get_constellation_region, get_region_center_ra, get_region_stars
 
 
 app = Flask(__name__)
 app.config["SECRET_KEY"] = "dev-secret-key-change-me"
+
+# Maximum magnitude allowed for the missing correct answer star.
+MISSING_STAR_MAX_MAG = 2.5
+
+# Answer options may include named stars this much dimmer than the missing star.
+OPTION_STAR_MAG_OFFSET = 1.0
+
+# The UI does not allow difficulty above this magnitude yet.
+MAX_ALLOWED_DIFFICULTY = 3.0
 
 
 def star_size_from_magnitude(magnitude: float) -> float:
@@ -25,22 +34,26 @@ def star_size_from_magnitude(magnitude: float) -> float:
     return 18 * (brightness**1.75)
 
 
-def get_named_bright_stars(region: dict[str, Any]) -> list[dict[str, Any]]:
-    return [star for star in region["stars"] if star["name_cn"] and star["mag"] <= 2.5]
+def get_named_bright_stars(region: dict[str, Any], max_mag: float) -> list[dict[str, Any]]:
+    return [star for star in region["stars"] if star["name_cn"] and star["mag"] <= max_mag]
 
 
-def get_all_named_star_names() -> list[str]:
+def get_all_named_star_names(max_mag: float) -> list[str]:
     names = {
         star["name_cn"]
         for region in CONSTELLATION_REGIONS.values()
         for star in region["stars"]
-        if star.get("name_cn")
+        if star.get("name_cn") and star["mag"] <= max_mag
     }
     return sorted(names)
 
 
+def get_current_difficulty() -> float:
+    return float(session.get("missing_star_max_mag", MISSING_STAR_MAX_MAG))
+
+
 def project_region(region: dict[str, Any], stars: list[dict[str, Any]]) -> dict[str, tuple[float, float]]:
-    ra0 = (region["bounds"]["ra_min"] + region["bounds"]["ra_max"]) / 2
+    ra0 = get_region_center_ra(region["bounds"])
     dec0 = (region["bounds"]["dec_min"] + region["bounds"]["dec_max"]) / 2
     ra0_rad = math.radians(ra0)
     dec0_rad = math.radians(dec0)
@@ -170,15 +183,19 @@ def projected_bounds(region: dict[str, Any], ra0: float, dec0: float) -> tuple[f
 
 
 def build_round() -> dict[str, Any]:
+    missing_star_max_mag = get_current_difficulty()
+    option_star_max_mag = missing_star_max_mag + OPTION_STAR_MAG_OFFSET
     eligible_regions = [
-        key for key, region in CONSTELLATION_REGIONS.items() if len(get_named_bright_stars(region)) >= 1
+        key
+        for key, region in CONSTELLATION_REGIONS.items()
+        if len(get_named_bright_stars(region, missing_star_max_mag)) >= 1
     ]
     region_key = random.choice(eligible_regions)
     region = get_constellation_region(region_key)
-    named_candidates = get_named_bright_stars(region)
+    named_candidates = get_named_bright_stars(region, missing_star_max_mag)
     missing_star = random.choice(named_candidates)
 
-    distractors = [name for name in get_all_named_star_names() if name != missing_star["name_cn"]]
+    distractors = [name for name in get_all_named_star_names(option_star_max_mag) if name != missing_star["name_cn"]]
     random.shuffle(distractors)
     options = distractors[:3] + [missing_star["name_cn"]]
     random.shuffle(options)
@@ -188,6 +205,8 @@ def build_round() -> dict[str, Any]:
         "missing_star_id": missing_star["id"],
         "missing_star_name": missing_star["name_cn"],
         "options": options,
+        "missing_star_max_mag": missing_star_max_mag,
+        "option_star_max_mag": option_star_max_mag,
     }
 
 
@@ -201,7 +220,7 @@ def render_chart(round_data: dict[str, Any], reveal_missing: bool = False) -> st
     stars = sorted(get_region_stars(round_data["region_key"]), key=lambda star: star["mag"], reverse=True)
     star_map = {star["id"]: star for star in stars}
     proj = project_region(region, stars)
-    ra0 = (region["bounds"]["ra_min"] + region["bounds"]["ra_max"]) / 2
+    ra0 = get_region_center_ra(region["bounds"])
     dec0 = (region["bounds"]["dec_min"] + region["bounds"]["dec_max"]) / 2
     x_min, x_max, y_min, y_max = projected_bounds(region, ra0, dec0)
     pad = max((x_max - x_min), (y_max - y_min)) * 0.06 or 0.05
@@ -301,7 +320,28 @@ def index():
         chart_data=chart,
         options=round_data["options"],
         region_name=region["display_name_cn"],
+        current_difficulty=round_data["missing_star_max_mag"],
+        option_difficulty=round_data["option_star_max_mag"],
+        difficulty_error=session.pop("difficulty_error", ""),
     )
+
+
+@app.route("/difficulty", methods=["POST"])
+def set_difficulty():
+    raw_value = request.form.get("difficulty", "").strip()
+    try:
+        difficulty = float(raw_value)
+    except ValueError:
+        session["difficulty_error"] = "请输入有效的星等数字。"
+        return index()
+
+    if difficulty > MAX_ALLOWED_DIFFICULTY:
+        session["difficulty_error"] = "这个难度太高了，开发者还在学习中......"
+        return index()
+
+    session["missing_star_max_mag"] = difficulty
+    session.pop("difficulty_error", None)
+    return index()
 
 
 @app.route("/answer", methods=["POST"])
@@ -323,6 +363,7 @@ def answer():
         answer=round_data["missing_star_name"],
         is_correct=is_correct,
         region_name=region["display_name_cn"],
+        current_difficulty=round_data.get("missing_star_max_mag", MISSING_STAR_MAX_MAG),
     )
 
 

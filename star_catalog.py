@@ -84,6 +84,18 @@ def get_constellation_region(key: str) -> dict[str, Any]:
     return CONSTELLATION_REGIONS[key]
 
 
+def region_contains_ra(bounds: dict[str, float], ra: float) -> bool:
+    if bounds["ra_min"] <= bounds["ra_max"]:
+        return bounds["ra_min"] <= ra <= bounds["ra_max"]
+    return ra >= bounds["ra_min"] or ra <= bounds["ra_max"]
+
+
+def get_region_center_ra(bounds: dict[str, float]) -> float:
+    if bounds["ra_min"] <= bounds["ra_max"]:
+        return (bounds["ra_min"] + bounds["ra_max"]) / 2
+    return ((bounds["ra_min"] + bounds["ra_max"] + 360) / 2) % 360
+
+
 def get_region_stars(key: str, mag_limit: float = 6.5) -> list[dict[str, Any]]:
     region = get_constellation_region(key)
     bounds = region["bounds"]
@@ -91,7 +103,7 @@ def get_region_stars(key: str, mag_limit: float = 6.5) -> list[dict[str, Any]]:
     stars = [
         dict(star)
         for star in load_hipparcos()
-        if bounds["ra_min"] <= star["ra"] <= bounds["ra_max"]
+        if region_contains_ra(bounds, star["ra"])
         and bounds["dec_min"] <= star["dec"] <= bounds["dec_max"]
         and star["mag"] <= mag_limit
     ]

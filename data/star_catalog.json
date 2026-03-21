@@ -1,184 +1,4076 @@
 {
-  "orion": {
-    "display_name_cn": "猎户座",
-    "display_name_en": "Orion",
-    "bounds": { "ra_min": 73.0, "ra_max": 92.5, "dec_min": -12.5, "dec_max": 16.0 },
-    "stars": [
-      { "id": "betelgeuse", "catalog_id": "HIP 27989", "name_cn": "参宿四", "name_en": "Betelgeuse", "mag": 0.42, "ra": 88.79, "dec": 7.41, "color": "#ffb27d", "constellation": "Orion" },
-      { "id": "rigel", "catalog_id": "HIP 24436", "name_cn": "参宿七", "name_en": "Rigel", "mag": 0.13, "ra": 78.63, "dec": -8.20, "color": "#d9ecff", "constellation": "Orion" },
-      { "id": "bellatrix", "catalog_id": "HIP 25336", "name_cn": "参宿五", "name_en": "Bellatrix", "mag": 1.64, "ra": 81.28, "dec": 6.35, "color": "#dfe8ff", "constellation": "Orion" },
-      { "id": "saiph", "catalog_id": "HIP 27366", "name_cn": "参宿六", "name_en": "Saiph", "mag": 2.07, "ra": 86.94, "dec": -9.67, "color": "#d6e6ff", "constellation": "Orion" },
-      { "id": "mintaka", "catalog_id": "HIP 25930", "name_cn": "参宿三", "name_en": "Mintaka", "mag": 2.25, "ra": 83.00, "dec": -0.30, "color": "#d9e9ff", "constellation": "Orion" },
-      { "id": "alnilam", "catalog_id": "HIP 26311", "name_cn": "参宿二", "name_en": "Alnilam", "mag": 1.69, "ra": 84.05, "dec": -1.20, "color": "#cfe5ff", "constellation": "Orion" },
-      { "id": "alnitak", "catalog_id": "HIP 26727", "name_cn": "参宿一", "name_en": "Alnitak", "mag": 1.79, "ra": 85.19, "dec": -1.94, "color": "#cfe0ff", "constellation": "Orion" },
-      { "id": "meissa", "catalog_id": "HIP 26207", "name_cn": "觜宿一", "name_en": "Meissa", "mag": 3.39, "ra": 83.78, "dec": 9.93, "color": "#f5f6ff", "constellation": "Orion" },
-      { "id": "orion_1", "catalog_id": "HIP 22845", "name_cn": "", "name_en": "", "mag": 3.70, "ra": 76.96, "dec": -5.09, "color": "#eef3ff", "constellation": "Orion" },
-      { "id": "orion_2", "catalog_id": "HIP 29239", "name_cn": "", "name_en": "", "mag": 4.10, "ra": 90.98, "dec": 14.77, "color": "#ffd9bf", "constellation": "Orion" },
-      { "id": "orion_3", "catalog_id": "HIP 25044", "name_cn": "", "name_en": "", "mag": 4.45, "ra": 80.71, "dec": -2.40, "color": "#dde8ff", "constellation": "Orion" },
-      { "id": "orion_4", "catalog_id": "HIP 28716", "name_cn": "", "name_en": "", "mag": 4.60, "ra": 89.10, "dec": 2.20, "color": "#fff0de", "constellation": "Orion" }
-    ]
-  },
-  "ursa_major": {
-    "display_name_cn": "大熊座",
-    "display_name_en": "Ursa Major",
-    "bounds": { "ra_min": 150.0, "ra_max": 210.0, "dec_min": 41.0, "dec_max": 65.0 },
-    "stars": [
-      { "id": "dubhe", "catalog_id": "HIP 54061", "name_cn": "天枢", "name_en": "Dubhe", "mag": 1.79, "ra": 165.46, "dec": 61.75, "color": "#ffd6a5", "constellation": "Ursa Major" },
-      { "id": "merak", "catalog_id": "HIP 53910", "name_cn": "天璇", "name_en": "Merak", "mag": 2.37, "ra": 165.93, "dec": 56.38, "color": "#edf4ff", "constellation": "Ursa Major" },
-      { "id": "phecda", "catalog_id": "HIP 58001", "name_cn": "天玑", "name_en": "Phecda", "mag": 2.43, "ra": 178.46, "dec": 53.69, "color": "#f8fbff", "constellation": "Ursa Major" },
-      { "id": "megrez", "catalog_id": "HIP 59774", "name_cn": "天权", "name_en": "Megrez", "mag": 3.32, "ra": 183.86, "dec": 57.03, "color": "#f7fbff", "constellation": "Ursa Major" },
-      { "id": "alioth", "catalog_id": "HIP 62956", "name_cn": "玉衡", "name_en": "Alioth", "mag": 1.76, "ra": 193.51, "dec": 55.96, "color": "#eef5ff", "constellation": "Ursa Major" },
-      { "id": "mizar", "catalog_id": "HIP 65378", "name_cn": "开阳", "name_en": "Mizar", "mag": 2.23, "ra": 200.98, "dec": 54.93, "color": "#eff5ff", "constellation": "Ursa Major" },
-      { "id": "alkaid", "catalog_id": "HIP 67301", "name_cn": "摇光", "name_en": "Alkaid", "mag": 1.86, "ra": 206.88, "dec": 49.31, "color": "#dfe9ff", "constellation": "Ursa Major" },
-      { "id": "um_1", "catalog_id": "HIP 54872", "name_cn": "", "name_en": "", "mag": 3.78, "ra": 168.53, "dec": 53.70, "color": "#f7fbff", "constellation": "Ursa Major" },
-      { "id": "um_2", "catalog_id": "HIP 60514", "name_cn": "", "name_en": "", "mag": 4.01, "ra": 186.20, "dec": 47.80, "color": "#ffe1ca", "constellation": "Ursa Major" },
-      { "id": "um_3", "catalog_id": "HIP 64852", "name_cn": "", "name_en": "", "mag": 4.62, "ra": 199.73, "dec": 62.68, "color": "#e8f0ff", "constellation": "Ursa Major" },
-      { "id": "um_4", "catalog_id": "HIP 55203", "name_cn": "", "name_en": "", "mag": 4.88, "ra": 170.02, "dec": 48.90, "color": "#eef3ff", "constellation": "Ursa Major" }
-    ]
-  },
-  "scorpius": {
-    "display_name_cn": "天蝎座",
-    "display_name_en": "Scorpius",
-    "bounds": { "ra_min": 233.0, "ra_max": 266.0, "dec_min": -46.0, "dec_max": 7.0 },
-    "stars": [
-      { "id": "antares", "catalog_id": "HIP 80763", "name_cn": "心宿二", "name_en": "Antares", "mag": 1.06, "ra": 247.35, "dec": -26.43, "color": "#ff9e77", "constellation": "Scorpius" },
-      { "id": "shaula", "catalog_id": "HIP 85927", "name_cn": "尾宿八", "name_en": "Shaula", "mag": 1.62, "ra": 263.40, "dec": -37.10, "color": "#d9e8ff", "constellation": "Scorpius" },
-      { "id": "sargas", "catalog_id": "HIP 86228", "name_cn": "尾宿五", "name_en": "Sargas", "mag": 1.86, "ra": 263.73, "dec": -42.99, "color": "#ffe0ba", "constellation": "Scorpius" },
-      { "id": "dschubba", "catalog_id": "HIP 78401", "name_cn": "房宿四", "name_en": "Dschubba", "mag": 2.29, "ra": 240.08, "dec": -22.62, "color": "#cfe4ff", "constellation": "Scorpius" },
-      { "id": "graffias", "catalog_id": "HIP 78820", "name_cn": "房宿二", "name_en": "Graffias", "mag": 2.62, "ra": 241.36, "dec": -19.80, "color": "#dce8ff", "constellation": "Scorpius" },
-      { "id": "jabbah", "catalog_id": "HIP 79374", "name_cn": "键闭", "name_en": "Jabbah", "mag": 2.89, "ra": 242.99, "dec": -19.46, "color": "#f8fbff", "constellation": "Scorpius" },
-      { "id": "sc_1", "catalog_id": "HIP 81173", "name_cn": "", "name_en": "", "mag": 3.56, "ra": 248.97, "dec": -28.22, "color": "#f8fbff", "constellation": "Scorpius" },
-      { "id": "sc_2", "catalog_id": "HIP 83554", "name_cn": "", "name_en": "", "mag": 4.18, "ra": 255.84, "dec": -34.29, "color": "#e7efff", "constellation": "Scorpius" },
-      { "id": "sc_3", "catalog_id": "HIP 77952", "name_cn": "", "name_en": "", "mag": 4.63, "ra": 238.78, "dec": -28.14, "color": "#ffe6d3", "constellation": "Scorpius" },
-      { "id": "sc_4", "catalog_id": "HIP 82729", "name_cn": "", "name_en": "", "mag": 4.90, "ra": 252.54, "dec": -38.05, "color": "#eef3ff", "constellation": "Scorpius" }
-    ]
-  },
-  "lyra": {
-    "display_name_cn": "天琴座",
-    "display_name_en": "Lyra",
-    "bounds": { "ra_min": 276.0, "ra_max": 290.5, "dec_min": 25.0, "dec_max": 42.5 },
-    "stars": [
-      { "id": "vega", "catalog_id": "HIP 91262", "name_cn": "织女一", "name_en": "Vega", "mag": 0.03, "ra": 279.23, "dec": 38.78, "color": "#d7e8ff", "constellation": "Lyra" },
-      { "id": "sheliak", "catalog_id": "HIP 92420", "name_cn": "渐台二", "name_en": "Sheliak", "mag": 3.52, "ra": 281.41, "dec": 33.36, "color": "#edf4ff", "constellation": "Lyra" },
-      { "id": "sulafat", "catalog_id": "HIP 93194", "name_cn": "渐台三", "name_en": "Sulafat", "mag": 3.25, "ra": 283.82, "dec": 32.69, "color": "#d8e7ff", "constellation": "Lyra" },
-      { "id": "ly_1", "catalog_id": "HIP 91971", "name_cn": "天琴座δ", "name_en": "Delta Lyrae", "mag": 4.30, "ra": 281.09, "dec": 36.90, "color": "#fff0de", "constellation": "Lyra" },
-      { "id": "ly_2", "catalog_id": "HIP 94083", "name_cn": "", "name_en": "", "mag": 4.34, "ra": 286.56, "dec": 31.00, "color": "#f6f9ff", "constellation": "Lyra" },
-      { "id": "ly_3", "catalog_id": "HIP 90998", "name_cn": "", "name_en": "", "mag": 4.22, "ra": 278.80, "dec": 29.67, "color": "#e9f1ff", "constellation": "Lyra" }
-    ]
-  },
-  "cygnus": {
-    "display_name_cn": "天鹅座",
-    "display_name_en": "Cygnus",
-    "bounds": { "ra_min": 292.0, "ra_max": 315.0, "dec_min": 27.0, "dec_max": 55.0 },
-    "stars": [
-      { "id": "deneb", "catalog_id": "HIP 102098", "name_cn": "天津四", "name_en": "Deneb", "mag": 1.25, "ra": 310.36, "dec": 45.28, "color": "#f8fbff", "constellation": "Cygnus" },
-      { "id": "sadr", "catalog_id": "HIP 100453", "name_cn": "天津一", "name_en": "Sadr", "mag": 2.23, "ra": 305.56, "dec": 40.26, "color": "#fff0de", "constellation": "Cygnus" },
-      { "id": "albireo", "catalog_id": "HIP 95947", "name_cn": "辇道增七", "name_en": "Albireo", "mag": 3.05, "ra": 292.68, "dec": 27.96, "color": "#ffcf92", "constellation": "Cygnus" },
-      { "id": "gienah", "catalog_id": "HIP 98110", "name_cn": "天津九", "name_en": "Gienah", "mag": 2.48, "ra": 299.08, "dec": 33.97, "color": "#dce8ff", "constellation": "Cygnus" },
-      { "id": "delta_cyg", "catalog_id": "HIP 97165", "name_cn": "天津二", "name_en": "Delta Cygni", "mag": 2.86, "ra": 296.24, "dec": 45.13, "color": "#dbe7ff", "constellation": "Cygnus" },
-      { "id": "cy_1", "catalog_id": "HIP 103413", "name_cn": "", "name_en": "", "mag": 4.20, "ra": 314.29, "dec": 42.00, "color": "#eef3ff", "constellation": "Cygnus" },
-      { "id": "cy_2", "catalog_id": "HIP 100435", "name_cn": "", "name_en": "", "mag": 4.60, "ra": 305.20, "dec": 32.19, "color": "#e7efff", "constellation": "Cygnus" }
-    ]
-  },
-  "canis_minor": {
-    "display_name_cn": "小犬座",
-    "display_name_en": "Canis Minor",
-    "bounds": { "ra_min": 105.0, "ra_max": 121.0, "dec_min": -2.0, "dec_max": 16.0 },
-    "stars": [
-      { "id": "procyon", "catalog_id": "HIP 37279", "name_cn": "南河三", "name_en": "Procyon", "mag": 0.34, "ra": 114.83, "dec": 5.22, "color": "#f4f7ff", "constellation": "Canis Minor" },
-      { "id": "gomeisa", "catalog_id": "HIP 36188", "name_cn": "南河二", "name_en": "Gomeisa", "mag": 2.89, "ra": 111.02, "dec": 8.29, "color": "#d7e8ff", "constellation": "Canis Minor" }
-    ]
-  },
   "aquila": {
     "display_name_cn": "天鹰座",
     "display_name_en": "Aquila",
-    "bounds": { "ra_min": 286.0, "ra_max": 302.5, "dec_min": -13.0, "dec_max": 15.0 },
+    "abbreviation": "Aql",
+    "bounds": {
+      "ra_min": 282.353,
+      "ra_max": 306.826,
+      "dec_min": -7.882,
+      "dec_max": 16.864
+    },
     "stars": [
-      { "id": "altair", "catalog_id": "HIP 97649", "name_cn": "河鼓二", "name_en": "Altair", "mag": 0.77, "ra": 297.70, "dec": 8.87, "color": "#e8f1ff", "constellation": "Aquila" },
-      { "id": "tarazed", "catalog_id": "HIP 97278", "name_cn": "河鼓一", "name_en": "Tarazed", "mag": 2.72, "ra": 296.56, "dec": 10.61, "color": "#ffddb5", "constellation": "Aquila" },
-      { "id": "alshain", "catalog_id": "HIP 98036", "name_cn": "河鼓三", "name_en": "Alshain", "mag": 3.71, "ra": 298.83, "dec": 6.41, "color": "#ffe6ca", "constellation": "Aquila" }
+      {
+        "id": "hip_97649_altair",
+        "catalog_id": "HIP 97649",
+        "name_cn": "河鼓二",
+        "name_en": "Altair",
+        "mag": 0.76,
+        "ra": 297.69451,
+        "dec": 8.86738,
+        "color": "#e3e9ff",
+        "constellation": "Aquila"
+      },
+      {
+        "id": "hip_97278_tarazed",
+        "catalog_id": "HIP 97278",
+        "name_cn": "河鼓三",
+        "name_en": "Tarazed",
+        "mag": 2.72,
+        "ra": 296.56488,
+        "dec": 10.61327,
+        "color": "#ffb979",
+        "constellation": "Aquila"
+      },
+      {
+        "id": "hip_93747_okab",
+        "catalog_id": "HIP 93747",
+        "name_cn": "天市左垣六",
+        "name_en": "Okab",
+        "mag": 2.99,
+        "ra": 286.35255,
+        "dec": 13.86371,
+        "color": "#ccd8ff",
+        "constellation": "Aquila"
+      },
+      {
+        "id": "hip_99473_aql",
+        "catalog_id": "HIP 99473",
+        "name_cn": "天桴一",
+        "name_en": "θ_Aql",
+        "mag": 3.24,
+        "ra": 302.8261,
+        "dec": -0.82148,
+        "color": "#c2d1ff",
+        "constellation": "Aquila"
+      },
+      {
+        "id": "hip_95501_aql",
+        "catalog_id": "HIP 95501",
+        "name_cn": "右旗三",
+        "name_en": "δ_Aql",
+        "mag": 3.36,
+        "ra": 291.37397,
+        "dec": 3.11458,
+        "color": "#eff1ff",
+        "constellation": "Aquila"
+      },
+      {
+        "id": "hip_93805_aql",
+        "catalog_id": "HIP 93805",
+        "name_cn": "天弁七",
+        "name_en": "λ_Aql",
+        "mag": 3.43,
+        "ra": 286.56229,
+        "dec": -4.88233,
+        "color": "#bfceff",
+        "constellation": "Aquila"
+      },
+      {
+        "id": "hip_98036_alshain",
+        "catalog_id": "HIP 98036",
+        "name_cn": "河鼓一",
+        "name_en": "Alshain",
+        "mag": 3.71,
+        "ra": 298.82819,
+        "dec": 6.40793,
+        "color": "#ffefe0",
+        "constellation": "Aquila"
+      },
+      {
+        "id": "hip_97804_aql",
+        "catalog_id": "HIP 97804",
+        "name_cn": "天桴四",
+        "name_en": "η_Aql",
+        "mag": 3.87,
+        "ra": 298.11818,
+        "dec": 1.00568,
+        "color": "#fcf5f3",
+        "constellation": "Aquila"
+      }
     ]
   },
-  "gemini": {
-    "display_name_cn": "双子座",
-    "display_name_en": "Gemini",
-    "bounds": { "ra_min": 90.0, "ra_max": 123.0, "dec_min": 10.0, "dec_max": 38.0 },
+  "aquarius": {
+    "display_name_cn": "宝瓶座",
+    "display_name_en": "Aquarius",
+    "abbreviation": "Aqr",
+    "bounds": {
+      "ra_min": 307.919,
+      "ra_max": 354.743,
+      "dec_min": -24.172,
+      "dec_max": 2.98
+    },
     "stars": [
-      { "id": "castor", "catalog_id": "HIP 36850", "name_cn": "北河二", "name_en": "Castor", "mag": 1.58, "ra": 113.65, "dec": 31.89, "color": "#dce8ff", "constellation": "Gemini" },
-      { "id": "pollux", "catalog_id": "HIP 37826", "name_cn": "北河三", "name_en": "Pollux", "mag": 1.14, "ra": 116.33, "dec": 28.03, "color": "#ffd39a", "constellation": "Gemini" },
-      { "id": "alhena", "catalog_id": "HIP 31681", "name_cn": "井宿三", "name_en": "Alhena", "mag": 1.93, "ra": 99.43, "dec": 16.40, "color": "#dde8ff", "constellation": "Gemini" }
+      {
+        "id": "hip_106278_sadalsuud",
+        "catalog_id": "HIP 106278",
+        "name_cn": "虚宿一",
+        "name_en": "Sadalsuud",
+        "mag": 2.9,
+        "ra": 322.88967,
+        "dec": -5.57116,
+        "color": "#fff2e5",
+        "constellation": "Aquarius"
+      },
+      {
+        "id": "hip_109074_sadalmelik",
+        "catalog_id": "HIP 109074",
+        "name_cn": "危宿一",
+        "name_en": "Sadalmelik",
+        "mag": 2.95,
+        "ra": 331.44594,
+        "dec": -0.31983,
+        "color": "#ffe6cb",
+        "constellation": "Aquarius"
+      },
+      {
+        "id": "hip_113136_skat",
+        "catalog_id": "HIP 113136",
+        "name_cn": "羽林军廿六",
+        "name_en": "Skat",
+        "mag": 3.27,
+        "ra": 343.66266,
+        "dec": -15.82076,
+        "color": "#d2dcff",
+        "constellation": "Aquarius"
+      },
+      {
+        "id": "hip_110960_1_aqr",
+        "catalog_id": "HIP 110960",
+        "name_cn": "坟墓一",
+        "name_en": "ζ1_Aqr",
+        "mag": 3.65,
+        "ra": 337.2075,
+        "dec": -0.02006,
+        "color": "#f8f7ff",
+        "constellation": "Aquarius"
+      },
+      {
+        "id": "hip_114341_c2_aqr",
+        "catalog_id": "HIP 114341",
+        "name_cn": "羽林军廿八",
+        "name_en": "c2_Aqr",
+        "mag": 3.68,
+        "ra": 347.36151,
+        "dec": -21.17249,
+        "color": "#ffd2a1",
+        "constellation": "Aquarius"
+      },
+      {
+        "id": "hip_112961_aqr",
+        "catalog_id": "HIP 112961",
+        "name_cn": "垒壁阵七",
+        "name_en": "λ_Aqr",
+        "mag": 3.73,
+        "ra": 343.1536,
+        "dec": -7.57968,
+        "color": "#ffaf6c",
+        "constellation": "Aquarius"
+      },
+      {
+        "id": "hip_102618_albali",
+        "catalog_id": "HIP 102618",
+        "name_cn": "女宿一",
+        "name_en": "Albali",
+        "mag": 3.78,
+        "ra": 311.91889,
+        "dec": -9.49569,
+        "color": "#cad7ff",
+        "constellation": "Aquarius"
+      },
+      {
+        "id": "hip_110395_sadachbia",
+        "catalog_id": "HIP 110395",
+        "name_cn": "坟墓二",
+        "name_en": "Sadachbia",
+        "mag": 3.86,
+        "ra": 335.41375,
+        "dec": -1.38735,
+        "color": "#c3d1ff",
+        "constellation": "Aquarius"
+      },
+      {
+        "id": "hip_115438_b1_aqr",
+        "catalog_id": "HIP 115438",
+        "name_cn": "羽林军卅四",
+        "name_en": "b1_Aqr",
+        "mag": 3.96,
+        "ra": 350.74292,
+        "dec": -20.10035,
+        "color": "#ffdcb7",
+        "constellation": "Aquarius"
+      }
     ]
   },
-  "taurus": {
-    "display_name_cn": "金牛座",
-    "display_name_en": "Taurus",
-    "bounds": { "ra_min": 50.0, "ra_max": 96.0, "dec_min": -3.0, "dec_max": 34.0 },
+  "aries": {
+    "display_name_cn": "白羊座",
+    "display_name_en": "Aries",
+    "abbreviation": "Ari",
+    "bounds": {
+      "ra_min": 24.382,
+      "ra_max": 46.496,
+      "dec_min": 16.294,
+      "dec_max": 30.261
+    },
     "stars": [
-      { "id": "aldebaran", "catalog_id": "HIP 21421", "name_cn": "毕宿五", "name_en": "Aldebaran", "mag": 0.86, "ra": 68.98, "dec": 16.51, "color": "#ffb37b", "constellation": "Taurus" }
+      {
+        "id": "hip_9884_hamal",
+        "catalog_id": "HIP 9884",
+        "name_cn": "娄宿三",
+        "name_en": "Hamal",
+        "mag": 2.01,
+        "ra": 31.79286,
+        "dec": 23.46278,
+        "color": "#ffd6aa",
+        "constellation": "Aries"
+      },
+      {
+        "id": "hip_8903_sheratan",
+        "catalog_id": "HIP 8903",
+        "name_cn": "娄宿一",
+        "name_en": "Sheratan",
+        "mag": 2.64,
+        "ra": 28.65979,
+        "dec": 20.8083,
+        "color": "#dde4ff",
+        "constellation": "Aries"
+      },
+      {
+        "id": "hip_13209_bharani",
+        "catalog_id": "HIP 13209",
+        "name_cn": "胃宿三",
+        "name_en": "Bharani",
+        "mag": 3.61,
+        "ra": 42.49579,
+        "dec": 27.26079,
+        "color": "#becdff",
+        "constellation": "Aries"
+      },
+      {
+        "id": "hip_8832_mesarthim",
+        "catalog_id": "HIP 8832",
+        "name_cn": "娄宿二",
+        "name_en": "Mesarthim",
+        "mag": 3.88,
+        "ra": 28.38236,
+        "dec": 19.29409,
+        "color": "#c4d2ff",
+        "constellation": "Aries"
+      }
     ]
   },
-  "virgo": {
-    "display_name_cn": "室女座",
-    "display_name_en": "Virgo",
-    "bounds": { "ra_min": 175.0, "ra_max": 206.0, "dec_min": -22.0, "dec_max": 15.0 },
+  "auriga": {
+    "display_name_cn": "御夫座",
+    "display_name_en": "Auriga",
+    "abbreviation": "Aur",
+    "bounds": {
+      "ra_min": 70.248,
+      "ra_max": 93.93,
+      "dec_min": 30.166,
+      "dec_max": 57.285
+    },
     "stars": [
-      { "id": "spica", "catalog_id": "HIP 65474", "name_cn": "角宿一", "name_en": "Spica", "mag": 0.98, "ra": 201.30, "dec": -11.16, "color": "#d7e8ff", "constellation": "Virgo" }
+      {
+        "id": "hip_24608_capella",
+        "catalog_id": "HIP 24608",
+        "name_cn": "五车二",
+        "name_en": "Capella",
+        "mag": 0.08,
+        "ra": 79.17207,
+        "dec": 45.99903,
+        "color": "#fff4ea",
+        "constellation": "Auriga"
+      },
+      {
+        "id": "hip_28360_menkalinan",
+        "catalog_id": "HIP 28360",
+        "name_cn": "五车三",
+        "name_en": "Menkalinan",
+        "mag": 1.9,
+        "ra": 89.88237,
+        "dec": 44.94743,
+        "color": "#d3ddff",
+        "constellation": "Auriga"
+      },
+      {
+        "id": "hip_28380_mahasim",
+        "catalog_id": "HIP 28380",
+        "name_cn": "五车四",
+        "name_en": "Mahasim",
+        "mag": 2.65,
+        "ra": 89.93016,
+        "dec": 37.21276,
+        "color": "#c0cfff",
+        "constellation": "Auriga"
+      },
+      {
+        "id": "hip_23015_hassaleh",
+        "catalog_id": "HIP 23015",
+        "name_cn": "五车一",
+        "name_en": "Hassaleh",
+        "mag": 2.69,
+        "ra": 74.2484,
+        "dec": 33.16614,
+        "color": "#ffba7b",
+        "constellation": "Auriga"
+      },
+      {
+        "id": "hip_23416_almaaz",
+        "catalog_id": "HIP 23416",
+        "name_cn": "柱一[毕宿]",
+        "name_en": "Almaaz",
+        "mag": 3.03,
+        "ra": 75.49223,
+        "dec": 43.82331,
+        "color": "#faf6f8",
+        "constellation": "Auriga"
+      },
+      {
+        "id": "hip_23767_haedus",
+        "catalog_id": "HIP 23767",
+        "name_cn": "柱三[毕宿]",
+        "name_en": "Haedus",
+        "mag": 3.18,
+        "ra": 76.62862,
+        "dec": 41.23464,
+        "color": "#b9c9ff",
+        "constellation": "Auriga"
+      },
+      {
+        "id": "hip_23453_saclateni",
+        "catalog_id": "HIP 23453",
+        "name_cn": "柱二[毕宿]",
+        "name_en": "Saclateni",
+        "mag": 3.69,
+        "ra": 75.6195,
+        "dec": 41.07589,
+        "color": "#ffd6a9",
+        "constellation": "Auriga"
+      },
+      {
+        "id": "hip_28358_aur",
+        "catalog_id": "HIP 28358",
+        "name_cn": "八谷一",
+        "name_en": "δ_Aur",
+        "mag": 3.72,
+        "ra": 89.88146,
+        "dec": 54.28498,
+        "color": "#ffe2c4",
+        "constellation": "Auriga"
+      },
+      {
+        "id": "hip_27673_aur",
+        "catalog_id": "HIP 27673",
+        "name_cn": "柱五[毕宿]",
+        "name_en": "ν_Aur",
+        "mag": 3.97,
+        "ra": 87.87247,
+        "dec": 39.14848,
+        "color": "#ffd8ad",
+        "constellation": "Auriga"
+      }
+    ]
+  },
+  "bootes": {
+    "display_name_cn": "牧夫座",
+    "display_name_en": "Bootes",
+    "abbreviation": "Boo",
+    "bounds": {
+      "ra_min": 204.671,
+      "ra_max": 232.875,
+      "dec_min": 10.529,
+      "dec_max": 43.59
+    },
+    "stars": [
+      {
+        "id": "hip_69673_arcturus",
+        "catalog_id": "HIP 69673",
+        "name_cn": "大角",
+        "name_en": "Arcturus",
+        "mag": -0.05,
+        "ra": 213.91811,
+        "dec": 19.18727,
+        "color": "#ffcf9c",
+        "constellation": "Bootes"
+      },
+      {
+        "id": "hip_72105_izar",
+        "catalog_id": "HIP 72105",
+        "name_cn": "梗河一",
+        "name_en": "Izar",
+        "mag": 2.35,
+        "ra": 221.24688,
+        "dec": 27.07417,
+        "color": "#ffe6cc",
+        "constellation": "Bootes"
+      },
+      {
+        "id": "hip_67927_muphrid",
+        "catalog_id": "HIP 67927",
+        "name_cn": "右摄提一",
+        "name_en": "Muphrid",
+        "mag": 2.68,
+        "ra": 208.67132,
+        "dec": 18.39859,
+        "color": "#fbf6f6",
+        "constellation": "Bootes"
+      },
+      {
+        "id": "hip_71075_seginus",
+        "catalog_id": "HIP 71075",
+        "name_cn": "招摇",
+        "name_en": "Seginus",
+        "mag": 3.04,
+        "ra": 218.01982,
+        "dec": 38.30788,
+        "color": "#e0e6ff",
+        "constellation": "Bootes"
+      },
+      {
+        "id": "hip_74666_boo",
+        "catalog_id": "HIP 74666",
+        "name_cn": "七公七",
+        "name_en": "δ_Boo",
+        "mag": 3.46,
+        "ra": 228.87543,
+        "dec": 33.3151,
+        "color": "#ffe6cd",
+        "constellation": "Bootes"
+      },
+      {
+        "id": "hip_73555_nekkar",
+        "catalog_id": "HIP 73555",
+        "name_cn": "七公增五",
+        "name_en": "Nekkar",
+        "mag": 3.49,
+        "ra": 225.48664,
+        "dec": 40.39064,
+        "color": "#ffe7ce",
+        "constellation": "Bootes"
+      },
+      {
+        "id": "hip_71053_boo",
+        "catalog_id": "HIP 71053",
+        "name_cn": "梗河三",
+        "name_en": "ρ_Boo",
+        "mag": 3.57,
+        "ra": 217.95774,
+        "dec": 30.37114,
+        "color": "#ffca94",
+        "constellation": "Bootes"
+      },
+      {
+        "id": "hip_71795_boo",
+        "catalog_id": "HIP 71795",
+        "name_cn": "左摄提三",
+        "name_en": "ζ_Boo",
+        "mag": 3.78,
+        "ra": 220.28717,
+        "dec": 13.72833,
+        "color": "#cfdbff",
+        "constellation": "Bootes"
+      }
     ]
   },
   "canis_major": {
     "display_name_cn": "大犬座",
     "display_name_en": "Canis Major",
-    "bounds": { "ra_min": 95.0, "ra_max": 115.0, "dec_min": -35.0, "dec_max": 5.0 },
+    "abbreviation": "CMa",
+    "bounds": {
+      "ra_min": 91.675,
+      "ra_max": 115.024,
+      "dec_min": -32.303,
+      "dec_max": -13.713
+    },
     "stars": [
-      { "id": "sirius", "catalog_id": "HIP 32349", "name_cn": "天狼星", "name_en": "Sirius", "mag": -1.46, "ra": 101.29, "dec": -16.72, "color": "#eef4ff", "constellation": "Canis Major" },
-      { "id": "mirzam", "catalog_id": "HIP 30324", "name_cn": "军市一", "name_en": "Mirzam", "mag": 1.98, "ra": 95.67, "dec": -17.96, "color": "#dbe8ff", "constellation": "Canis Major" },
-      { "id": "adhara", "catalog_id": "HIP 33579", "name_cn": "弧矢七", "name_en": "Adhara", "mag": 1.50, "ra": 104.66, "dec": -28.97, "color": "#d9e7ff", "constellation": "Canis Major" },
-      { "id": "wezen", "catalog_id": "HIP 34444", "name_cn": "弧矢一", "name_en": "Wezen", "mag": 1.83, "ra": 107.10, "dec": -26.39, "color": "#ffd7a5", "constellation": "Canis Major" }
+      {
+        "id": "hip_32349_sirius",
+        "catalog_id": "HIP 32349",
+        "name_cn": "天狼",
+        "name_en": "Sirius",
+        "mag": -1.44,
+        "ra": 101.28854,
+        "dec": -16.71314,
+        "color": "#cbd8ff",
+        "constellation": "Canis Major"
+      },
+      {
+        "id": "hip_33579_adhara",
+        "catalog_id": "HIP 33579",
+        "name_cn": "弧矢七",
+        "name_en": "Adhara",
+        "mag": 1.5,
+        "ra": 104.65644,
+        "dec": -28.97209,
+        "color": "#b1c2ff",
+        "constellation": "Canis Major"
+      },
+      {
+        "id": "hip_34444_wezen",
+        "catalog_id": "HIP 34444",
+        "name_cn": "弧矢一",
+        "name_en": "Wezen",
+        "mag": 1.83,
+        "ra": 107.09786,
+        "dec": -26.39321,
+        "color": "#fdf5f1",
+        "constellation": "Canis Major"
+      },
+      {
+        "id": "hip_30324_mirzam",
+        "catalog_id": "HIP 30324",
+        "name_cn": "军市一",
+        "name_en": "Mirzam",
+        "mag": 1.98,
+        "ra": 95.67495,
+        "dec": -17.95592,
+        "color": "#aec0ff",
+        "constellation": "Canis Major"
+      },
+      {
+        "id": "hip_35904_aludra",
+        "catalog_id": "HIP 35904",
+        "name_cn": "弧矢二",
+        "name_en": "Aludra",
+        "mag": 2.45,
+        "ra": 111.02377,
+        "dec": -29.30312,
+        "color": "#c0cfff",
+        "constellation": "Canis Major"
+      },
+      {
+        "id": "hip_33977_2_cma",
+        "catalog_id": "HIP 33977",
+        "name_cn": "军市增五",
+        "name_en": "ο2_CMa",
+        "mag": 3.02,
+        "ra": 105.75614,
+        "dec": -23.8333,
+        "color": "#c1cfff",
+        "constellation": "Canis Major"
+      },
+      {
+        "id": "hip_33856_nganurganity",
+        "catalog_id": "HIP 33856",
+        "name_cn": "弧矢增二",
+        "name_en": "Nganurganity",
+        "mag": 3.49,
+        "ra": 105.4298,
+        "dec": -27.93484,
+        "color": "#ffa567",
+        "constellation": "Canis Major"
+      },
+      {
+        "id": "hip_33152_1_cma",
+        "catalog_id": "HIP 33152",
+        "name_cn": "军市五",
+        "name_en": "ο1_CMa",
+        "mag": 3.89,
+        "ra": 103.53315,
+        "dec": -24.18422,
+        "color": "#ffa466",
+        "constellation": "Canis Major"
+      },
+      {
+        "id": "hip_31592_2_cma",
+        "catalog_id": "HIP 31592",
+        "name_cn": "野鸡",
+        "name_en": "ν2_CMa",
+        "mag": 3.95,
+        "ra": 99.17083,
+        "dec": -19.25571,
+        "color": "#ffe0bf",
+        "constellation": "Canis Major"
+      }
     ]
   },
-  "cassiopeia": {
-    "display_name_cn": "仙后座",
-    "display_name_en": "Cassiopeia",
-    "bounds": { "ra_min": 0.0, "ra_max": 35.0, "dec_min": 45.0, "dec_max": 78.0 },
+  "canis_minor": {
+    "display_name_cn": "小犬座",
+    "display_name_en": "Canis Minor",
+    "abbreviation": "CMi",
+    "bounds": {
+      "ra_min": 107.788,
+      "ra_max": 118.827,
+      "dec_min": 2.228,
+      "dec_max": 11.289
+    },
     "stars": [
-      { "id": "schedar", "catalog_id": "HIP 3179", "name_cn": "王良四", "name_en": "Schedar", "mag": 2.24, "ra": 10.13, "dec": 56.54, "color": "#ffb170", "constellation": "Cassiopeia" },
-      { "id": "caph", "catalog_id": "HIP 746", "name_cn": "王良一", "name_en": "Caph", "mag": 2.28, "ra": 2.30, "dec": 59.15, "color": "#f8fbff", "constellation": "Cassiopeia" },
-      { "id": "tsih", "catalog_id": "HIP 4427", "name_cn": "策", "name_en": "Tsih", "mag": 2.15, "ra": 14.18, "dec": 60.72, "color": "#d7e8ff", "constellation": "Cassiopeia" },
-      { "id": "ruchbah", "catalog_id": "HIP 6360", "name_cn": "阁道三", "name_en": "Ruchbah", "mag": 2.66, "ra": 20.35, "dec": 60.23, "color": "#f7fbff", "constellation": "Cassiopeia" },
-      { "id": "segin", "catalog_id": "HIP 8886", "name_cn": "阁道二", "name_en": "Segin", "mag": 3.35, "ra": 27.65, "dec": 63.67, "color": "#d8e7ff", "constellation": "Cassiopeia" }
+      {
+        "id": "hip_37279_procyon",
+        "catalog_id": "HIP 37279",
+        "name_cn": "南河三",
+        "name_en": "Procyon",
+        "mag": 0.4,
+        "ra": 114.82724,
+        "dec": 5.22751,
+        "color": "#f9f7fd",
+        "constellation": "Canis Minor"
+      },
+      {
+        "id": "hip_36188_gomeisa",
+        "catalog_id": "HIP 36188",
+        "name_cn": "南河二",
+        "name_en": "Gomeisa",
+        "mag": 2.89,
+        "ra": 111.7878,
+        "dec": 8.28941,
+        "color": "#bfceff",
+        "constellation": "Canis Minor"
+      }
+    ]
+  },
+  "canes_venatici": {
+    "display_name_cn": "猎犬座",
+    "display_name_en": "Canes Venatici",
+    "abbreviation": "CVn",
+    "bounds": {
+      "ra_min": 190.008,
+      "ra_max": 198.008,
+      "dec_min": 35.318,
+      "dec_max": 41.318
+    },
+    "stars": [
+      {
+        "id": "hip_63125_cor_caroli",
+        "catalog_id": "HIP 63125",
+        "name_cn": "常陈一",
+        "name_en": "Cor Caroli",
+        "mag": 2.89,
+        "ra": 194.00767,
+        "dec": 38.31825,
+        "color": "#bcccff",
+        "constellation": "Canes Venatici"
+      }
+    ]
+  },
+  "capricornus": {
+    "display_name_cn": "摩羯座",
+    "display_name_en": "Capricornus",
+    "abbreviation": "Cap",
+    "bounds": {
+      "ra_min": 300.513,
+      "ra_max": 330.76,
+      "dec_min": -25.411,
+      "dec_max": -9.545
+    },
+    "stars": [
+      {
+        "id": "hip_107556_deneb_algedi",
+        "catalog_id": "HIP 107556",
+        "name_cn": "垒壁阵四",
+        "name_en": "Deneb Algedi",
+        "mag": 2.85,
+        "ra": 326.75952,
+        "dec": -16.12657,
+        "color": "#dfe5ff",
+        "constellation": "Capricornus"
+      },
+      {
+        "id": "hip_100345_dabih",
+        "catalog_id": "HIP 100345",
+        "name_cn": "牛宿一",
+        "name_en": "Dabih",
+        "mag": 3.05,
+        "ra": 305.25269,
+        "dec": -14.7814,
+        "color": "#fff4eb",
+        "constellation": "Capricornus"
+      },
+      {
+        "id": "hip_100064_algedi",
+        "catalog_id": "HIP 100064",
+        "name_cn": "牛宿二",
+        "name_en": "Algedi",
+        "mag": 3.58,
+        "ra": 304.51341,
+        "dec": -12.54486,
+        "color": "#ffeddb",
+        "constellation": "Capricornus"
+      },
+      {
+        "id": "hip_106985_nashira",
+        "catalog_id": "HIP 106985",
+        "name_cn": "垒壁阵三",
+        "name_en": "Nashira",
+        "mag": 3.69,
+        "ra": 325.02226,
+        "dec": -16.66225,
+        "color": "#eff1ff",
+        "constellation": "Capricornus"
+      },
+      {
+        "id": "hip_105881_cap",
+        "catalog_id": "HIP 105881",
+        "name_cn": "燕",
+        "name_en": "ζ_Cap",
+        "mag": 3.77,
+        "ra": 321.66678,
+        "dec": -22.41138,
+        "color": "#ffe3c5",
+        "constellation": "Capricornus"
+      }
+    ]
+  },
+  "cepheus": {
+    "display_name_cn": "仙王座",
+    "display_name_en": "Cepheus",
+    "abbreviation": "Cep",
+    "bounds": {
+      "ra_min": 307.322,
+      "ra_max": 358.837,
+      "dec_min": 55.201,
+      "dec_max": 80.632
+    },
+    "stars": [
+      {
+        "id": "hip_105199_alderamin",
+        "catalog_id": "HIP 105199",
+        "name_cn": "天钩五",
+        "name_en": "Alderamin",
+        "mag": 2.45,
+        "ra": 319.64409,
+        "dec": 62.58546,
+        "color": "#e8ecff",
+        "constellation": "Cepheus"
+      },
+      {
+        "id": "hip_116727_errai",
+        "catalog_id": "HIP 116727",
+        "name_cn": "少卫增八",
+        "name_en": "Errai",
+        "mag": 3.21,
+        "ra": 354.83743,
+        "dec": 77.63197,
+        "color": "#ffe0c0",
+        "constellation": "Cepheus"
+      },
+      {
+        "id": "hip_106032_alfirk",
+        "catalog_id": "HIP 106032",
+        "name_cn": "上卫增一",
+        "name_en": "Alfirk",
+        "mag": 3.23,
+        "ra": 322.1649,
+        "dec": 70.56069,
+        "color": "#b2c3ff",
+        "constellation": "Cepheus"
+      },
+      {
+        "id": "hip_109492_cep",
+        "catalog_id": "HIP 109492",
+        "name_cn": "造父二",
+        "name_en": "ζ_Cep",
+        "mag": 3.39,
+        "ra": 332.71359,
+        "dec": 58.20125,
+        "color": "#ffb472",
+        "constellation": "Cepheus"
+      },
+      {
+        "id": "hip_102422_cep",
+        "catalog_id": "HIP 102422",
+        "name_cn": "天钩四",
+        "name_en": "η_Cep",
+        "mag": 3.41,
+        "ra": 311.32195,
+        "dec": 61.83679,
+        "color": "#ffead6",
+        "constellation": "Cepheus"
+      },
+      {
+        "id": "hip_112724_cep",
+        "catalog_id": "HIP 112724",
+        "name_cn": "天钩八",
+        "name_en": "ι_Cep",
+        "mag": 3.5,
+        "ra": 342.42047,
+        "dec": 66.20071,
+        "color": "#ffdebc",
+        "constellation": "Cepheus"
+      }
+    ]
+  },
+  "cetus": {
+    "display_name_cn": "鲸鱼座",
+    "display_name_en": "Cetus",
+    "abbreviation": "Cet",
+    "bounds": {
+      "ra_min": 0.857,
+      "ra_max": 49.57,
+      "dec_min": -24.098,
+      "dec_max": 7.11
+    },
+    "stars": [
+      {
+        "id": "hip_3419_diphda",
+        "catalog_id": "HIP 3419",
+        "name_cn": "土司空",
+        "name_en": "Diphda",
+        "mag": 2.04,
+        "ra": 10.89678,
+        "dec": -17.98668,
+        "color": "#ffe1c2",
+        "constellation": "Cetus"
+      },
+      {
+        "id": "hip_14135_menkar",
+        "catalog_id": "HIP 14135",
+        "name_cn": "天囷一",
+        "name_en": "Menkar",
+        "mag": 2.54,
+        "ra": 45.56991,
+        "dec": 4.08993,
+        "color": "#ffae6c",
+        "constellation": "Cetus"
+      },
+      {
+        "id": "hip_5364_cet",
+        "catalog_id": "HIP 5364",
+        "name_cn": "天仓二",
+        "name_en": "η_Cet",
+        "mag": 3.46,
+        "ra": 17.14693,
+        "dec": -10.18193,
+        "color": "#ffd5a8",
+        "constellation": "Cetus"
+      },
+      {
+        "id": "hip_12706_kaffaljidhma",
+        "catalog_id": "HIP 12706",
+        "name_cn": "天囷八",
+        "name_en": "Kaffaljidhma",
+        "mag": 3.47,
+        "ra": 40.82552,
+        "dec": 3.23617,
+        "color": "#d5deff",
+        "constellation": "Cetus"
+      },
+      {
+        "id": "hip_8102_cet",
+        "catalog_id": "HIP 8102",
+        "name_cn": "天仓五",
+        "name_en": "τ_Cet",
+        "mag": 3.49,
+        "ra": 26.02136,
+        "dec": -15.93956,
+        "color": "#fef5ee",
+        "constellation": "Cetus"
+      },
+      {
+        "id": "hip_1562_cet",
+        "catalog_id": "HIP 1562",
+        "name_cn": "天仓一",
+        "name_en": "ι_Cet",
+        "mag": 3.56,
+        "ra": 4.85701,
+        "dec": -8.82383,
+        "color": "#ffd19f",
+        "constellation": "Cetus"
+      },
+      {
+        "id": "hip_6537_cet",
+        "catalog_id": "HIP 6537",
+        "name_cn": "天仓三",
+        "name_en": "θ_Cet",
+        "mag": 3.6,
+        "ra": 21.00605,
+        "dec": -8.18275,
+        "color": "#ffddba",
+        "constellation": "Cetus"
+      },
+      {
+        "id": "hip_8645_baten_kaitos",
+        "catalog_id": "HIP 8645",
+        "name_cn": "天仓四",
+        "name_en": "Baten Kaitos",
+        "mag": 3.74,
+        "ra": 27.86504,
+        "dec": -10.33495,
+        "color": "#ffd7ad",
+        "constellation": "Cetus"
+      },
+      {
+        "id": "hip_9347_cet",
+        "catalog_id": "HIP 9347",
+        "name_cn": "𫓧锧四",
+        "name_en": "υ_Cet",
+        "mag": 3.99,
+        "ra": 30.00094,
+        "dec": -21.07777,
+        "color": "#ffb573",
+        "constellation": "Cetus"
+      }
+    ]
+  },
+  "cancer": {
+    "display_name_cn": "巨蟹座",
+    "display_name_en": "Cancer",
+    "abbreviation": "Cnc",
+    "bounds": {
+      "ra_min": 120.129,
+      "ra_max": 135.171,
+      "dec_min": 6.186,
+      "dec_max": 21.155
+    },
+    "stars": [
+      {
+        "id": "hip_40526_tarf",
+        "catalog_id": "HIP 40526",
+        "name_cn": "柳宿增十",
+        "name_en": "Tarf",
+        "mag": 3.53,
+        "ra": 124.12895,
+        "dec": 9.18566,
+        "color": "#ffbb7c",
+        "constellation": "Cancer"
+      },
+      {
+        "id": "hip_42911_asellus_australis",
+        "catalog_id": "HIP 42911",
+        "name_cn": "鬼宿四",
+        "name_en": "Asellus Australis",
+        "mag": 3.94,
+        "ra": 131.17129,
+        "dec": 18.15486,
+        "color": "#ffdcb6",
+        "constellation": "Cancer"
+      }
+    ]
+  },
+  "corona_borealis": {
+    "display_name_cn": "北冕座",
+    "display_name_en": "Corona Borealis",
+    "abbreviation": "CrB",
+    "bounds": {
+      "ra_min": 227.958,
+      "ra_max": 239.686,
+      "dec_min": 23.296,
+      "dec_max": 32.105
+    },
+    "stars": [
+      {
+        "id": "hip_76267_alphecca",
+        "catalog_id": "HIP 76267",
+        "name_cn": "贯索四",
+        "name_en": "Alphecca",
+        "mag": 2.22,
+        "ra": 233.67162,
+        "dec": 26.71491,
+        "color": "#cedaff",
+        "constellation": "Corona Borealis"
+      },
+      {
+        "id": "hip_75695_nusakan",
+        "catalog_id": "HIP 75695",
+        "name_cn": "贯索三",
+        "name_en": "Nusakan",
+        "mag": 3.66,
+        "ra": 231.95772,
+        "dec": 29.10549,
+        "color": "#eff1ff",
+        "constellation": "Corona Borealis"
+      },
+      {
+        "id": "hip_76952_crb",
+        "catalog_id": "HIP 76952",
+        "name_cn": "贯索五",
+        "name_en": "γ_CrB",
+        "mag": 3.81,
+        "ra": 235.68599,
+        "dec": 26.29551,
+        "color": "#ccd9ff",
+        "constellation": "Corona Borealis"
+      }
+    ]
+  },
+  "crater": {
+    "display_name_cn": "巨爵座",
+    "display_name_en": "Crater",
+    "abbreviation": "Crt",
+    "bounds": {
+      "ra_min": 165.836,
+      "ra_max": 173.836,
+      "dec_min": -17.779,
+      "dec_max": -11.779
+    },
+    "stars": [
+      {
+        "id": "hip_55282_crt",
+        "catalog_id": "HIP 55282",
+        "name_cn": "翼宿七",
+        "name_en": "δ_Crt",
+        "mag": 3.56,
+        "ra": 169.83551,
+        "dec": -14.77904,
+        "color": "#ffd9b1",
+        "constellation": "Crater"
+      }
+    ]
+  },
+  "corvus": {
+    "display_name_cn": "乌鸦座",
+    "display_name_en": "Corvus",
+    "abbreviation": "Crv",
+    "bounds": {
+      "ra_min": 178.531,
+      "ra_max": 192.597,
+      "dec_min": -26.397,
+      "dec_max": -13.515
+    },
+    "stars": [
+      {
+        "id": "hip_59803_gienah",
+        "catalog_id": "HIP 59803",
+        "name_cn": "轸宿一",
+        "name_en": "Gienah",
+        "mag": 2.58,
+        "ra": 183.95195,
+        "dec": -17.54198,
+        "color": "#bdcdff",
+        "constellation": "Corvus"
+      },
+      {
+        "id": "hip_61359_kraz",
+        "catalog_id": "HIP 61359",
+        "name_cn": "轸宿四",
+        "name_en": "Kraz",
+        "mag": 2.65,
+        "ra": 188.59681,
+        "dec": -23.39662,
+        "color": "#ffecd9",
+        "constellation": "Corvus"
+      },
+      {
+        "id": "hip_60965_algorab",
+        "catalog_id": "HIP 60965",
+        "name_cn": "轸宿三",
+        "name_en": "Algorab",
+        "mag": 2.94,
+        "ra": 187.4666,
+        "dec": -16.51509,
+        "color": "#c9d6ff",
+        "constellation": "Corvus"
+      },
+      {
+        "id": "hip_59316_crv",
+        "catalog_id": "HIP 59316",
+        "name_cn": "轸宿二",
+        "name_en": "ε_Crv",
+        "mag": 3.02,
+        "ra": 182.53136,
+        "dec": -22.61979,
+        "color": "#ffc891",
+        "constellation": "Corvus"
+      }
+    ]
+  },
+  "cygnus": {
+    "display_name_cn": "天鹅座",
+    "display_name_en": "Cygnus",
+    "abbreviation": "Cyg",
+    "bounds": {
+      "ra_min": 285.275,
+      "ra_max": 327.495,
+      "dec_min": 24.911,
+      "dec_max": 56.417
+    },
+    "stars": [
+      {
+        "id": "hip_102098_deneb",
+        "catalog_id": "HIP 102098",
+        "name_cn": "天津四",
+        "name_en": "Deneb",
+        "mag": 1.25,
+        "ra": 310.35797,
+        "dec": 45.28033,
+        "color": "#d5deff",
+        "constellation": "Cygnus"
+      },
+      {
+        "id": "hip_100453_sadr",
+        "catalog_id": "HIP 100453",
+        "name_cn": "天津一",
+        "name_en": "Sadr",
+        "mag": 2.23,
+        "ra": 305.55708,
+        "dec": 40.25668,
+        "color": "#fdf5f1",
+        "constellation": "Cygnus"
+      },
+      {
+        "id": "hip_102488_aljanah",
+        "catalog_id": "HIP 102488",
+        "name_cn": "天津九",
+        "name_en": "Aljanah",
+        "mag": 2.48,
+        "ra": 311.5518,
+        "dec": 33.96945,
+        "color": "#ffe1c2",
+        "constellation": "Cygnus"
+      },
+      {
+        "id": "hip_97165_fawaris",
+        "catalog_id": "HIP 97165",
+        "name_cn": "天津二",
+        "name_en": "Fawaris",
+        "mag": 2.86,
+        "ra": 296.24351,
+        "dec": 45.13069,
+        "color": "#cad7ff",
+        "constellation": "Cygnus"
+      },
+      {
+        "id": "hip_95947_albireo",
+        "catalog_id": "HIP 95947",
+        "name_cn": "辇道增七",
+        "name_en": "Albireo",
+        "mag": 3.05,
+        "ra": 292.68036,
+        "dec": 27.95969,
+        "color": "#ffdcb5",
+        "constellation": "Cygnus"
+      },
+      {
+        "id": "hip_104732_cyg",
+        "catalog_id": "HIP 104732",
+        "name_cn": "天津八",
+        "name_en": "ζ_Cyg",
+        "mag": 3.21,
+        "ra": 318.23409,
+        "dec": 30.22708,
+        "color": "#ffe4c7",
+        "constellation": "Cygnus"
+      },
+      {
+        "id": "hip_104060_cyg",
+        "catalog_id": "HIP 104060",
+        "name_cn": "车府六",
+        "name_en": "ξ_Cyg",
+        "mag": 3.72,
+        "ra": 316.23273,
+        "dec": 43.92785,
+        "color": "#ffb06d",
+        "constellation": "Cygnus"
+      },
+      {
+        "id": "hip_104887_cyg",
+        "catalog_id": "HIP 104887",
+        "name_cn": "天津六",
+        "name_en": "τ_Cyg",
+        "mag": 3.74,
+        "ra": 318.69728,
+        "dec": 38.04432,
+        "color": "#f7f6ff",
+        "constellation": "Cygnus"
+      },
+      {
+        "id": "hip_95853_cyg",
+        "catalog_id": "HIP 95853",
+        "name_cn": "奚仲二",
+        "name_en": "ι_Cyg",
+        "mag": 3.76,
+        "ra": 292.42641,
+        "dec": 51.72947,
+        "color": "#dbe3ff",
+        "constellation": "Cygnus"
+      },
+      {
+        "id": "hip_94779_cyg",
+        "catalog_id": "HIP 94779",
+        "name_cn": "奚仲一",
+        "name_en": "κ_Cyg",
+        "mag": 3.8,
+        "ra": 289.27546,
+        "dec": 53.36816,
+        "color": "#ffe7cf",
+        "constellation": "Cygnus"
+      },
+      {
+        "id": "hip_99675_1_cyg",
+        "catalog_id": "HIP 99675",
+        "name_cn": "天津增卅八",
+        "name_en": "ο1_Cyg",
+        "mag": 3.8,
+        "ra": 303.40793,
+        "dec": 46.74132,
+        "color": "#ffcc98",
+        "constellation": "Cygnus"
+      },
+      {
+        "id": "hip_98110_cyg",
+        "catalog_id": "HIP 98110",
+        "name_cn": "辇道增五",
+        "name_en": "η_Cyg",
+        "mag": 3.89,
+        "ra": 299.07665,
+        "dec": 35.08349,
+        "color": "#ffe1c2",
+        "constellation": "Cygnus"
+      },
+      {
+        "id": "hip_103413_cyg",
+        "catalog_id": "HIP 103413",
+        "name_cn": "天津五",
+        "name_en": "ν_Cyg",
+        "mag": 3.94,
+        "ra": 314.29338,
+        "dec": 41.16719,
+        "color": "#cdd9ff",
+        "constellation": "Cygnus"
+      },
+      {
+        "id": "hip_99848_2_cyg",
+        "catalog_id": "HIP 99848",
+        "name_cn": "天津增卅七",
+        "name_en": "ο2_Cyg",
+        "mag": 3.96,
+        "ra": 303.86799,
+        "dec": 47.71421,
+        "color": "#ffbd80",
+        "constellation": "Cygnus"
+      },
+      {
+        "id": "hip_106481_cyg",
+        "catalog_id": "HIP 106481",
+        "name_cn": "车府四",
+        "name_en": "ρ_Cyg",
+        "mag": 3.98,
+        "ra": 323.4953,
+        "dec": 45.59207,
+        "color": "#ffedda",
+        "constellation": "Cygnus"
+      }
+    ]
+  },
+  "delphinus": {
+    "display_name_cn": "海豚座",
+    "display_name_en": "Delphinus",
+    "abbreviation": "Del",
+    "bounds": {
+      "ra_min": 305.387,
+      "ra_max": 313.909,
+      "dec_min": 11.595,
+      "dec_max": 18.912
+    },
+    "stars": [
+      {
+        "id": "hip_101769_rotanev",
+        "catalog_id": "HIP 101769",
+        "name_cn": "瓠瓜四",
+        "name_en": "Rotanev",
+        "mag": 3.64,
+        "ra": 309.38696,
+        "dec": 14.5952,
+        "color": "#f8f7fe",
+        "constellation": "Delphinus"
+      },
+      {
+        "id": "hip_101958_sualocin",
+        "catalog_id": "HIP 101958",
+        "name_cn": "瓠瓜一",
+        "name_en": "Sualocin",
+        "mag": 3.77,
+        "ra": 309.90939,
+        "dec": 15.91205,
+        "color": "#c3d1ff",
+        "constellation": "Delphinus"
+      }
+    ]
+  },
+  "draco": {
+    "display_name_cn": "天龙座",
+    "display_name_en": "Draco",
+    "abbreviation": "Dra",
+    "bounds": {
+      "ra_min": 162.916,
+      "ra_max": 306.978,
+      "dec_min": 48.489,
+      "dec_max": 75.734
+    },
+    "stars": [
+      {
+        "id": "hip_87833_eltanin",
+        "catalog_id": "HIP 87833",
+        "name_cn": "天棓四",
+        "name_en": "Eltanin",
+        "mag": 2.24,
+        "ra": 269.15157,
+        "dec": 51.48895,
+        "color": "#ffb877",
+        "constellation": "Draco"
+      },
+      {
+        "id": "hip_80331_athebyne",
+        "catalog_id": "HIP 80331",
+        "name_cn": "紫微左垣三",
+        "name_en": "Athebyne",
+        "mag": 2.73,
+        "ra": 245.99795,
+        "dec": 61.51408,
+        "color": "#ffebd6",
+        "constellation": "Draco"
+      },
+      {
+        "id": "hip_85670_rastaban",
+        "catalog_id": "HIP 85670",
+        "name_cn": "天棓三",
+        "name_en": "Rastaban",
+        "mag": 2.79,
+        "ra": 262.60824,
+        "dec": 52.30136,
+        "color": "#ffe7ce",
+        "constellation": "Draco"
+      },
+      {
+        "id": "hip_94376_altais",
+        "catalog_id": "HIP 94376",
+        "name_cn": "天厨一",
+        "name_en": "Altais",
+        "mag": 3.07,
+        "ra": 288.13815,
+        "dec": 67.66132,
+        "color": "#ffe4c7",
+        "constellation": "Draco"
+      },
+      {
+        "id": "hip_83895_aldhibah",
+        "catalog_id": "HIP 83895",
+        "name_cn": "紫微左垣四",
+        "name_en": "Aldhibah",
+        "mag": 3.17,
+        "ra": 257.19677,
+        "dec": 65.71464,
+        "color": "#bccbff",
+        "constellation": "Draco"
+      },
+      {
+        "id": "hip_75458_edasich",
+        "catalog_id": "HIP 75458",
+        "name_cn": "紫微左垣一",
+        "name_en": "Edasich",
+        "mag": 3.29,
+        "ra": 231.23243,
+        "dec": 58.96602,
+        "color": "#ffd5a7",
+        "constellation": "Draco"
+      },
+      {
+        "id": "hip_89937_dra",
+        "catalog_id": "HIP 89937",
+        "name_cn": "御女四",
+        "name_en": "χ_Dra",
+        "mag": 3.55,
+        "ra": 275.25975,
+        "dec": 72.7337,
+        "color": "#faf6fa",
+        "constellation": "Draco"
+      },
+      {
+        "id": "hip_68756_thuban",
+        "catalog_id": "HIP 68756",
+        "name_cn": "紫微右垣一",
+        "name_en": "Thuban",
+        "mag": 3.67,
+        "ra": 211.09761,
+        "dec": 64.37581,
+        "color": "#c4d2ff",
+        "constellation": "Draco"
+      },
+      {
+        "id": "hip_87585_grumium",
+        "catalog_id": "HIP 87585",
+        "name_cn": "天棓一",
+        "name_en": "Grumium",
+        "mag": 3.73,
+        "ra": 268.38179,
+        "dec": 56.87245,
+        "color": "#ffd4a5",
+        "constellation": "Draco"
+      },
+      {
+        "id": "hip_56211_giausar",
+        "catalog_id": "HIP 56211",
+        "name_cn": "紫微右垣三",
+        "name_en": "Giausar",
+        "mag": 3.82,
+        "ra": 172.8512,
+        "dec": 69.33112,
+        "color": "#ffb06c",
+        "constellation": "Draco"
+      },
+      {
+        "id": "hip_97433_dra",
+        "catalog_id": "HIP 97433",
+        "name_cn": "天厨三",
+        "name_en": "ε_Dra",
+        "mag": 3.84,
+        "ra": 297.04256,
+        "dec": 70.26784,
+        "color": "#ffedda",
+        "constellation": "Draco"
+      },
+      {
+        "id": "hip_61281_dra",
+        "catalog_id": "HIP 61281",
+        "name_cn": "紫微右垣二",
+        "name_en": "κ_Dra",
+        "mag": 3.85,
+        "ra": 188.37101,
+        "dec": 69.78821,
+        "color": "#bcccff",
+        "constellation": "Draco"
+      }
+    ]
+  },
+  "equuleus": {
+    "display_name_cn": "小马座",
+    "display_name_en": "Equuleus",
+    "abbreviation": "Equ",
+    "bounds": {
+      "ra_min": 314.956,
+      "ra_max": 322.956,
+      "dec_min": 2.248,
+      "dec_max": 8.248
+    },
+    "stars": [
+      {
+        "id": "hip_104987_kitalpha",
+        "catalog_id": "HIP 104987",
+        "name_cn": "虚宿二",
+        "name_en": "Kitalpha",
+        "mag": 3.92,
+        "ra": 318.95582,
+        "dec": 5.24807,
+        "color": "#fbf6f7",
+        "constellation": "Equuleus"
+      }
+    ]
+  },
+  "eridanus": {
+    "display_name_cn": "波江座",
+    "display_name_en": "Eridanus",
+    "abbreviation": "Eri",
+    "bounds": {
+      "ra_min": 40.107,
+      "ra_max": 80.963,
+      "dec_min": -24.758,
+      "dec_max": -0.352
+    },
+    "stars": [
+      {
+        "id": "hip_23875_cursa",
+        "catalog_id": "HIP 23875",
+        "name_cn": "玉井三",
+        "name_en": "Cursa",
+        "mag": 2.78,
+        "ra": 76.96264,
+        "dec": -5.08626,
+        "color": "#dde4ff",
+        "constellation": "Eridanus"
+      },
+      {
+        "id": "hip_18543_zaurak",
+        "catalog_id": "HIP 18543",
+        "name_cn": "天苑一",
+        "name_en": "Zaurak",
+        "mag": 2.97,
+        "ra": 59.50721,
+        "dec": -13.50824,
+        "color": "#ffb26f",
+        "constellation": "Eridanus"
+      },
+      {
+        "id": "hip_17378_rana",
+        "catalog_id": "HIP 17378",
+        "name_cn": "天苑三",
+        "name_en": "Rana",
+        "mag": 3.52,
+        "ra": 55.81232,
+        "dec": -9.7652,
+        "color": "#ffead5",
+        "constellation": "Eridanus"
+      },
+      {
+        "id": "hip_15474_4_eri",
+        "catalog_id": "HIP 15474",
+        "name_cn": "天苑十一",
+        "name_en": "τ4_Eri",
+        "mag": 3.7,
+        "ra": 49.87904,
+        "dec": -21.75794,
+        "color": "#ffb06c",
+        "constellation": "Eridanus"
+      },
+      {
+        "id": "hip_16537_ran",
+        "catalog_id": "HIP 16537",
+        "name_cn": "天苑四",
+        "name_en": "Ran",
+        "mag": 3.72,
+        "ra": 53.23509,
+        "dec": -9.45831,
+        "color": "#ffeddb",
+        "constellation": "Eridanus"
+      },
+      {
+        "id": "hip_21594_sceptrum",
+        "catalog_id": "HIP 21594",
+        "name_cn": "九斿增四",
+        "name_en": "Sceptrum",
+        "mag": 3.86,
+        "ra": 69.5453,
+        "dec": -14.30359,
+        "color": "#ffdcb7",
+        "constellation": "Eridanus"
+      },
+      {
+        "id": "hip_13701_azha",
+        "catalog_id": "HIP 13701",
+        "name_cn": "天苑六",
+        "name_en": "Azha",
+        "mag": 3.89,
+        "ra": 44.10668,
+        "dec": -8.89761,
+        "color": "#ffdcb5",
+        "constellation": "Eridanus"
+      },
+      {
+        "id": "hip_21444_eri",
+        "catalog_id": "HIP 21444",
+        "name_cn": "九州殊口四",
+        "name_en": "ν_Eri",
+        "mag": 3.93,
+        "ra": 69.07975,
+        "dec": -3.35245,
+        "color": "#b1c3ff",
+        "constellation": "Eridanus"
+      }
+    ]
+  },
+  "fornax": {
+    "display_name_cn": "天炉座",
+    "display_name_en": "Fornax",
+    "abbreviation": "For",
+    "bounds": {
+      "ra_min": 44.018,
+      "ra_max": 52.018,
+      "dec_min": -31.989,
+      "dec_max": -25.989
+    },
+    "stars": [
+      {
+        "id": "hip_14879_dalim",
+        "catalog_id": "HIP 14879",
+        "name_cn": "天苑增三",
+        "name_en": "Dalim",
+        "mag": 3.8,
+        "ra": 48.01783,
+        "dec": -28.98911,
+        "color": "#fbf6f7",
+        "constellation": "Fornax"
+      }
+    ]
+  },
+  "gemini": {
+    "display_name_cn": "双子座",
+    "display_name_en": "Gemini",
+    "abbreviation": "Gem",
+    "bounds": {
+      "ra_min": 89.72,
+      "ra_max": 120.331,
+      "dec_min": 9.896,
+      "dec_max": 36.961
+    },
+    "stars": [
+      {
+        "id": "hip_37826_pollux",
+        "catalog_id": "HIP 37826",
+        "name_cn": "北河三",
+        "name_en": "Pollux",
+        "mag": 1.16,
+        "ra": 116.33068,
+        "dec": 28.02631,
+        "color": "#ffe4c7",
+        "constellation": "Gemini"
+      },
+      {
+        "id": "hip_36850_castor",
+        "catalog_id": "HIP 36850",
+        "name_cn": "北河二",
+        "name_en": "Castor",
+        "mag": 1.58,
+        "ra": 113.65002,
+        "dec": 31.88864,
+        "color": "#cedaff",
+        "constellation": "Gemini"
+      },
+      {
+        "id": "hip_31681_alhena",
+        "catalog_id": "HIP 31681",
+        "name_cn": "井宿三",
+        "name_en": "Alhena",
+        "mag": 1.93,
+        "ra": 99.42793,
+        "dec": 16.39941,
+        "color": "#cad7ff",
+        "constellation": "Gemini"
+      },
+      {
+        "id": "hip_30343_tejat",
+        "catalog_id": "HIP 30343",
+        "name_cn": "井宿一",
+        "name_en": "Tejat",
+        "mag": 2.87,
+        "ra": 95.73996,
+        "dec": 22.51385,
+        "color": "#ffaf6c",
+        "constellation": "Gemini"
+      },
+      {
+        "id": "hip_32246_mebsuta",
+        "catalog_id": "HIP 32246",
+        "name_cn": "井宿五",
+        "name_en": "Mebsuta",
+        "mag": 3.06,
+        "ra": 100.98304,
+        "dec": 25.13116,
+        "color": "#ffc38a",
+        "constellation": "Gemini"
+      },
+      {
+        "id": "hip_29655_propus",
+        "catalog_id": "HIP 29655",
+        "name_cn": "钺",
+        "name_en": "Propus",
+        "mag": 3.31,
+        "ra": 93.71957,
+        "dec": 22.50682,
+        "color": "#ffb16d",
+        "constellation": "Gemini"
+      },
+      {
+        "id": "hip_32362_alzirr",
+        "catalog_id": "HIP 32362",
+        "name_cn": "井宿四",
+        "name_en": "Alzirr",
+        "mag": 3.35,
+        "ra": 101.32264,
+        "dec": 12.89606,
+        "color": "#f9f7fd",
+        "constellation": "Gemini"
+      },
+      {
+        "id": "hip_35550_wasat",
+        "catalog_id": "HIP 35550",
+        "name_cn": "天樽二",
+        "name_en": "Wasat",
+        "mag": 3.5,
+        "ra": 110.03079,
+        "dec": 21.98234,
+        "color": "#f5f5ff",
+        "constellation": "Gemini"
+      },
+      {
+        "id": "hip_37740_gem",
+        "catalog_id": "HIP 37740",
+        "name_cn": "积薪",
+        "name_en": "κ_Gem",
+        "mag": 3.57,
+        "ra": 116.11195,
+        "dec": 24.39813,
+        "color": "#ffe9d2",
+        "constellation": "Gemini"
+      },
+      {
+        "id": "hip_35350_gem",
+        "catalog_id": "HIP 35350",
+        "name_cn": "井宿八",
+        "name_en": "λ_Gem",
+        "mag": 3.58,
+        "ra": 109.52336,
+        "dec": 16.54048,
+        "color": "#d6dfff",
+        "constellation": "Gemini"
+      },
+      {
+        "id": "hip_33018_gem",
+        "catalog_id": "HIP 33018",
+        "name_cn": "五诸侯一[井宿]",
+        "name_en": "θ_Gem",
+        "mag": 3.6,
+        "ra": 103.19725,
+        "dec": 33.96137,
+        "color": "#d6dfff",
+        "constellation": "Gemini"
+      },
+      {
+        "id": "hip_36046_gem",
+        "catalog_id": "HIP 36046",
+        "name_cn": "五诸侯三[井宿]",
+        "name_en": "ι_Gem",
+        "mag": 3.78,
+        "ra": 111.43198,
+        "dec": 27.79829,
+        "color": "#ffe1c1",
+        "constellation": "Gemini"
+      }
+    ]
+  },
+  "hercules": {
+    "display_name_cn": "武仙座",
+    "display_name_en": "Hercules",
+    "abbreviation": "Her",
+    "bounds": {
+      "ra_min": 240.935,
+      "ra_max": 279.924,
+      "dec_min": 10.559,
+      "dec_max": 50.144
+    },
+    "stars": [
+      {
+        "id": "hip_80816_kornephoros",
+        "catalog_id": "HIP 80816",
+        "name_cn": "天市右垣一",
+        "name_en": "Kornephoros",
+        "mag": 2.78,
+        "ra": 247.55526,
+        "dec": 21.48965,
+        "color": "#ffe8cf",
+        "constellation": "Hercules"
+      },
+      {
+        "id": "hip_84345_rasalgethi",
+        "catalog_id": "HIP 84345",
+        "name_cn": "帝座",
+        "name_en": "Rasalgethi",
+        "mag": 2.78,
+        "ra": 258.66193,
+        "dec": 14.39025,
+        "color": "#ffd5a8",
+        "constellation": "Hercules"
+      },
+      {
+        "id": "hip_81693_her",
+        "catalog_id": "HIP 81693",
+        "name_cn": "天纪二",
+        "name_en": "ζ_Her",
+        "mag": 2.81,
+        "ra": 250.32282,
+        "dec": 31.60189,
+        "color": "#fcf5f2",
+        "constellation": "Hercules"
+      },
+      {
+        "id": "hip_84379_sarin",
+        "catalog_id": "HIP 84379",
+        "name_cn": "天市左垣一",
+        "name_en": "Sarin",
+        "mag": 3.12,
+        "ra": 258.75802,
+        "dec": 24.83959,
+        "color": "#d3ddff",
+        "constellation": "Hercules"
+      },
+      {
+        "id": "hip_84380_her",
+        "catalog_id": "HIP 84380",
+        "name_cn": "女床一",
+        "name_en": "π_Her",
+        "mag": 3.16,
+        "ra": 258.76189,
+        "dec": 36.80916,
+        "color": "#ffbe82",
+        "constellation": "Hercules"
+      },
+      {
+        "id": "hip_86974_her",
+        "catalog_id": "HIP 86974",
+        "name_cn": "天市左垣三",
+        "name_en": "μ_Her",
+        "mag": 3.42,
+        "ra": 266.6155,
+        "dec": 27.7225,
+        "color": "#fef4ed",
+        "constellation": "Hercules"
+      },
+      {
+        "id": "hip_81833_her",
+        "catalog_id": "HIP 81833",
+        "name_cn": "天纪增一",
+        "name_en": "η_Her",
+        "mag": 3.48,
+        "ra": 250.72391,
+        "dec": 38.92246,
+        "color": "#ffead5",
+        "constellation": "Hercules"
+      },
+      {
+        "id": "hip_87933_her",
+        "catalog_id": "HIP 87933",
+        "name_cn": "中山增一",
+        "name_en": "ξ_Her",
+        "mag": 3.7,
+        "ra": 269.44096,
+        "dec": 29.24793,
+        "color": "#ffe9d1",
+        "constellation": "Hercules"
+      },
+      {
+        "id": "hip_80170_her",
+        "catalog_id": "HIP 80170",
+        "name_cn": "天市右垣二",
+        "name_en": "γ_Her",
+        "mag": 3.74,
+        "ra": 245.48018,
+        "dec": 19.15302,
+        "color": "#ecefff",
+        "constellation": "Hercules"
+      },
+      {
+        "id": "hip_86414_her",
+        "catalog_id": "HIP 86414",
+        "name_cn": "天棓五",
+        "name_en": "ι_Her",
+        "mag": 3.82,
+        "ra": 264.86622,
+        "dec": 46.00632,
+        "color": "#b5c6ff",
+        "constellation": "Hercules"
+      },
+      {
+        "id": "hip_88794_her",
+        "catalog_id": "HIP 88794",
+        "name_cn": "天市左垣四",
+        "name_en": "ο_Her",
+        "mag": 3.84,
+        "ra": 271.88563,
+        "dec": 28.76247,
+        "color": "#c8d5ff",
+        "constellation": "Hercules"
+      },
+      {
+        "id": "hip_90139_109_her",
+        "catalog_id": "HIP 90139",
+        "name_cn": "屠肆一",
+        "name_en": "109_Her",
+        "mag": 3.85,
+        "ra": 275.92403,
+        "dec": 21.77034,
+        "color": "#ffd5a7",
+        "constellation": "Hercules"
+      },
+      {
+        "id": "hip_87808_her",
+        "catalog_id": "HIP 87808",
+        "name_cn": "天纪九",
+        "name_en": "θ_Her",
+        "mag": 3.86,
+        "ra": 269.06324,
+        "dec": 37.25052,
+        "color": "#ffc68e",
+        "constellation": "Hercules"
+      },
+      {
+        "id": "hip_79992_her",
+        "catalog_id": "HIP 79992",
+        "name_cn": "七公二",
+        "name_en": "τ_Her",
+        "mag": 3.91,
+        "ra": 244.9352,
+        "dec": 46.31327,
+        "color": "#b8c8ff",
+        "constellation": "Hercules"
+      },
+      {
+        "id": "hip_83207_her",
+        "catalog_id": "HIP 83207",
+        "name_cn": "天纪三",
+        "name_en": "ε_Her",
+        "mag": 3.92,
+        "ra": 255.07253,
+        "dec": 30.92634,
+        "color": "#c8d5ff",
+        "constellation": "Hercules"
+      }
+    ]
+  },
+  "hydra": {
+    "display_name_cn": "长蛇座",
+    "display_name_en": "Hydra",
+    "abbreviation": "Hya",
+    "bounds": {
+      "ra_min": 119.601,
+      "ra_max": 218.407,
+      "dec_min": -30.654,
+      "dec_max": 10.391
+    },
+    "stars": [
+      {
+        "id": "hip_46390_alphard",
+        "catalog_id": "HIP 46390",
+        "name_cn": "星宿一",
+        "name_en": "Alphard",
+        "mag": 1.99,
+        "ra": 141.89688,
+        "dec": -8.65868,
+        "color": "#ffbe82",
+        "constellation": "Hydra"
+      },
+      {
+        "id": "hip_64962_hya",
+        "catalog_id": "HIP 64962",
+        "name_cn": "平一",
+        "name_en": "γ_Hya",
+        "mag": 2.99,
+        "ra": 199.73022,
+        "dec": -23.17141,
+        "color": "#ffead4",
+        "constellation": "Hydra"
+      },
+      {
+        "id": "hip_43813_hya",
+        "catalog_id": "HIP 43813",
+        "name_cn": "柳宿六",
+        "name_en": "ζ_Hya",
+        "mag": 3.11,
+        "ra": 133.84869,
+        "dec": 5.94553,
+        "color": "#ffe5ca",
+        "constellation": "Hydra"
+      },
+      {
+        "id": "hip_52943_hya",
+        "catalog_id": "HIP 52943",
+        "name_cn": "翼宿五",
+        "name_en": "ν_Hya",
+        "mag": 3.11,
+        "ra": 162.40597,
+        "dec": -16.19413,
+        "color": "#ffcf9d",
+        "constellation": "Hydra"
+      },
+      {
+        "id": "hip_68895_hya",
+        "catalog_id": "HIP 68895",
+        "name_cn": "平二",
+        "name_en": "π_Hya",
+        "mag": 3.25,
+        "ra": 211.59279,
+        "dec": -26.68202,
+        "color": "#ffdbb5",
+        "constellation": "Hydra"
+      },
+      {
+        "id": "hip_43109_ashlesha",
+        "catalog_id": "HIP 43109",
+        "name_cn": "柳宿五",
+        "name_en": "Ashlesha",
+        "mag": 3.38,
+        "ra": 131.69436,
+        "dec": 6.41891,
+        "color": "#fdf5f0",
+        "constellation": "Hydra"
+      },
+      {
+        "id": "hip_49841_hya",
+        "catalog_id": "HIP 49841",
+        "name_cn": "张宿二",
+        "name_en": "λ_Hya",
+        "mag": 3.61,
+        "ra": 152.64749,
+        "dec": -12.35384,
+        "color": "#ffe2c4",
+        "constellation": "Hydra"
+      },
+      {
+        "id": "hip_51069_hya",
+        "catalog_id": "HIP 51069",
+        "name_cn": "张宿三",
+        "name_en": "μ_Hya",
+        "mag": 3.83,
+        "ra": 156.52294,
+        "dec": -16.8361,
+        "color": "#ffbd80",
+        "constellation": "Hydra"
+      },
+      {
+        "id": "hip_45336_hya",
+        "catalog_id": "HIP 45336",
+        "name_cn": "柳宿八",
+        "name_en": "θ_Hya",
+        "mag": 3.89,
+        "ra": 138.59081,
+        "dec": 2.31502,
+        "color": "#c3d1ff",
+        "constellation": "Hydra"
+      },
+      {
+        "id": "hip_47431_ukdah",
+        "catalog_id": "HIP 47431",
+        "name_cn": "星宿四",
+        "name_en": "Ukdah",
+        "mag": 3.9,
+        "ra": 144.96389,
+        "dec": -1.14266,
+        "color": "#ffc992",
+        "constellation": "Hydra"
+      },
+      {
+        "id": "hip_41307_c_hya",
+        "catalog_id": "HIP 41307",
+        "name_cn": "外厨增三",
+        "name_en": "C_Hya",
+        "mag": 3.91,
+        "ra": 126.4153,
+        "dec": -3.90636,
+        "color": "#c9d6ff",
+        "constellation": "Hydra"
+      }
+    ]
+  },
+  "leo_minor": {
+    "display_name_cn": "小狮座",
+    "display_name_en": "Leo Minor",
+    "abbreviation": "LMi",
+    "bounds": {
+      "ra_min": 159.328,
+      "ra_max": 167.328,
+      "dec_min": 31.216,
+      "dec_max": 37.216
+    },
+    "stars": [
+      {
+        "id": "hip_53229_praecipua",
+        "catalog_id": "HIP 53229",
+        "name_cn": "势四",
+        "name_en": "Praecipua",
+        "mag": 3.79,
+        "ra": 163.32767,
+        "dec": 34.21557,
+        "color": "#ffe0be",
+        "constellation": "Leo Minor"
+      }
+    ]
+  },
+  "lacerta": {
+    "display_name_cn": "蝎虎座",
+    "display_name_en": "Lacerta",
+    "abbreviation": "Lac",
+    "bounds": {
+      "ra_min": 333.822,
+      "ra_max": 341.822,
+      "dec_min": 47.282,
+      "dec_max": 53.282
+    },
+    "stars": [
+      {
+        "id": "hip_111169_lac",
+        "catalog_id": "HIP 111169",
+        "name_cn": "螣蛇一",
+        "name_en": "α_Lac",
+        "mag": 3.76,
+        "ra": 337.8224,
+        "dec": 50.28245,
+        "color": "#ced9ff",
+        "constellation": "Lacerta"
+      }
     ]
   },
   "leo": {
     "display_name_cn": "狮子座",
     "display_name_en": "Leo",
-    "bounds": { "ra_min": 140.0, "ra_max": 180.0, "dec_min": -5.0, "dec_max": 35.0 },
+    "abbreviation": "Leo",
+    "bounds": {
+      "ra_min": 141.288,
+      "ra_max": 181.266,
+      "dec_min": 6.307,
+      "dec_max": 29.007
+    },
     "stars": [
-      { "id": "regulus", "catalog_id": "HIP 49669", "name_cn": "轩辕十四", "name_en": "Regulus", "mag": 1.35, "ra": 152.09, "dec": 11.97, "color": "#dce8ff", "constellation": "Leo" },
-      { "id": "denebola", "catalog_id": "HIP 57632", "name_cn": "五帝座一", "name_en": "Denebola", "mag": 2.14, "ra": 177.26, "dec": 14.57, "color": "#f7fbff", "constellation": "Leo" },
-      { "id": "algieba", "catalog_id": "HIP 50583", "name_cn": "轩辕十一", "name_en": "Algieba", "mag": 2.01, "ra": 154.99, "dec": 19.84, "color": "#ffdaa4", "constellation": "Leo" },
-      { "id": "zosma", "catalog_id": "HIP 54872", "name_cn": "太微右垣三", "name_en": "Zosma", "mag": 2.56, "ra": 168.23, "dec": 20.52, "color": "#f4f7ff", "constellation": "Leo" }
+      {
+        "id": "hip_49669_regulus",
+        "catalog_id": "HIP 49669",
+        "name_cn": "轩辕十四",
+        "name_en": "Regulus",
+        "mag": 1.36,
+        "ra": 152.09358,
+        "dec": 11.9672,
+        "color": "#c0cfff",
+        "constellation": "Leo"
+      },
+      {
+        "id": "hip_50583_algieba",
+        "catalog_id": "HIP 50583",
+        "name_cn": "轩辕十二",
+        "name_en": "Algieba",
+        "mag": 2.01,
+        "ra": 154.99234,
+        "dec": 19.84186,
+        "color": "#ffd8ae",
+        "constellation": "Leo"
+      },
+      {
+        "id": "hip_57632_denebola",
+        "catalog_id": "HIP 57632",
+        "name_cn": "五帝座一",
+        "name_en": "Denebola",
+        "mag": 2.14,
+        "ra": 177.26616,
+        "dec": 14.57234,
+        "color": "#d4deff",
+        "constellation": "Leo"
+      },
+      {
+        "id": "hip_54872_zosma",
+        "catalog_id": "HIP 54872",
+        "name_cn": "太微右垣五",
+        "name_en": "Zosma",
+        "mag": 2.56,
+        "ra": 168.52672,
+        "dec": 20.52403,
+        "color": "#d9e1ff",
+        "constellation": "Leo"
+      },
+      {
+        "id": "hip_47908_leo",
+        "catalog_id": "HIP 47908",
+        "name_cn": "轩辕九",
+        "name_en": "ε_Leo",
+        "mag": 2.97,
+        "ra": 146.46293,
+        "dec": 23.77428,
+        "color": "#fff3e9",
+        "constellation": "Leo"
+      },
+      {
+        "id": "hip_54879_chertan",
+        "catalog_id": "HIP 54879",
+        "name_cn": "太微右垣四",
+        "name_en": "Chertan",
+        "mag": 3.33,
+        "ra": 168.56017,
+        "dec": 15.42976,
+        "color": "#cad7ff",
+        "constellation": "Leo"
+      },
+      {
+        "id": "hip_50335_adhafera",
+        "catalog_id": "HIP 50335",
+        "name_cn": "轩辕十一",
+        "name_en": "Adhafera",
+        "mag": 3.43,
+        "ra": 154.17252,
+        "dec": 23.41733,
+        "color": "#edf0ff",
+        "constellation": "Leo"
+      },
+      {
+        "id": "hip_49583_leo",
+        "catalog_id": "HIP 49583",
+        "name_cn": "轩辕十三",
+        "name_en": "η_Leo",
+        "mag": 3.48,
+        "ra": 151.83314,
+        "dec": 16.76267,
+        "color": "#c6d4ff",
+        "constellation": "Leo"
+      },
+      {
+        "id": "hip_47508_subra",
+        "catalog_id": "HIP 47508",
+        "name_cn": "轩辕十五",
+        "name_en": "Subra",
+        "mag": 3.52,
+        "ra": 145.28799,
+        "dec": 9.8924,
+        "color": "#faf6f9",
+        "constellation": "Leo"
+      },
+      {
+        "id": "hip_51624_leo",
+        "catalog_id": "HIP 51624",
+        "name_cn": "轩辕十六",
+        "name_en": "ρ_Leo",
+        "mag": 3.84,
+        "ra": 158.20281,
+        "dec": 9.30659,
+        "color": "#b9c9ff",
+        "constellation": "Leo"
+      },
+      {
+        "id": "hip_48455_rasalas",
+        "catalog_id": "HIP 48455",
+        "name_cn": "轩辕十",
+        "name_en": "Rasalas",
+        "mag": 3.88,
+        "ra": 148.19149,
+        "dec": 26.00708,
+        "color": "#ffd09e",
+        "constellation": "Leo"
+      }
     ]
   },
-  "bootes": {
-    "display_name_cn": "牧夫座",
-    "display_name_en": "Boötes",
-    "bounds": { "ra_min": 200.0, "ra_max": 235.0, "dec_min": 5.0, "dec_max": 60.0 },
+  "lepus": {
+    "display_name_cn": "天兔座",
+    "display_name_en": "Lepus",
+    "abbreviation": "Lep",
+    "bounds": {
+      "ra_min": 72.365,
+      "ra_max": 93.101,
+      "dec_min": -25.447,
+      "dec_max": -11.168
+    },
     "stars": [
-      { "id": "arcturus", "catalog_id": "HIP 69673", "name_cn": "大角星", "name_en": "Arcturus", "mag": -0.05, "ra": 213.91, "dec": 19.18, "color": "#ffcc99", "constellation": "Boötes" },
-      { "id": "izar", "catalog_id": "HIP 72105", "name_cn": "梗河一", "name_en": "Izar", "mag": 2.35, "ra": 221.25, "dec": 27.07, "color": "#ffdaa4", "constellation": "Boötes" },
-      { "id": "muphrid", "catalog_id": "HIP 67927", "name_cn": "右摄提一", "name_en": "Muphrid", "mag": 2.68, "ra": 208.00, "dec": 18.39, "color": "#fff0de", "constellation": "Boötes" },
-      { "id": "nekkar", "catalog_id": "HIP 73555", "name_cn": "招摇", "name_en": "Nekkar", "mag": 3.49, "ra": 225.48, "dec": 40.39, "color": "#ffdeae", "constellation": "Boötes" }
+      {
+        "id": "hip_25985_arneb",
+        "catalog_id": "HIP 25985",
+        "name_cn": "厕一",
+        "name_en": "Arneb",
+        "mag": 2.58,
+        "ra": 83.18256,
+        "dec": -17.82229,
+        "color": "#e2e8ff",
+        "constellation": "Lepus"
+      },
+      {
+        "id": "hip_25606_nihal",
+        "catalog_id": "HIP 25606",
+        "name_cn": "厕二",
+        "name_en": "Nihal",
+        "mag": 2.81,
+        "ra": 82.06136,
+        "dec": -20.75923,
+        "color": "#fff3e9",
+        "constellation": "Lepus"
+      },
+      {
+        "id": "hip_23685_lep",
+        "catalog_id": "HIP 23685",
+        "name_cn": "屏二",
+        "name_en": "ε_Lep",
+        "mag": 3.19,
+        "ra": 76.36522,
+        "dec": -22.37086,
+        "color": "#ffbd7f",
+        "constellation": "Lepus"
+      },
+      {
+        "id": "hip_24305_lep",
+        "catalog_id": "HIP 24305",
+        "name_cn": "屏一",
+        "name_en": "μ_Lep",
+        "mag": 3.29,
+        "ra": 78.2328,
+        "dec": -16.20543,
+        "color": "#bdccff",
+        "constellation": "Lepus"
+      },
+      {
+        "id": "hip_27288_lep",
+        "catalog_id": "HIP 27288",
+        "name_cn": "厕增七",
+        "name_en": "ζ_Lep",
+        "mag": 3.55,
+        "ra": 86.73896,
+        "dec": -14.82195,
+        "color": "#d6dfff",
+        "constellation": "Lepus"
+      },
+      {
+        "id": "hip_27072_lep",
+        "catalog_id": "HIP 27072",
+        "name_cn": "厕三",
+        "name_en": "γ_Lep",
+        "mag": 3.59,
+        "ra": 86.11656,
+        "dec": -22.44749,
+        "color": "#f9f6fb",
+        "constellation": "Lepus"
+      },
+      {
+        "id": "hip_28103_lep",
+        "catalog_id": "HIP 28103",
+        "name_cn": "厕增六",
+        "name_en": "η_Lep",
+        "mag": 3.71,
+        "ra": 89.10133,
+        "dec": -14.16804,
+        "color": "#f1f2ff",
+        "constellation": "Lepus"
+      },
+      {
+        "id": "hip_27654_lep",
+        "catalog_id": "HIP 27654",
+        "name_cn": "厕四",
+        "name_en": "δ_Lep",
+        "mag": 3.76,
+        "ra": 87.8298,
+        "dec": -20.87751,
+        "color": "#ffe4c8",
+        "constellation": "Lepus"
+      }
+    ]
+  },
+  "libra": {
+    "display_name_cn": "天秤座",
+    "display_name_en": "Libra",
+    "abbreviation": "Lib",
+    "bounds": {
+      "ra_min": 218.72,
+      "ra_max": 238.664,
+      "dec_min": -32.778,
+      "dec_max": -6.383
+    },
+    "stars": [
+      {
+        "id": "hip_74785_zubeneschamali",
+        "catalog_id": "HIP 74785",
+        "name_cn": "氐宿四",
+        "name_en": "Zubeneschamali",
+        "mag": 2.61,
+        "ra": 229.25197,
+        "dec": -9.38287,
+        "color": "#c2d0ff",
+        "constellation": "Libra"
+      },
+      {
+        "id": "hip_72622_zubenelgenubi",
+        "catalog_id": "HIP 72622",
+        "name_cn": "氐宿一",
+        "name_en": "Zubenelgenubi",
+        "mag": 2.75,
+        "ra": 222.71991,
+        "dec": -16.04161,
+        "color": "#dbe3ff",
+        "constellation": "Libra"
+      },
+      {
+        "id": "hip_73714_brachium",
+        "catalog_id": "HIP 73714",
+        "name_cn": "折威七",
+        "name_en": "Brachium",
+        "mag": 3.25,
+        "ra": 226.01776,
+        "dec": -25.28186,
+        "color": "#ffaa69",
+        "constellation": "Libra"
+      },
+      {
+        "id": "hip_76470_lib",
+        "catalog_id": "HIP 76470",
+        "name_cn": "天辐一",
+        "name_en": "υ_Lib",
+        "mag": 3.6,
+        "ra": 234.25608,
+        "dec": -28.13507,
+        "color": "#ffc58c",
+        "constellation": "Libra"
+      },
+      {
+        "id": "hip_76600_lib",
+        "catalog_id": "HIP 76600",
+        "name_cn": "天辐二",
+        "name_en": "τ_Lib",
+        "mag": 3.66,
+        "ra": 234.6641,
+        "dec": -29.77769,
+        "color": "#b5c6ff",
+        "constellation": "Libra"
+      },
+      {
+        "id": "hip_76333_zubenelhakrabi",
+        "catalog_id": "HIP 76333",
+        "name_cn": "氐宿三",
+        "name_en": "Zubenelhakrabi",
+        "mag": 3.91,
+        "ra": 233.88141,
+        "dec": -14.78955,
+        "color": "#ffe2c4",
+        "constellation": "Libra"
+      }
+    ]
+  },
+  "lynx": {
+    "display_name_cn": "天猫座",
+    "display_name_en": "Lynx",
+    "abbreviation": "Lyn",
+    "bounds": {
+      "ra_min": 135.711,
+      "ra_max": 144.264,
+      "dec_min": 31.393,
+      "dec_max": 39.803
+    },
+    "stars": [
+      {
+        "id": "hip_45860_lyn",
+        "catalog_id": "HIP 45860",
+        "name_cn": "轩辕四",
+        "name_en": "α_Lyn",
+        "mag": 3.14,
+        "ra": 140.26441,
+        "dec": 34.39253,
+        "color": "#ffb574",
+        "constellation": "Lynx"
+      },
+      {
+        "id": "hip_45688_38_lyn",
+        "catalog_id": "HIP 45688",
+        "name_cn": "轩辕三",
+        "name_en": "38_Lyn",
+        "mag": 3.82,
+        "ra": 139.71111,
+        "dec": 36.8029,
+        "color": "#d2dcff",
+        "constellation": "Lynx"
+      }
+    ]
+  },
+  "lyra": {
+    "display_name_cn": "天琴座",
+    "display_name_en": "Lyra",
+    "abbreviation": "Lyr",
+    "bounds": {
+      "ra_min": 275.234,
+      "ra_max": 288.736,
+      "dec_min": 29.69,
+      "dec_max": 41.783
+    },
+    "stars": [
+      {
+        "id": "hip_91262_vega",
+        "catalog_id": "HIP 91262",
+        "name_cn": "织女一",
+        "name_en": "Vega",
+        "mag": 0.03,
+        "ra": 279.23411,
+        "dec": 38.78299,
+        "color": "#cad7ff",
+        "constellation": "Lyra"
+      },
+      {
+        "id": "hip_93194_sulafat",
+        "catalog_id": "HIP 93194",
+        "name_cn": "渐台三",
+        "name_en": "Sulafat",
+        "mag": 3.25,
+        "ra": 284.73594,
+        "dec": 32.68955,
+        "color": "#c4d2ff",
+        "constellation": "Lyra"
+      },
+      {
+        "id": "hip_92420_sheliak",
+        "catalog_id": "HIP 92420",
+        "name_cn": "渐台二",
+        "name_en": "Sheliak",
+        "mag": 3.52,
+        "ra": 282.51997,
+        "dec": 33.36268,
+        "color": "#cad7ff",
+        "constellation": "Lyra"
+      }
+    ]
+  },
+  "monoceros": {
+    "display_name_cn": "麒麟座",
+    "display_name_en": "Monoceros",
+    "abbreviation": "Mon",
+    "bounds": {
+      "ra_min": 89.714,
+      "ra_max": 119.312,
+      "dec_min": -12.551,
+      "dec_max": -3.275
+    },
+    "stars": [
+      {
+        "id": "hip_30867_mon",
+        "catalog_id": "HIP 30867",
+        "name_cn": "参宿增廿六",
+        "name_en": "β_Mon",
+        "mag": 3.76,
+        "ra": 97.20448,
+        "dec": -7.03305,
+        "color": "#bdccff",
+        "constellation": "Monoceros"
+      },
+      {
+        "id": "hip_37447_mon",
+        "catalog_id": "HIP 37447",
+        "name_cn": "阙丘增七",
+        "name_en": "α_Mon",
+        "mag": 3.94,
+        "ra": 115.31199,
+        "dec": -9.55108,
+        "color": "#ffe1c1",
+        "constellation": "Monoceros"
+      },
+      {
+        "id": "hip_29651_mon",
+        "catalog_id": "HIP 29651",
+        "name_cn": "参宿增廿八",
+        "name_en": "γ_Mon",
+        "mag": 3.99,
+        "ra": 93.7139,
+        "dec": -6.27473,
+        "color": "#ffc892",
+        "constellation": "Monoceros"
+      }
+    ]
+  },
+  "ophiuchus": {
+    "display_name_cn": "蛇夫座",
+    "display_name_en": "Ophiuchus",
+    "abbreviation": "Oph",
+    "bounds": {
+      "ra_min": 239.587,
+      "ra_max": 275.838,
+      "dec_min": -29.507,
+      "dec_max": 17.068
+    },
+    "stars": [
+      {
+        "id": "hip_86032_rasalhague",
+        "catalog_id": "HIP 86032",
+        "name_cn": "候",
+        "name_en": "Rasalhague",
+        "mag": 2.08,
+        "ra": 263.73335,
+        "dec": 12.56058,
+        "color": "#dce3ff",
+        "constellation": "Ophiuchus"
+      },
+      {
+        "id": "hip_84012_sabik",
+        "catalog_id": "HIP 84012",
+        "name_cn": "天市左垣十一",
+        "name_en": "Sabik",
+        "mag": 2.43,
+        "ra": 257.59443,
+        "dec": -15.72515,
+        "color": "#d1dcff",
+        "constellation": "Ophiuchus"
+      },
+      {
+        "id": "hip_81377_oph",
+        "catalog_id": "HIP 81377",
+        "name_cn": "天市右垣十一",
+        "name_en": "ζ_Oph",
+        "mag": 2.54,
+        "ra": 249.28971,
+        "dec": -10.56715,
+        "color": "#cedaff",
+        "constellation": "Ophiuchus"
+      },
+      {
+        "id": "hip_79593_yed_prior",
+        "catalog_id": "HIP 79593",
+        "name_cn": "天市右垣九",
+        "name_en": "Yed Prior",
+        "mag": 2.73,
+        "ra": 243.58653,
+        "dec": -3.69398,
+        "color": "#ffb26f",
+        "constellation": "Ophiuchus"
+      },
+      {
+        "id": "hip_86742_cebalrai",
+        "catalog_id": "HIP 86742",
+        "name_cn": "宗正一",
+        "name_en": "Cebalrai",
+        "mag": 2.76,
+        "ra": 265.86824,
+        "dec": 4.56692,
+        "color": "#ffd5a7",
+        "constellation": "Ophiuchus"
+      },
+      {
+        "id": "hip_83000_oph",
+        "catalog_id": "HIP 83000",
+        "name_cn": "斛二",
+        "name_en": "κ_Oph",
+        "mag": 3.19,
+        "ra": 254.41779,
+        "dec": 9.37506,
+        "color": "#ffd5a8",
+        "constellation": "Ophiuchus"
+      },
+      {
+        "id": "hip_79882_yed_posterior",
+        "catalog_id": "HIP 79882",
+        "name_cn": "天市右垣十",
+        "name_en": "Yed Posterior",
+        "mag": 3.23,
+        "ra": 244.58017,
+        "dec": -4.69261,
+        "color": "#ffe6cc",
+        "constellation": "Ophiuchus"
+      },
+      {
+        "id": "hip_84970_oph",
+        "catalog_id": "HIP 84970",
+        "name_cn": "天江三",
+        "name_en": "θ_Oph",
+        "mag": 3.27,
+        "ra": 260.50243,
+        "dec": -24.99949,
+        "color": "#b4c5ff",
+        "constellation": "Ophiuchus"
+      },
+      {
+        "id": "hip_88048_oph",
+        "catalog_id": "HIP 88048",
+        "name_cn": "天市左垣九",
+        "name_en": "ν_Oph",
+        "mag": 3.32,
+        "ra": 269.75666,
+        "dec": -9.77335,
+        "color": "#ffe4c8",
+        "constellation": "Ophiuchus"
+      },
+      {
+        "id": "hip_88771_72_oph",
+        "catalog_id": "HIP 88771",
+        "name_cn": "宗人增一",
+        "name_en": "72_Oph",
+        "mag": 3.71,
+        "ra": 271.83759,
+        "dec": 9.56365,
+        "color": "#dce4ff",
+        "constellation": "Ophiuchus"
+      },
+      {
+        "id": "hip_87108_oph",
+        "catalog_id": "HIP 87108",
+        "name_cn": "宗正二",
+        "name_en": "γ_Oph",
+        "mag": 3.75,
+        "ra": 266.97323,
+        "dec": 2.70746,
+        "color": "#cfdaff",
+        "constellation": "Ophiuchus"
+      },
+      {
+        "id": "hip_80883_marfik",
+        "catalog_id": "HIP 80883",
+        "name_cn": "列肆二",
+        "name_en": "Marfik",
+        "mag": 3.82,
+        "ra": 247.72851,
+        "dec": 1.9841,
+        "color": "#cdd9ff",
+        "constellation": "Ophiuchus"
+      },
+      {
+        "id": "hip_88192_67_oph",
+        "catalog_id": "HIP 88192",
+        "name_cn": "宗人二",
+        "name_en": "67_Oph",
+        "mag": 3.93,
+        "ra": 270.16131,
+        "dec": 2.93159,
+        "color": "#cdd9ff",
+        "constellation": "Ophiuchus"
+      }
+    ]
+  },
+  "orion": {
+    "display_name_cn": "猎户座",
+    "display_name_en": "Orion",
+    "abbreviation": "Ori",
+    "bounds": {
+      "ra_min": 68.459,
+      "ra_max": 92.793,
+      "dec_min": -12.67,
+      "dec_max": 12.934
+    },
+    "stars": [
+      {
+        "id": "hip_24436_rigel",
+        "catalog_id": "HIP 24436",
+        "name_cn": "参宿七",
+        "name_en": "Rigel",
+        "mag": 0.18,
+        "ra": 78.63446,
+        "dec": -8.20164,
+        "color": "#c6d4ff",
+        "constellation": "Orion"
+      },
+      {
+        "id": "hip_27989_betelgeuse",
+        "catalog_id": "HIP 27989",
+        "name_cn": "参宿四",
+        "name_en": "Betelgeuse",
+        "mag": 0.45,
+        "ra": 88.79287,
+        "dec": 7.40704,
+        "color": "#ffb97a",
+        "constellation": "Orion"
+      },
+      {
+        "id": "hip_25336_bellatrix",
+        "catalog_id": "HIP 25336",
+        "name_cn": "参宿五",
+        "name_en": "Bellatrix",
+        "mag": 1.64,
+        "ra": 81.28278,
+        "dec": 6.34973,
+        "color": "#b0c1ff",
+        "constellation": "Orion"
+      },
+      {
+        "id": "hip_26311_alnilam",
+        "catalog_id": "HIP 26311",
+        "name_cn": "参宿二",
+        "name_en": "Alnilam",
+        "mag": 1.69,
+        "ra": 84.05339,
+        "dec": -1.20192,
+        "color": "#b4c5ff",
+        "constellation": "Orion"
+      },
+      {
+        "id": "hip_26727_alnitak",
+        "catalog_id": "HIP 26727",
+        "name_cn": "参宿一",
+        "name_en": "Alnitak",
+        "mag": 1.74,
+        "ra": 85.18969,
+        "dec": -1.94258,
+        "color": "#b3c4ff",
+        "constellation": "Orion"
+      },
+      {
+        "id": "hip_27366_saiph",
+        "catalog_id": "HIP 27366",
+        "name_cn": "参宿六",
+        "name_en": "Saiph",
+        "mag": 2.07,
+        "ra": 86.93912,
+        "dec": -9.6696,
+        "color": "#b6c7ff",
+        "constellation": "Orion"
+      },
+      {
+        "id": "hip_25930_mintaka",
+        "catalog_id": "HIP 25930",
+        "name_cn": "参宿三",
+        "name_en": "Mintaka",
+        "mag": 2.25,
+        "ra": 83.00167,
+        "dec": -0.29909,
+        "color": "#b5c6ff",
+        "constellation": "Orion"
+      },
+      {
+        "id": "hip_26241_hatysa",
+        "catalog_id": "HIP 26241",
+        "name_cn": "伐三",
+        "name_en": "Hatysa",
+        "mag": 2.75,
+        "ra": 83.85825,
+        "dec": -5.9099,
+        "color": "#b1c3ff",
+        "constellation": "Orion"
+      },
+      {
+        "id": "hip_22449_tabit",
+        "catalog_id": "HIP 22449",
+        "name_cn": "参旗六",
+        "name_en": "Tabit",
+        "mag": 3.19,
+        "ra": 72.45891,
+        "dec": 6.96125,
+        "color": "#f9f6fb",
+        "constellation": "Orion"
+      },
+      {
+        "id": "hip_25281_ori",
+        "catalog_id": "HIP 25281",
+        "name_cn": "参宿增三",
+        "name_en": "η_Ori",
+        "mag": 3.35,
+        "ra": 81.11924,
+        "dec": -2.39714,
+        "color": "#aec0ff",
+        "constellation": "Orion"
+      },
+      {
+        "id": "hip_26207_meissa",
+        "catalog_id": "HIP 26207",
+        "name_cn": "觜宿一",
+        "name_en": "Meissa",
+        "mag": 3.39,
+        "ra": 83.78449,
+        "dec": 9.93416,
+        "color": "#b7c7ff",
+        "constellation": "Orion"
+      },
+      {
+        "id": "hip_24674_ori",
+        "catalog_id": "HIP 24674",
+        "name_cn": "玉井四",
+        "name_en": "τ_Ori",
+        "mag": 3.59,
+        "ra": 79.40166,
+        "dec": -6.84439,
+        "color": "#bcccff",
+        "constellation": "Orion"
+      },
+      {
+        "id": "hip_22549_4_ori",
+        "catalog_id": "HIP 22549",
+        "name_cn": "参旗七",
+        "name_en": "π4_Ori",
+        "mag": 3.68,
+        "ra": 72.80153,
+        "dec": 5.6051,
+        "color": "#b8c8ff",
+        "constellation": "Orion"
+      },
+      {
+        "id": "hip_22797_5_ori",
+        "catalog_id": "HIP 22797",
+        "name_cn": "参旗八",
+        "name_en": "π5_Ori",
+        "mag": 3.71,
+        "ra": 73.5629,
+        "dec": 2.44067,
+        "color": "#b5c6ff",
+        "constellation": "Orion"
+      },
+      {
+        "id": "hip_26549_ori",
+        "catalog_id": "HIP 26549",
+        "name_cn": "参宿增一",
+        "name_en": "σ_Ori",
+        "mag": 3.77,
+        "ra": 84.68652,
+        "dec": -2.60007,
+        "color": "#b4c4ff",
+        "constellation": "Orion"
+      }
+    ]
+  },
+  "perseus": {
+    "display_name_cn": "英仙座",
+    "display_name_en": "Perseus",
+    "abbreviation": "Per",
+    "bounds": {
+      "ra_min": 38.674,
+      "ra_max": 66.165,
+      "dec_min": 28.884,
+      "dec_max": 58.896
+    },
+    "stars": [
+      {
+        "id": "hip_15863_mirfak",
+        "catalog_id": "HIP 15863",
+        "name_cn": "天船三",
+        "name_en": "Mirfak",
+        "mag": 1.79,
+        "ra": 51.08062,
+        "dec": 49.86124,
+        "color": "#f9f6fb",
+        "constellation": "Perseus"
+      },
+      {
+        "id": "hip_14576_algol",
+        "catalog_id": "HIP 14576",
+        "name_cn": "大陵五",
+        "name_en": "Algol",
+        "mag": 2.09,
+        "ra": 47.04221,
+        "dec": 40.95565,
+        "color": "#cad7ff",
+        "constellation": "Perseus"
+      },
+      {
+        "id": "hip_18246_per",
+        "catalog_id": "HIP 18246",
+        "name_cn": "卷舌四",
+        "name_en": "ζ_Per",
+        "mag": 2.84,
+        "ra": 58.53299,
+        "dec": 31.88366,
+        "color": "#e9edff",
+        "constellation": "Perseus"
+      },
+      {
+        "id": "hip_18532_per",
+        "catalog_id": "HIP 18532",
+        "name_cn": "卷舌二",
+        "name_en": "ε_Per",
+        "mag": 2.9,
+        "ra": 59.46342,
+        "dec": 40.01027,
+        "color": "#b3c4ff",
+        "constellation": "Perseus"
+      },
+      {
+        "id": "hip_14328_per",
+        "catalog_id": "HIP 14328",
+        "name_cn": "天船二",
+        "name_en": "γ_Per",
+        "mag": 2.91,
+        "ra": 46.19913,
+        "dec": 53.50645,
+        "color": "#fef5ee",
+        "constellation": "Perseus"
+      },
+      {
+        "id": "hip_17358_per",
+        "catalog_id": "HIP 17358",
+        "name_cn": "天船五",
+        "name_en": "δ_Per",
+        "mag": 3.01,
+        "ra": 55.73118,
+        "dec": 47.78765,
+        "color": "#bbcbff",
+        "constellation": "Perseus"
+      },
+      {
+        "id": "hip_14354_per",
+        "catalog_id": "HIP 14354",
+        "name_cn": "大陵六",
+        "name_en": "ρ_Per",
+        "mag": 3.32,
+        "ra": 46.29374,
+        "dec": 38.84053,
+        "color": "#ffb776",
+        "constellation": "Perseus"
+      },
+      {
+        "id": "hip_13268_miram",
+        "catalog_id": "HIP 13268",
+        "name_cn": "天船一",
+        "name_en": "Miram",
+        "mag": 3.77,
+        "ra": 42.67414,
+        "dec": 55.89553,
+        "color": "#ffa969",
+        "constellation": "Perseus"
+      },
+      {
+        "id": "hip_17529_per",
+        "catalog_id": "HIP 17529",
+        "name_cn": "卷舌一",
+        "name_en": "ν_Per",
+        "mag": 3.77,
+        "ra": 56.29851,
+        "dec": 42.57854,
+        "color": "#f8f7fe",
+        "constellation": "Perseus"
+      },
+      {
+        "id": "hip_14668_misam",
+        "catalog_id": "HIP 14668",
+        "name_cn": "大陵四",
+        "name_en": "Misam",
+        "mag": 3.79,
+        "ra": 47.37345,
+        "dec": 44.85789,
+        "color": "#ffe5c9",
+        "constellation": "Perseus"
+      },
+      {
+        "id": "hip_17448_atik",
+        "catalog_id": "HIP 17448",
+        "name_cn": "卷舌五",
+        "name_en": "Atik",
+        "mag": 3.84,
+        "ra": 56.07969,
+        "dec": 32.28827,
+        "color": "#cdd9ff",
+        "constellation": "Perseus"
+      },
+      {
+        "id": "hip_13531_per",
+        "catalog_id": "HIP 13531",
+        "name_cn": "大陵二",
+        "name_en": "τ_Per",
+        "mag": 3.93,
+        "ra": 43.56443,
+        "dec": 52.76249,
+        "color": "#fef4ec",
+        "constellation": "Perseus"
+      },
+      {
+        "id": "hip_19343_c_per",
+        "catalog_id": "HIP 19343",
+        "name_cn": "天船六",
+        "name_en": "c_Per",
+        "mag": 3.96,
+        "ra": 62.16531,
+        "dec": 47.71259,
+        "color": "#c7d5ff",
+        "constellation": "Perseus"
+      },
+      {
+        "id": "hip_18614_menkib",
+        "catalog_id": "HIP 18614",
+        "name_cn": "卷舌三",
+        "name_en": "Menkib",
+        "mag": 3.98,
+        "ra": 59.74125,
+        "dec": 35.79103,
+        "color": "#ccd8ff",
+        "constellation": "Perseus"
+      }
+    ]
+  },
+  "piscis_austrinus": {
+    "display_name_cn": "南鱼座",
+    "display_name_en": "Piscis Austrinus",
+    "abbreviation": "PsA",
+    "bounds": {
+      "ra_min": 340.412,
+      "ra_max": 348.412,
+      "dec_min": -32.622,
+      "dec_max": -26.622
+    },
+    "stars": [
+      {
+        "id": "hip_113368_fomalhaut",
+        "catalog_id": "HIP 113368",
+        "name_cn": "北落师门",
+        "name_en": "Fomalhaut",
+        "mag": 1.17,
+        "ra": 344.41177,
+        "dec": -29.62184,
+        "color": "#dbe3ff",
+        "constellation": "Piscis Austrinus"
+      }
+    ]
+  },
+  "puppis": {
+    "display_name_cn": "船尾座",
+    "display_name_en": "Puppis",
+    "abbreviation": "Pup",
+    "bounds": {
+      "ra_min": 110.708,
+      "ra_max": 125.886,
+      "dec_min": -31.955,
+      "dec_max": -21.304
+    },
+    "stars": [
+      {
+        "id": "hip_39757_tureis",
+        "catalog_id": "HIP 39757",
+        "name_cn": "弧矢增卅二",
+        "name_en": "Tureis",
+        "mag": 2.83,
+        "ra": 121.88626,
+        "dec": -24.30444,
+        "color": "#f9f7fc",
+        "constellation": "Puppis"
+      },
+      {
+        "id": "hip_38170_azmidi",
+        "catalog_id": "HIP 38170",
+        "name_cn": "弧矢增十七",
+        "name_en": "Azmidi",
+        "mag": 3.34,
+        "ra": 117.32358,
+        "dec": -24.85978,
+        "color": "#ffd19f",
+        "constellation": "Puppis"
+      },
+      {
+        "id": "hip_37229_k_pup",
+        "catalog_id": "HIP 37229",
+        "name_cn": "弧矢六",
+        "name_en": "k_Pup",
+        "mag": 3.8,
+        "ra": 114.70784,
+        "dec": -26.80389,
+        "color": "#b7c7ff",
+        "constellation": "Puppis"
+      },
+      {
+        "id": "hip_37677_l_pup",
+        "catalog_id": "HIP 37677",
+        "name_cn": "弧矢增十九",
+        "name_en": "l_Pup",
+        "mag": 3.94,
+        "ra": 115.95197,
+        "dec": -28.95484,
+        "color": "#dce4ff",
+        "constellation": "Puppis"
+      }
+    ]
+  },
+  "scorpius": {
+    "display_name_cn": "天蝎座",
+    "display_name_en": "Scorpius",
+    "abbreviation": "Sco",
+    "bounds": {
+      "ra_min": 235.221,
+      "ra_max": 252.971,
+      "dec_min": -32.214,
+      "dec_max": -16.805
+    },
+    "stars": [
+      {
+        "id": "hip_80763_antares",
+        "catalog_id": "HIP 80763",
+        "name_cn": "心宿二",
+        "name_en": "Antares",
+        "mag": 1.06,
+        "ra": 247.35195,
+        "dec": -26.43195,
+        "color": "#ff9860",
+        "constellation": "Scorpius"
+      },
+      {
+        "id": "hip_78401_dschubba",
+        "catalog_id": "HIP 78401",
+        "name_cn": "房宿三",
+        "name_en": "Dschubba",
+        "mag": 2.29,
+        "ra": 240.08338,
+        "dec": -22.62162,
+        "color": "#bcccff",
+        "constellation": "Scorpius"
+      },
+      {
+        "id": "hip_78820_acrab",
+        "catalog_id": "HIP 78820",
+        "name_cn": "房宿四",
+        "name_en": "Acrab",
+        "mag": 2.56,
+        "ra": 241.35931,
+        "dec": -19.80539,
+        "color": "#c2d1ff",
+        "constellation": "Scorpius"
+      },
+      {
+        "id": "hip_81266_paikauhale",
+        "catalog_id": "HIP 81266",
+        "name_cn": "心宿三",
+        "name_en": "Paikauhale",
+        "mag": 2.82,
+        "ra": 248.97066,
+        "dec": -28.21596,
+        "color": "#b2c3ff",
+        "constellation": "Scorpius"
+      },
+      {
+        "id": "hip_78265_fang",
+        "catalog_id": "HIP 78265",
+        "name_cn": "房宿一",
+        "name_en": "Fang",
+        "mag": 2.89,
+        "ra": 239.713,
+        "dec": -26.11404,
+        "color": "#b5c5ff",
+        "constellation": "Scorpius"
+      },
+      {
+        "id": "hip_80112_alniyat",
+        "catalog_id": "HIP 80112",
+        "name_cn": "心宿一",
+        "name_en": "Alniyat",
+        "mag": 2.9,
+        "ra": 245.29718,
+        "dec": -25.59275,
+        "color": "#ecefff",
+        "constellation": "Scorpius"
+      },
+      {
+        "id": "hip_78104_iklil",
+        "catalog_id": "HIP 78104",
+        "name_cn": "房宿二",
+        "name_en": "Iklil",
+        "mag": 3.87,
+        "ra": 239.22119,
+        "dec": -29.21401,
+        "color": "#b3c4ff",
+        "constellation": "Scorpius"
+      },
+      {
+        "id": "hip_78933_1_sco",
+        "catalog_id": "HIP 78933",
+        "name_cn": "钩钤一",
+        "name_en": "ω1_Sco",
+        "mag": 3.93,
+        "ra": 241.7018,
+        "dec": -20.66913,
+        "color": "#c5d3ff",
+        "constellation": "Scorpius"
+      }
+    ]
+  },
+  "scutum": {
+    "display_name_cn": "盾牌座",
+    "display_name_en": "Scutum",
+    "abbreviation": "Sct",
+    "bounds": {
+      "ra_min": 274.802,
+      "ra_max": 282.802,
+      "dec_min": -11.243,
+      "dec_max": -5.243
+    },
+    "stars": [
+      {
+        "id": "hip_91117_sct",
+        "catalog_id": "HIP 91117",
+        "name_cn": "天弁一",
+        "name_en": "α_Sct",
+        "mag": 3.85,
+        "ra": 278.80182,
+        "dec": -8.24331,
+        "color": "#ffc892",
+        "constellation": "Scutum"
+      }
+    ]
+  },
+  "serpens": {
+    "display_name_cn": "巨蛇座",
+    "display_name_en": "Serpens",
+    "abbreviation": "Ser",
+    "bounds": {
+      "ra_min": 229.701,
+      "ra_max": 279.329,
+      "dec_min": -19.126,
+      "dec_max": 19.392
+    },
+    "stars": [
+      {
+        "id": "hip_77070_unukalhai",
+        "catalog_id": "HIP 77070",
+        "name_cn": "天市右垣七",
+        "name_en": "Unukalhai",
+        "mag": 2.63,
+        "ra": 236.06665,
+        "dec": 6.42552,
+        "color": "#ffd5a7",
+        "constellation": "Serpens"
+      },
+      {
+        "id": "hip_89962_ser",
+        "catalog_id": "HIP 89962",
+        "name_cn": "天市左垣八",
+        "name_en": "η_Ser",
+        "mag": 3.23,
+        "ra": 275.32884,
+        "dec": -2.89712,
+        "color": "#ffe8d0",
+        "constellation": "Serpens"
+      },
+      {
+        "id": "hip_77516_ser",
+        "catalog_id": "HIP 77516",
+        "name_cn": "天乳",
+        "name_en": "μ_Ser",
+        "mag": 3.54,
+        "ra": 237.40527,
+        "dec": -3.43014,
+        "color": "#c6d3ff",
+        "constellation": "Serpens"
+      },
+      {
+        "id": "hip_86263_ser",
+        "catalog_id": "HIP 86263",
+        "name_cn": "天市左垣十",
+        "name_en": "ξ_Ser",
+        "mag": 3.54,
+        "ra": 264.39677,
+        "dec": -15.39841,
+        "color": "#e8ecff",
+        "constellation": "Serpens"
+      },
+      {
+        "id": "hip_77233_ser",
+        "catalog_id": "HIP 77233",
+        "name_cn": "天市右垣五",
+        "name_en": "β_Ser",
+        "mag": 3.65,
+        "ra": 236.54673,
+        "dec": 15.42193,
+        "color": "#d2ddff",
+        "constellation": "Serpens"
+      },
+      {
+        "id": "hip_77622_ser",
+        "catalog_id": "HIP 77622",
+        "name_cn": "天市右垣八",
+        "name_en": "ε_Ser",
+        "mag": 3.71,
+        "ra": 237.70371,
+        "dec": 4.47758,
+        "color": "#dbe3ff",
+        "constellation": "Serpens"
+      },
+      {
+        "id": "hip_76276_ser",
+        "catalog_id": "HIP 76276",
+        "name_cn": "天市右垣六",
+        "name_en": "δ_Ser",
+        "mag": 3.8,
+        "ra": 233.70079,
+        "dec": 10.53886,
+        "color": "#e9ecff",
+        "constellation": "Serpens"
+      },
+      {
+        "id": "hip_78072_ser",
+        "catalog_id": "HIP 78072",
+        "name_cn": "天市右垣四",
+        "name_en": "γ_Ser",
+        "mag": 3.85,
+        "ra": 239.11248,
+        "dec": 15.66473,
+        "color": "#f9f6fb",
+        "constellation": "Serpens"
+      }
+    ]
+  },
+  "sagitta": {
+    "display_name_cn": "天箭座",
+    "display_name_en": "Sagitta",
+    "abbreviation": "Sge",
+    "bounds": {
+      "ra_min": 292.847,
+      "ra_max": 303.689,
+      "dec_min": 15.534,
+      "dec_max": 22.492
+    },
+    "stars": [
+      {
+        "id": "hip_98337_sge",
+        "catalog_id": "HIP 98337",
+        "name_cn": "左旗五",
+        "name_en": "γ_Sge",
+        "mag": 3.51,
+        "ra": 299.68912,
+        "dec": 19.49209,
+        "color": "#ffb371",
+        "constellation": "Sagitta"
+      },
+      {
+        "id": "hip_97365_sge",
+        "catalog_id": "HIP 97365",
+        "name_cn": "左旗三",
+        "name_en": "δ_Sge",
+        "mag": 3.68,
+        "ra": 296.84694,
+        "dec": 18.53426,
+        "color": "#ffc992",
+        "constellation": "Sagitta"
+      }
     ]
   },
   "sagittarius": {
     "display_name_cn": "人马座",
     "display_name_en": "Sagittarius",
-    "bounds": { "ra_min": 265.0, "ra_max": 305.0, "dec_min": -45.0, "dec_max": -12.0 },
+    "abbreviation": "Sgr",
+    "bounds": {
+      "ra_min": 269.441,
+      "ra_max": 294.418,
+      "dec_min": -32.88,
+      "dec_max": -14.847
+    },
     "stars": [
-      { "id": "kaus_australis", "catalog_id": "HIP 90185", "name_cn": "箕宿三", "name_en": "Kaus Australis", "mag": 1.79, "ra": 276.10, "dec": -34.38, "color": "#dbe7ff", "constellation": "Sagittarius" },
-      { "id": "nunki", "catalog_id": "HIP 92855", "name_cn": "斗宿四", "name_en": "Nunki", "mag": 2.05, "ra": 283.82, "dec": -26.30, "color": "#d7e8ff", "constellation": "Sagittarius" },
-      { "id": "ascella", "catalog_id": "HIP 93506", "name_cn": "斗宿六", "name_en": "Ascella", "mag": 2.60, "ra": 285.65, "dec": -29.88, "color": "#f8fbff", "constellation": "Sagittarius" },
-      { "id": "kaus_media", "catalog_id": "HIP 89931", "name_cn": "箕宿二", "name_en": "Kaus Media", "mag": 2.72, "ra": 275.22, "dec": -29.83, "color": "#fff0de", "constellation": "Sagittarius" }
+      {
+        "id": "hip_92855_nunki",
+        "catalog_id": "HIP 92855",
+        "name_cn": "斗宿四",
+        "name_en": "Nunki",
+        "mag": 2.05,
+        "ra": 283.81632,
+        "dec": -26.29659,
+        "color": "#bacaff",
+        "constellation": "Sagittarius"
+      },
+      {
+        "id": "hip_93506_ascella",
+        "catalog_id": "HIP 93506",
+        "name_cn": "斗宿六",
+        "name_en": "Ascella",
+        "mag": 2.6,
+        "ra": 285.65301,
+        "dec": -29.88011,
+        "color": "#d1dcff",
+        "constellation": "Sagittarius"
+      },
+      {
+        "id": "hip_89931_kaus_media",
+        "catalog_id": "HIP 89931",
+        "name_cn": "箕宿二",
+        "name_en": "Kaus Media",
+        "mag": 2.72,
+        "ra": 275.24842,
+        "dec": -29.82804,
+        "color": "#ffc38a",
+        "constellation": "Sagittarius"
+      },
+      {
+        "id": "hip_90496_kaus_borealis",
+        "catalog_id": "HIP 90496",
+        "name_cn": "斗宿二",
+        "name_en": "Kaus Borealis",
+        "mag": 2.82,
+        "ra": 276.99279,
+        "dec": -25.42125,
+        "color": "#ffe1c1",
+        "constellation": "Sagittarius"
+      },
+      {
+        "id": "hip_94141_albaldah",
+        "catalog_id": "HIP 94141",
+        "name_cn": "建三",
+        "name_en": "Albaldah",
+        "mag": 2.88,
+        "ra": 287.44097,
+        "dec": -21.02353,
+        "color": "#f5f5ff",
+        "constellation": "Sagittarius"
+      },
+      {
+        "id": "hip_92041_sgr",
+        "catalog_id": "HIP 92041",
+        "name_cn": "斗宿一",
+        "name_en": "φ_Sgr",
+        "mag": 3.17,
+        "ra": 281.41397,
+        "dec": -26.99078,
+        "color": "#bdcdff",
+        "constellation": "Sagittarius"
+      },
+      {
+        "id": "hip_93864_sgr",
+        "catalog_id": "HIP 93864",
+        "name_cn": "斗宿五",
+        "name_en": "τ_Sgr",
+        "mag": 3.32,
+        "ra": 286.73518,
+        "dec": -27.66981,
+        "color": "#ffd5a7",
+        "constellation": "Sagittarius"
+      },
+      {
+        "id": "hip_93085_2_sgr",
+        "catalog_id": "HIP 93085",
+        "name_cn": "建一",
+        "name_en": "ξ2_Sgr",
+        "mag": 3.52,
+        "ra": 284.43242,
+        "dec": -21.10662,
+        "color": "#ffd6aa",
+        "constellation": "Sagittarius"
+      },
+      {
+        "id": "hip_93683_sgr",
+        "catalog_id": "HIP 93683",
+        "name_cn": "建二",
+        "name_en": "ο_Sgr",
+        "mag": 3.76,
+        "ra": 286.17056,
+        "dec": -21.74135,
+        "color": "#ffe2c3",
+        "constellation": "Sagittarius"
+      },
+      {
+        "id": "hip_89341_polis",
+        "catalog_id": "HIP 89341",
+        "name_cn": "斗宿三",
+        "name_en": "Polis",
+        "mag": 3.84,
+        "ra": 273.44087,
+        "dec": -21.05883,
+        "color": "#e0e7ff",
+        "constellation": "Sagittarius"
+      },
+      {
+        "id": "hip_95168_1_sgr",
+        "catalog_id": "HIP 95168",
+        "name_cn": "建五",
+        "name_en": "ρ1_Sgr",
+        "mag": 3.92,
+        "ra": 290.41823,
+        "dec": -17.84725,
+        "color": "#e4e9ff",
+        "constellation": "Sagittarius"
+      }
+    ]
+  },
+  "taurus": {
+    "display_name_cn": "金牛座",
+    "display_name_en": "Taurus",
+    "abbreviation": "Tau",
+    "bounds": {
+      "ra_min": 47.203,
+      "ra_max": 88.411,
+      "dec_min": 2.989,
+      "dec_max": 31.608
+    },
+    "stars": [
+      {
+        "id": "hip_21421_aldebaran",
+        "catalog_id": "HIP 21421",
+        "name_cn": "毕宿五",
+        "name_en": "Aldebaran",
+        "mag": 0.87,
+        "ra": 68.98,
+        "dec": 16.50976,
+        "color": "#ffb675",
+        "constellation": "Taurus"
+      },
+      {
+        "id": "hip_25428_elnath",
+        "catalog_id": "HIP 25428",
+        "name_cn": "五车五",
+        "name_en": "Elnath",
+        "mag": 1.65,
+        "ra": 81.57291,
+        "dec": 28.60787,
+        "color": "#bbcaff",
+        "constellation": "Taurus"
+      },
+      {
+        "id": "hip_17702_alcyone",
+        "catalog_id": "HIP 17702",
+        "name_cn": "昴宿六",
+        "name_en": "Alcyone",
+        "mag": 2.85,
+        "ra": 56.8711,
+        "dec": 24.10524,
+        "color": "#c0cfff",
+        "constellation": "Taurus"
+      },
+      {
+        "id": "hip_26451_tianguan",
+        "catalog_id": "HIP 26451",
+        "name_cn": "天关",
+        "name_en": "Tianguan",
+        "mag": 2.97,
+        "ra": 84.41118,
+        "dec": 21.14259,
+        "color": "#b9c9ff",
+        "constellation": "Taurus"
+      },
+      {
+        "id": "hip_20894_chamukuy",
+        "catalog_id": "HIP 20894",
+        "name_cn": "毕宿增十三",
+        "name_en": "Chamukuy",
+        "mag": 3.4,
+        "ra": 67.16531,
+        "dec": 15.87095,
+        "color": "#dfe5ff",
+        "constellation": "Taurus"
+      },
+      {
+        "id": "hip_18724_tau",
+        "catalog_id": "HIP 18724",
+        "name_cn": "毕宿八",
+        "name_en": "λ_Tau",
+        "mag": 3.41,
+        "ra": 60.17009,
+        "dec": 12.49038,
+        "color": "#becdff",
+        "constellation": "Taurus"
+      },
+      {
+        "id": "hip_20889_ain",
+        "catalog_id": "HIP 20889",
+        "name_cn": "毕宿一",
+        "name_en": "Ain",
+        "mag": 3.53,
+        "ra": 67.15389,
+        "dec": 19.18052,
+        "color": "#ffe2c3",
+        "constellation": "Taurus"
+      },
+      {
+        "id": "hip_15900_tau",
+        "catalog_id": "HIP 15900",
+        "name_cn": "天廪四",
+        "name_en": "ο_Tau",
+        "mag": 3.61,
+        "ra": 51.20349,
+        "dec": 9.02907,
+        "color": "#ffedda",
+        "constellation": "Taurus"
+      },
+      {
+        "id": "hip_17847_atlas",
+        "catalog_id": "HIP 17847",
+        "name_cn": "昴宿七",
+        "name_en": "Atlas",
+        "mag": 3.62,
+        "ra": 57.29055,
+        "dec": 24.05352,
+        "color": "#c2d0ff",
+        "constellation": "Taurus"
+      },
+      {
+        "id": "hip_20205_prima_hyadum",
+        "catalog_id": "HIP 20205",
+        "name_cn": "毕宿四",
+        "name_en": "Prima Hyadum",
+        "mag": 3.65,
+        "ra": 64.94806,
+        "dec": 15.6277,
+        "color": "#ffe5c9",
+        "constellation": "Taurus"
+      },
+      {
+        "id": "hip_17499_electra",
+        "catalog_id": "HIP 17499",
+        "name_cn": "昴宿一",
+        "name_en": "Electra",
+        "mag": 3.72,
+        "ra": 56.21885,
+        "dec": 24.11345,
+        "color": "#becdff",
+        "constellation": "Taurus"
+      },
+      {
+        "id": "hip_16083_tau",
+        "catalog_id": "HIP 16083",
+        "name_cn": "天廪三",
+        "name_en": "ξ_Tau",
+        "mag": 3.73,
+        "ra": 51.79217,
+        "dec": 9.73277,
+        "color": "#c0cfff",
+        "constellation": "Taurus"
+      },
+      {
+        "id": "hip_20455_secunda_hyadum",
+        "catalog_id": "HIP 20455",
+        "name_cn": "毕宿三",
+        "name_en": "Secunda Hyadum",
+        "mag": 3.77,
+        "ra": 65.73345,
+        "dec": 17.54258,
+        "color": "#ffe4c9",
+        "constellation": "Taurus"
+      },
+      {
+        "id": "hip_20885_1_tau",
+        "catalog_id": "HIP 20885",
+        "name_cn": "毕宿六",
+        "name_en": "θ1_Tau",
+        "mag": 3.84,
+        "ra": 67.14347,
+        "dec": 15.96222,
+        "color": "#ffe7ce",
+        "constellation": "Taurus"
+      },
+      {
+        "id": "hip_17573_maia",
+        "catalog_id": "HIP 17573",
+        "name_cn": "昴宿四",
+        "name_en": "Maia",
+        "mag": 3.87,
+        "ra": 56.45664,
+        "dec": 24.36786,
+        "color": "#c3d1ff",
+        "constellation": "Taurus"
+      },
+      {
+        "id": "hip_18907_tau",
+        "catalog_id": "HIP 18907",
+        "name_cn": "毕宿增三",
+        "name_en": "ν_Tau",
+        "mag": 3.91,
+        "ra": 60.78907,
+        "dec": 5.98931,
+        "color": "#cedaff",
+        "constellation": "Taurus"
+      }
+    ]
+  },
+  "triangulum": {
+    "display_name_cn": "三角座",
+    "display_name_en": "Triangulum",
+    "abbreviation": "Tri",
+    "bounds": {
+      "ra_min": 24.27,
+      "ra_max": 36.386,
+      "dec_min": 26.579,
+      "dec_max": 37.987
+    },
+    "stars": [
+      {
+        "id": "hip_10064_tri",
+        "catalog_id": "HIP 10064",
+        "name_cn": "天大将军九",
+        "name_en": "β_Tri",
+        "mag": 3.0,
+        "ra": 32.3855,
+        "dec": 34.98739,
+        "color": "#dae2ff",
+        "constellation": "Triangulum"
+      },
+      {
+        "id": "hip_8796_mothallah",
+        "catalog_id": "HIP 8796",
+        "name_cn": "娄宿增六",
+        "name_en": "Mothallah",
+        "mag": 3.42,
+        "ra": 28.27042,
+        "dec": 29.5794,
+        "color": "#faf6fa",
+        "constellation": "Triangulum"
+      }
+    ]
+  },
+  "ursa_major": {
+    "display_name_cn": "大熊座",
+    "display_name_en": "Ursa Major",
+    "abbreviation": "UMa",
+    "bounds": {
+      "ra_min": 121.221,
+      "ra_max": 213.231,
+      "dec_min": 29.498,
+      "dec_max": 66.658
+    },
+    "stars": [
+      {
+        "id": "hip_62956_alioth",
+        "catalog_id": "HIP 62956",
+        "name_cn": "北斗五",
+        "name_en": "Alioth",
+        "mag": 1.76,
+        "ra": 193.5068,
+        "dec": 55.95984,
+        "color": "#c7d5ff",
+        "constellation": "Ursa Major"
+      },
+      {
+        "id": "hip_54061_dubhe",
+        "catalog_id": "HIP 54061",
+        "name_cn": "北斗一",
+        "name_en": "Dubhe",
+        "mag": 1.81,
+        "ra": 165.93265,
+        "dec": 61.75112,
+        "color": "#ffdeba",
+        "constellation": "Ursa Major"
+      },
+      {
+        "id": "hip_67301_alkaid",
+        "catalog_id": "HIP 67301",
+        "name_cn": "北斗七",
+        "name_en": "Alkaid",
+        "mag": 1.85,
+        "ra": 206.88561,
+        "dec": 49.3133,
+        "color": "#becdff",
+        "constellation": "Ursa Major"
+      },
+      {
+        "id": "hip_65378_mizar",
+        "catalog_id": "HIP 65378",
+        "name_cn": "北斗六",
+        "name_en": "Mizar",
+        "mag": 2.23,
+        "ra": 200.98092,
+        "dec": 54.92542,
+        "color": "#d1dcff",
+        "constellation": "Ursa Major"
+      },
+      {
+        "id": "hip_53910_merak",
+        "catalog_id": "HIP 53910",
+        "name_cn": "北斗二",
+        "name_en": "Merak",
+        "mag": 2.34,
+        "ra": 165.45996,
+        "dec": 56.38234,
+        "color": "#cedaff",
+        "constellation": "Ursa Major"
+      },
+      {
+        "id": "hip_58001_phecda",
+        "catalog_id": "HIP 58001",
+        "name_cn": "北斗三",
+        "name_en": "Phecda",
+        "mag": 2.41,
+        "ra": 178.45726,
+        "dec": 53.69473,
+        "color": "#cfdbff",
+        "constellation": "Ursa Major"
+      },
+      {
+        "id": "hip_54539_uma",
+        "catalog_id": "HIP 54539",
+        "name_cn": "太尊",
+        "name_en": "ψ_UMa",
+        "mag": 3.0,
+        "ra": 167.41608,
+        "dec": 44.49855,
+        "color": "#ffd7ab",
+        "constellation": "Ursa Major"
+      },
+      {
+        "id": "hip_50801_tania_australis",
+        "catalog_id": "HIP 50801",
+        "name_cn": "三台四",
+        "name_en": "Tania Australis",
+        "mag": 3.06,
+        "ra": 155.58251,
+        "dec": 41.49943,
+        "color": "#ffb16d",
+        "constellation": "Ursa Major"
+      },
+      {
+        "id": "hip_44127_talitha",
+        "catalog_id": "HIP 44127",
+        "name_cn": "三台一",
+        "name_en": "Talitha",
+        "mag": 3.12,
+        "ra": 134.80349,
+        "dec": 48.04235,
+        "color": "#e4e9ff",
+        "constellation": "Ursa Major"
+      },
+      {
+        "id": "hip_46853_uma",
+        "catalog_id": "HIP 46853",
+        "name_cn": "文昌四",
+        "name_en": "θ_UMa",
+        "mag": 3.17,
+        "ra": 143.21802,
+        "dec": 51.6786,
+        "color": "#f9f6fb",
+        "constellation": "Ursa Major"
+      },
+      {
+        "id": "hip_59774_megrez",
+        "catalog_id": "HIP 59774",
+        "name_cn": "北斗四",
+        "name_en": "Megrez",
+        "mag": 3.32,
+        "ra": 183.85604,
+        "dec": 57.0326,
+        "color": "#d3ddff",
+        "constellation": "Ursa Major"
+      },
+      {
+        "id": "hip_41704_muscida",
+        "catalog_id": "HIP 41704",
+        "name_cn": "内阶一",
+        "name_en": "Muscida",
+        "mag": 3.35,
+        "ra": 127.56679,
+        "dec": 60.71843,
+        "color": "#ffefe0",
+        "constellation": "Ursa Major"
+      },
+      {
+        "id": "hip_50372_tania_borealis",
+        "catalog_id": "HIP 50372",
+        "name_cn": "三台三",
+        "name_en": "Tania Borealis",
+        "mag": 3.45,
+        "ra": 154.2747,
+        "dec": 42.91447,
+        "color": "#cdd9ff",
+        "constellation": "Ursa Major"
+      },
+      {
+        "id": "hip_55219_alula_borealis",
+        "catalog_id": "HIP 55219",
+        "name_cn": "三台五",
+        "name_en": "Alula Borealis",
+        "mag": 3.49,
+        "ra": 169.61981,
+        "dec": 33.09424,
+        "color": "#ffc287",
+        "constellation": "Ursa Major"
+      },
+      {
+        "id": "hip_44471_alkaphrah",
+        "catalog_id": "HIP 44471",
+        "name_cn": "三台二",
+        "name_en": "Alkaphrah",
+        "mag": 3.57,
+        "ra": 135.90649,
+        "dec": 47.15666,
+        "color": "#cbd8ff",
+        "constellation": "Ursa Major"
+      },
+      {
+        "id": "hip_46733_h_uma",
+        "catalog_id": "HIP 46733",
+        "name_cn": "内阶四",
+        "name_en": "h_UMa",
+        "mag": 3.65,
+        "ra": 142.88154,
+        "dec": 63.0618,
+        "color": "#f3f4ff",
+        "constellation": "Ursa Major"
+      },
+      {
+        "id": "hip_57399_taiyangshou",
+        "catalog_id": "HIP 57399",
+        "name_cn": "太阳守",
+        "name_en": "Taiyangshou",
+        "mag": 3.69,
+        "ra": 176.51306,
+        "dec": 47.77934,
+        "color": "#ffd4a4",
+        "constellation": "Ursa Major"
+      },
+      {
+        "id": "hip_48319_uma",
+        "catalog_id": "HIP 48319",
+        "name_cn": "文昌二",
+        "name_en": "υ_UMa",
+        "mag": 3.78,
+        "ra": 147.74872,
+        "dec": 59.0391,
+        "color": "#ebeeff",
+        "constellation": "Ursa Major"
+      },
+      {
+        "id": "hip_44248_10_uma",
+        "catalog_id": "HIP 44248",
+        "name_cn": "轩辕一",
+        "name_en": "10_UMa",
+        "mag": 3.96,
+        "ra": 135.16147,
+        "dec": 41.78344,
+        "color": "#f9f7fc",
+        "constellation": "Ursa Major"
+      },
+      {
+        "id": "hip_65477_alcor",
+        "catalog_id": "HIP 65477",
+        "name_cn": "辅",
+        "name_en": "Alcor",
+        "mag": 3.99,
+        "ra": 201.3059,
+        "dec": 54.988,
+        "color": "#dde5ff",
+        "constellation": "Ursa Major"
+      }
+    ]
+  },
+  "virgo": {
+    "display_name_cn": "室女座",
+    "display_name_en": "Virgo",
+    "abbreviation": "Vir",
+    "bounds": {
+      "ra_min": 173.672,
+      "ra_max": 225.562,
+      "dec_min": -14.161,
+      "dec_max": 13.959
+    },
+    "stars": [
+      {
+        "id": "hip_65474_spica",
+        "catalog_id": "HIP 65474",
+        "name_cn": "角宿一",
+        "name_en": "Spica",
+        "mag": 0.98,
+        "ra": 201.29835,
+        "dec": -11.16124,
+        "color": "#aec0ff",
+        "constellation": "Virgo"
+      },
+      {
+        "id": "hip_61941_porrima",
+        "catalog_id": "HIP 61941",
+        "name_cn": "太微左垣二",
+        "name_en": "Porrima",
+        "mag": 2.74,
+        "ra": 190.41668,
+        "dec": -1.44952,
+        "color": "#f4f4ff",
+        "constellation": "Virgo"
+      },
+      {
+        "id": "hip_63608_vindemiatrix",
+        "catalog_id": "HIP 63608",
+        "name_cn": "太微左垣四",
+        "name_en": "Vindemiatrix",
+        "mag": 2.85,
+        "ra": 195.54484,
+        "dec": 10.9591,
+        "color": "#ffe9d2",
+        "constellation": "Virgo"
+      },
+      {
+        "id": "hip_66249_heze",
+        "catalog_id": "HIP 66249",
+        "name_cn": "角宿二",
+        "name_en": "Heze",
+        "mag": 3.38,
+        "ra": 203.67398,
+        "dec": -0.59594,
+        "color": "#d7e0ff",
+        "constellation": "Virgo"
+      },
+      {
+        "id": "hip_63090_minelauva",
+        "catalog_id": "HIP 63090",
+        "name_cn": "太微左垣三",
+        "name_en": "Minelauva",
+        "mag": 3.39,
+        "ra": 193.90201,
+        "dec": 3.3976,
+        "color": "#ffb371",
+        "constellation": "Virgo"
+      },
+      {
+        "id": "hip_57757_zavijava",
+        "catalog_id": "HIP 57757",
+        "name_cn": "太微右垣一",
+        "name_en": "Zavijava",
+        "mag": 3.59,
+        "ra": 177.67203,
+        "dec": 1.76538,
+        "color": "#faf6f9",
+        "constellation": "Virgo"
+      },
+      {
+        "id": "hip_72220_109_vir",
+        "catalog_id": "HIP 72220",
+        "name_cn": "亢宿增十",
+        "name_en": "109_Vir",
+        "mag": 3.73,
+        "ra": 221.56247,
+        "dec": 1.89294,
+        "color": "#c9d7ff",
+        "constellation": "Virgo"
+      },
+      {
+        "id": "hip_71957_vir",
+        "catalog_id": "HIP 71957",
+        "name_cn": "亢宿增七",
+        "name_en": "μ_Vir",
+        "mag": 3.87,
+        "ra": 220.76484,
+        "dec": -5.65743,
+        "color": "#f6f6ff",
+        "constellation": "Virgo"
+      },
+      {
+        "id": "hip_60129_zaniah",
+        "catalog_id": "HIP 60129",
+        "name_cn": "太微左垣一",
+        "name_en": "Zaniah",
+        "mag": 3.89,
+        "ra": 184.97663,
+        "dec": -0.66675,
+        "color": "#cdd9ff",
+        "constellation": "Virgo"
+      }
     ]
   }
 }

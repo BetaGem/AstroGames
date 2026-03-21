@@ -126,6 +126,49 @@
       .hint-text.show {
         display: block;
       }
+      .difficulty-panel {
+        width: min(100%, 420px);
+        margin: 0 auto 18px;
+        padding: 14px 16px;
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        background: rgba(118, 168, 255, 0.08);
+      }
+      .difficulty-row {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+      .difficulty-label {
+        color: var(--text);
+        font-weight: 600;
+      }
+      .difficulty-input {
+        width: 96px;
+        padding: 10px 12px;
+        border-radius: 999px;
+        border: 1px solid var(--line);
+        background: rgba(5, 12, 22, 0.7);
+        color: var(--text);
+        text-align: center;
+        font-size: 15px;
+      }
+      .difficulty-submit {
+        margin-top: 0;
+        padding: 10px 16px;
+        font-size: 15px;
+      }
+      .difficulty-help {
+        margin: 10px 0 0;
+        font-size: 13px;
+      }
+      .difficulty-error {
+        margin: 10px 0 0;
+        color: #ff9c9c;
+        font-weight: 600;
+      }
     </style>
   </head>
   <body>
@@ -133,6 +176,27 @@
       <section class="card">
         <h1>找出消失的星星</h1>
         <p>下图的星座中有颗星星消失了，请根据星座形状找到它。</p>
+        <div class="difficulty-panel">
+          <form method="post" action="/difficulty">
+            <div class="difficulty-row">
+              <span class="difficulty-label">极限星等：</span>
+              <input
+                class="difficulty-input"
+                type="number"
+                name="difficulty"
+                min="0"
+                step="0.1"
+                value="{{ '%.1f'|format(current_difficulty) }}"
+                required
+              >
+              <button class="difficulty-submit" type="submit">确认</button>
+            </div>
+            <!-- <p class="difficulty-help">当前出题极限星等：{{ '%.1f'|format(current_difficulty) }}，选项极限星等：{{ '%.1f'|format(option_difficulty) }}</p> -->
+            {% if difficulty_error %}
+            <p class="difficulty-error">{{ difficulty_error }}</p>
+            {% endif %}
+          </form>
+        </div>
         <button type="button" class="hint-btn" onclick="toggleHint()">💡 提示</button>
         <div class="hint-text" id="hintText">当前星座：{{ region_name }}</div>
         <br></br>
