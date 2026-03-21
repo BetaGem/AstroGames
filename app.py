@@ -29,6 +29,16 @@ def get_named_bright_stars(region: dict[str, Any]) -> list[dict[str, Any]]:
     return [star for star in region["stars"] if star["name_cn"] and star["mag"] <= 2.5]
 
 
+def get_all_named_star_names() -> list[str]:
+    names = {
+        star["name_cn"]
+        for region in CONSTELLATION_REGIONS.values()
+        for star in region["stars"]
+        if star.get("name_cn")
+    }
+    return sorted(names)
+
+
 def project_region(region: dict[str, Any], stars: list[dict[str, Any]]) -> dict[str, tuple[float, float]]:
     ra0 = (region["bounds"]["ra_min"] + region["bounds"]["ra_max"]) / 2
     dec0 = (region["bounds"]["dec_min"] + region["bounds"]["dec_max"]) / 2
@@ -161,14 +171,14 @@ def projected_bounds(region: dict[str, Any], ra0: float, dec0: float) -> tuple[f
 
 def build_round() -> dict[str, Any]:
     eligible_regions = [
-        key for key, region in CONSTELLATION_REGIONS.items() if len(get_named_bright_stars(region)) >= 4
+        key for key, region in CONSTELLATION_REGIONS.items() if len(get_named_bright_stars(region)) >= 1
     ]
     region_key = random.choice(eligible_regions)
     region = get_constellation_region(region_key)
     named_candidates = get_named_bright_stars(region)
     missing_star = random.choice(named_candidates)
 
-    distractors = [star["name_cn"] for star in named_candidates if star["id"] != missing_star["id"]]
+    distractors = [name for name in get_all_named_star_names() if name != missing_star["name_cn"]]
     random.shuffle(distractors)
     options = distractors[:3] + [missing_star["name_cn"]]
     random.shuffle(options)

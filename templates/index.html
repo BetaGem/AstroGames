@@ -100,13 +100,42 @@
         background: rgba(118, 168, 255, 0.08);
         font-size: 14px;
       }
+      .hint-btn {
+        margin-top: 12px;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        padding: 8px 16px;
+        font-size: 14px;
+        color: var(--accent);
+        background: rgba(118, 168, 255, 0.1);
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+      .hint-btn:hover {
+        background: rgba(118, 168, 255, 0.2);
+      }
+      .hint-text {
+        margin-top: 12px;
+        padding: 12px;
+        border-radius: 12px;
+        background: rgba(118, 168, 255, 0.15);
+        color: var(--accent);
+        font-weight: 600;
+        display: none;
+      }
+      .hint-text.show {
+        display: block;
+      }
     </style>
   </head>
   <body>
     <main class="wrap">
       <section class="card">
-        <h1>找出消失的恒星</h1>
-        <p><strong>【{{ region_name }}】</strong>里有颗星星消失了，请根据星座形状找到它。</p>
+        <h1>找出消失的星星</h1>
+        <p>下图的星座中有颗星星消失了，请根据星座形状找到它。</p>
+        <button type="button" class="hint-btn" onclick="toggleHint()">💡 提示</button>
+        <div class="hint-text" id="hintText">当前星座：{{ region_name }}</div>
+        <br></br>
         <form method="post" action="/answer">
           <div class="options">
             {% for option in options %}
@@ -121,5 +150,11 @@
         <img class="chart" src="data:image/png;base64,{{ chart_data }}" alt="星图">
       </section>
     </main>
+    <script>
+      function toggleHint() {
+        const hintText = document.getElementById('hintText');
+        hintText.classList.toggle('show');
+      }
+    </script>
   </body>
 </html>
