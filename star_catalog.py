@@ -1,106 +1,18 @@
-CONSTELLATION_REGIONS = {
-    "orion": {
-        "display_name_cn": "猎户座",
-        "display_name_en": "Orion",
-        "bounds": {"ra_min": 73.0, "ra_max": 92.5, "dec_min": -12.5, "dec_max": 16.0},
-        "stars": [
-            {"id": "betelgeuse", "name_cn": "参宿四", "name_en": "Betelgeuse", "mag": 0.42, "ra": 88.79, "dec": 7.41, "color": "#ffb27d", "constellation": "Orion"},
-            {"id": "rigel", "name_cn": "参宿七", "name_en": "Rigel", "mag": 0.13, "ra": 78.63, "dec": -8.20, "color": "#d9ecff", "constellation": "Orion"},
-            {"id": "bellatrix", "name_cn": "五车二", "name_en": "Bellatrix", "mag": 1.64, "ra": 81.28, "dec": 6.35, "color": "#dfe8ff", "constellation": "Orion"},
-            {"id": "saiph", "name_cn": "参宿六", "name_en": "Saiph", "mag": 2.07, "ra": 86.94, "dec": -9.67, "color": "#d6e6ff", "constellation": "Orion"},
-            {"id": "mintaka", "name_cn": "参宿三", "name_en": "Mintaka", "mag": 2.25, "ra": 83.00, "dec": -0.30, "color": "#d9e9ff", "constellation": "Orion"},
-            {"id": "alnilam", "name_cn": "参宿二", "name_en": "Alnilam", "mag": 1.69, "ra": 84.05, "dec": -1.20, "color": "#cfe5ff", "constellation": "Orion"},
-            {"id": "alnitak", "name_cn": "参宿一", "name_en": "Alnitak", "mag": 1.79, "ra": 85.19, "dec": -1.94, "color": "#cfe0ff", "constellation": "Orion"},
-            {"id": "meissa", "name_cn": "觜宿一", "name_en": "Meissa", "mag": 3.39, "ra": 83.78, "dec": 9.93, "color": "#f5f6ff", "constellation": "Orion"},
-            {"id": "orion_1", "name_cn": "", "name_en": "", "mag": 3.70, "ra": 76.96, "dec": -5.09, "color": "#eef3ff", "constellation": "Orion"},
-            {"id": "orion_2", "name_cn": "", "name_en": "", "mag": 4.10, "ra": 90.98, "dec": 14.77, "color": "#ffd9bf", "constellation": "Orion"},
-            {"id": "orion_3", "name_cn": "", "name_en": "", "mag": 4.45, "ra": 80.71, "dec": -2.40, "color": "#dde8ff", "constellation": "Orion"},
-        ],
-        "lines": [
-            ("betelgeuse", "bellatrix"),
-            ("betelgeuse", "alnilam"),
-            ("bellatrix", "mintaka"),
-            ("mintaka", "alnilam"),
-            ("alnilam", "alnitak"),
-            ("alnitak", "saiph"),
-            ("rigel", "saiph"),
-            ("rigel", "alnitak"),
-            ("meissa", "betelgeuse"),
-            ("meissa", "bellatrix"),
-        ],
-    },
-    "ursa_major": {
-        "display_name_cn": "大熊座",
-        "display_name_en": "Ursa Major",
-        "bounds": {"ra_min": 150.0, "ra_max": 210.0, "dec_min": 41.0, "dec_max": 65.0},
-        "stars": [
-            {"id": "dubhe", "name_cn": "天枢", "name_en": "Dubhe", "mag": 1.79, "ra": 165.46, "dec": 61.75, "color": "#ffd6a5", "constellation": "Ursa Major"},
-            {"id": "merak", "name_cn": "天璇", "name_en": "Merak", "mag": 2.37, "ra": 165.93, "dec": 56.38, "color": "#edf4ff", "constellation": "Ursa Major"},
-            {"id": "phecda", "name_cn": "天玑", "name_en": "Phecda", "mag": 2.43, "ra": 178.46, "dec": 53.69, "color": "#f8fbff", "constellation": "Ursa Major"},
-            {"id": "megrez", "name_cn": "天权", "name_en": "Megrez", "mag": 3.32, "ra": 183.86, "dec": 57.03, "color": "#f7fbff", "constellation": "Ursa Major"},
-            {"id": "alioth", "name_cn": "玉衡", "name_en": "Alioth", "mag": 1.76, "ra": 193.51, "dec": 55.96, "color": "#eef5ff", "constellation": "Ursa Major"},
-            {"id": "mizar", "name_cn": "开阳", "name_en": "Mizar", "mag": 2.23, "ra": 200.98, "dec": 54.93, "color": "#eff5ff", "constellation": "Ursa Major"},
-            {"id": "alkaid", "name_cn": "摇光", "name_en": "Alkaid", "mag": 1.86, "ra": 206.88, "dec": 49.31, "color": "#dfe9ff", "constellation": "Ursa Major"},
-            {"id": "um_1", "name_cn": "", "name_en": "", "mag": 3.78, "ra": 168.53, "dec": 53.70, "color": "#f7fbff", "constellation": "Ursa Major"},
-            {"id": "um_2", "name_cn": "", "name_en": "", "mag": 4.01, "ra": 186.20, "dec": 47.80, "color": "#ffe1ca", "constellation": "Ursa Major"},
-            {"id": "um_3", "name_cn": "", "name_en": "", "mag": 4.62, "ra": 199.73, "dec": 62.68, "color": "#e8f0ff", "constellation": "Ursa Major"},
-        ],
-        "lines": [
-            ("dubhe", "merak"),
-            ("merak", "phecda"),
-            ("phecda", "megrez"),
-            ("megrez", "alioth"),
-            ("alioth", "mizar"),
-            ("mizar", "alkaid"),
-            ("dubhe", "megrez"),
-        ],
-    },
-    "scorpius": {
-        "display_name_cn": "天蝎座",
-        "display_name_en": "Scorpius",
-        "bounds": {"ra_min": 233.0, "ra_max": 266.0, "dec_min": -46.0, "dec_max": 7.0},
-        "stars": [
-            {"id": "antares", "name_cn": "心宿二", "name_en": "Antares", "mag": 1.06, "ra": 247.35, "dec": -26.43, "color": "#ff9e77", "constellation": "Scorpius"},
-            {"id": "shaula", "name_cn": "尾宿八", "name_en": "Shaula", "mag": 1.62, "ra": 263.40, "dec": -37.10, "color": "#d9e8ff", "constellation": "Scorpius"},
-            {"id": "sargas", "name_cn": "尾宿五", "name_en": "Sargas", "mag": 1.86, "ra": 263.73, "dec": -42.99, "color": "#ffe0ba", "constellation": "Scorpius"},
-            {"id": "dschubba", "name_cn": "房宿四", "name_en": "Dschubba", "mag": 2.29, "ra": 240.08, "dec": -22.62, "color": "#cfe4ff", "constellation": "Scorpius"},
-            {"id": "acrux_like", "name_cn": "房宿二", "name_en": "Graffias", "mag": 2.62, "ra": 241.36, "dec": -19.80, "color": "#dce8ff", "constellation": "Scorpius"},
-            {"id": "jabbah", "name_cn": "键闭", "name_en": "Jabbah", "mag": 2.89, "ra": 242.99, "dec": -19.46, "color": "#f8fbff", "constellation": "Scorpius"},
-            {"id": "sc_1", "name_cn": "", "name_en": "", "mag": 3.56, "ra": 248.97, "dec": -28.22, "color": "#f8fbff", "constellation": "Scorpius"},
-            {"id": "sc_2", "name_cn": "", "name_en": "", "mag": 4.18, "ra": 255.84, "dec": -34.29, "color": "#e7efff", "constellation": "Scorpius"},
-            {"id": "sc_3", "name_cn": "", "name_en": "", "mag": 4.63, "ra": 238.78, "dec": -28.14, "color": "#ffe6d3", "constellation": "Scorpius"},
-        ],
-        "lines": [
-            ("dschubba", "acrux_like"),
-            ("acrux_like", "jabbah"),
-            ("dschubba", "antares"),
-            ("antares", "sc_1"),
-            ("sc_1", "sc_2"),
-            ("sc_2", "shaula"),
-            ("shaula", "sargas"),
-        ],
-    },
-    "lyra": {
-        "display_name_cn": "天琴座",
-        "display_name_en": "Lyra",
-        "bounds": {"ra_min": 276.0, "ra_max": 290.5, "dec_min": 25.0, "dec_max": 42.5},
-        "stars": [
-            {"id": "vega", "name_cn": "织女一", "name_en": "Vega", "mag": 0.03, "ra": 279.23, "dec": 38.78, "color": "#d7e8ff", "constellation": "Lyra"},
-            {"id": "sheliak", "name_cn": "渐台二", "name_en": "Sheliak", "mag": 3.52, "ra": 281.41, "dec": 33.36, "color": "#edf4ff", "constellation": "Lyra"},
-            {"id": "sulafat", "name_cn": "渐台三", "name_en": "Sulafat", "mag": 3.25, "ra": 283.82, "dec": 32.69, "color": "#d8e7ff", "constellation": "Lyra"},
-            {"id": "ly_1", "name_cn": "天琴座δ", "name_en": "Delta Lyrae", "mag": 4.30, "ra": 281.09, "dec": 36.90, "color": "#fff0de", "constellation": "Lyra"},
-            {"id": "ly_2", "name_cn": "", "name_en": "", "mag": 4.34, "ra": 286.56, "dec": 31.00, "color": "#f6f9ff", "constellation": "Lyra"},
-            {"id": "ly_3", "name_cn": "", "name_en": "", "mag": 4.22, "ra": 278.80, "dec": 29.67, "color": "#e9f1ff", "constellation": "Lyra"},
-        ],
-        "lines": [
-            ("vega", "ly_1"),
-            ("ly_1", "sheliak"),
-            ("sheliak", "sulafat"),
-            ("sulafat", "vega"),
-        ],
-    },
-}
+import json
+from pathlib import Path
+from typing import Any
 
 
-def get_constellation_region(key: str) -> dict:
+DATA_FILE = Path(__file__).with_name("data").joinpath("star_catalog.json")
+
+
+def load_catalog() -> dict[str, Any]:
+    with DATA_FILE.open("r", encoding="utf-8") as file:
+        return json.load(file)
+
+
+CONSTELLATION_REGIONS = load_catalog()
+
+
+def get_constellation_region(key: str) -> dict[str, Any]:
     return CONSTELLATION_REGIONS[key]

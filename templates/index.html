@@ -26,7 +26,7 @@
           var(--bg);
       }
       .wrap {
-        width: min(1080px, calc(100vw - 32px));
+        width: min(960px, calc(100vw - 32px));
         margin: 0 auto;
         padding: 28px 0 36px;
       }
@@ -41,18 +41,22 @@
       h1 {
         margin: 0 0 8px;
         font-size: clamp(28px, 5vw, 42px);
+        text-align: center;
       }
       p {
         margin: 0 0 16px;
         color: var(--muted);
         line-height: 1.6;
+        text-align: center;
       }
       .chart {
-        width: 100%;
+        width: min(100%, 620px);
         border-radius: 16px;
         display: block;
         border: 1px solid rgba(255, 255, 255, 0.12);
         margin: 18px 0 22px;
+        margin-left: auto;
+        margin-right: auto;
       }
       .options {
         display: grid;
@@ -68,6 +72,9 @@
         border-radius: 14px;
         background: rgba(118, 168, 255, 0.06);
       }
+      form {
+        text-align: center;
+      }
       button, .link-btn {
         margin-top: 18px;
         border: 0;
@@ -80,14 +87,29 @@
         text-decoration: none;
         display: inline-block;
       }
+      .meta {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 10px;
+      }
+      .badge {
+        padding: 8px 14px;
+        border-radius: 999px;
+        border: 1px solid var(--line);
+        color: var(--text);
+        background: rgba(118, 168, 255, 0.08);
+        font-size: 14px;
+      }
     </style>
   </head>
   <body>
     <main class="wrap">
       <section class="card">
         <h1>找出消失的恒星</h1>
-        <p>当前天区：{{ region_name }}。系统会在星图里隐藏一颗有中文名的亮星，请根据图形结构选出它。</p>
-        <img class="chart" src="data:image/png;base64,{{ chart_data }}" alt="星图">
+        <p>{{ region_name }}里有颗星星消失了，请根据星座形状找到它。</p>
+        <div class="meta">
+          <span class="badge">观察区域：{{ region_name }}</span>
+        </div>
         <form method="post" action="/answer">
           <div class="options">
             {% for option in options %}
@@ -99,6 +121,7 @@
           </div>
           <button type="submit">提交答案</button>
         </form>
+        <img class="chart" src="data:image/png;base64,{{ chart_data }}" alt="星图">
       </section>
     </main>
   </body>

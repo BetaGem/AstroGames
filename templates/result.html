@@ -27,7 +27,7 @@
           var(--bg);
       }
       .wrap {
-        width: min(1080px, calc(100vw - 32px));
+        width: min(960px, calc(100vw - 32px));
         margin: 0 auto;
         padding: 28px 0 36px;
       }
@@ -38,23 +38,30 @@
         padding: 22px;
         box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
       }
-      h1 { margin: 0 0 10px; }
+      h1 { margin: 0 0 10px; text-align: center; }
       p {
         margin: 0 0 12px;
         color: var(--muted);
         line-height: 1.6;
+        text-align: center;
       }
       .status {
-        font-size: 22px;
+        font-size: 32px;
         font-weight: 700;
         color: {% if is_correct %}var(--ok){% else %}var(--bad){% endif %};
       }
       .chart {
-        width: 100%;
+        width: min(100%, 620px);
         border-radius: 16px;
         display: block;
         border: 1px solid rgba(255, 255, 255, 0.12);
         margin: 18px 0 22px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .actions {
+        text-align: center;
+        margin-top: 18px;
       }
       .actions a {
         border-radius: 999px;
@@ -65,20 +72,31 @@
         text-decoration: none;
         display: inline-block;
       }
+      .meta {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 10px;
+      }
+      .badge {
+        padding: 8px 14px;
+        border-radius: 999px;
+        border: 1px solid var(--line);
+        color: var(--text);
+        background: rgba(118, 168, 255, 0.08);
+        font-size: 14px;
+      }
     </style>
   </head>
   <body>
     <main class="wrap">
       <section class="card">
-        <h1>答题结果</h1>
-        <p>当前天区：{{ region_name }}</p>
         <p class="status">{% if is_correct %}回答正确{% else %}回答错误{% endif %}</p>
         <p>你的选择：{{ selected or "未选择" }}</p>
         <p>正确答案：{{ answer }}</p>
-        <img class="chart" src="data:image/png;base64,{{ chart_data }}" alt="星图">
         <div class="actions">
-          <a href="/">刷新进入下一轮</a>
+          <a href="/">重新开始</a>
         </div>
+        <img class="chart" src="data:image/png;base64,{{ chart_data }}" alt="星图">
       </section>
     </main>
   </body>
