@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>答题结果</title>
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #050c16;
+        --panel: rgba(9, 18, 32, 0.92);
+        --line: rgba(146, 182, 255, 0.22);
+        --text: #eff5ff;
+        --muted: #9db0ca;
+        --ok: #67d9a4;
+        --bad: #ff8a8a;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: "PingFang SC", "Noto Sans SC", sans-serif;
+        color: var(--text);
+        background:
+          radial-gradient(circle at top left, rgba(64, 106, 173, 0.24), transparent 35%),
+          radial-gradient(circle at bottom, rgba(160, 89, 60, 0.16), transparent 30%),
+          var(--bg);
+      }
+      .wrap {
+        width: min(1080px, calc(100vw - 32px));
+        margin: 0 auto;
+        padding: 28px 0 36px;
+      }
+      .card {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: 22px;
+        padding: 22px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+      }
+      h1 { margin: 0 0 10px; }
+      p {
+        margin: 0 0 12px;
+        color: var(--muted);
+        line-height: 1.6;
+      }
+      .status {
+        font-size: 22px;
+        font-weight: 700;
+        color: {% if is_correct %}var(--ok){% else %}var(--bad){% endif %};
+      }
+      .chart {
+        width: 100%;
+        border-radius: 16px;
+        display: block;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        margin: 18px 0 22px;
+      }
+      .actions a {
+        border-radius: 999px;
+        padding: 12px 20px;
+        font-size: 16px;
+        color: white;
+        background: linear-gradient(135deg, #5b8fff, #7dc4ff);
+        text-decoration: none;
+        display: inline-block;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="wrap">
+      <section class="card">
+        <h1>答题结果</h1>
+        <p>当前天区：{{ region_name }}</p>
+        <p class="status">{% if is_correct %}回答正确{% else %}回答错误{% endif %}</p>
+        <p>你的选择：{{ selected or "未选择" }}</p>
+        <p>正确答案：{{ answer }}</p>
+        <img class="chart" src="data:image/png;base64,{{ chart_data }}" alt="星图">
+        <div class="actions">
+          <a href="/">刷新进入下一轮</a>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
