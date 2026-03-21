@@ -106,10 +106,7 @@
     <main class="wrap">
       <section class="card">
         <h1>找出消失的恒星</h1>
-        <p>{{ region_name }}里有颗星星消失了，请根据星座形状找到它。</p>
-        <div class="meta">
-          <span class="badge">观察区域：{{ region_name }}</span>
-        </div>
+        <p><strong>【{{ region_name }}】</strong>里有颗星星消失了，请根据星座形状找到它。</p>
         <form method="post" action="/answer">
           <div class="options">
             {% for option in options %}

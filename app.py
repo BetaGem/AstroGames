@@ -13,7 +13,7 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
-from star_catalog import CONSTELLATION_REGIONS, get_constellation_region
+from star_catalog import CONSTELLATION_REGIONS, get_constellation_region, get_region_stars
 
 
 app = Flask(__name__)
@@ -188,7 +188,7 @@ def render_chart(round_data: dict[str, Any], reveal_missing: bool = False) -> st
     fig, ax = plt.subplots(figsize=(6.2, 6.2), facecolor="#07111f")
     ax.set_facecolor("#07111f")
 
-    stars = sorted(region["stars"], key=lambda star: star["mag"], reverse=True)
+    stars = sorted(get_region_stars(round_data["region_key"]), key=lambda star: star["mag"], reverse=True)
     star_map = {star["id"]: star for star in stars}
     proj = project_region(region, stars)
     ra0 = (region["bounds"]["ra_min"] + region["bounds"]["ra_max"]) / 2
@@ -230,23 +230,6 @@ def render_chart(round_data: dict[str, Any], reveal_missing: bool = False) -> st
             linewidths=0.16,
             zorder=3,
         )
-
-    for start_id, end_id in region["lines"]:
-        if missing_id in {start_id, end_id}:
-            continue
-        start = star_map.get(start_id)
-        end = star_map.get(end_id)
-        if start and end:
-            x0, y0 = proj[start_id]
-            x1, y1 = proj[end_id]
-            ax.plot(
-                [x0, x1],
-                [y0, y1],
-                color="#8fb8ff",
-                alpha=0.22,
-                linewidth=0.72,
-                zorder=2,
-            )
 
     if reveal_missing:
         missing_star = star_map.get(missing_id)
