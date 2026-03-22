@@ -91,11 +91,11 @@
     <main class="wrap">
       <section class="card">
         <p class="status">{% if is_correct %}回答正确{% else %}回答错误{% endif %}</p>
-        <p>当前极限星等：{{ '%.1f'|format(current_difficulty) }}</p>
+        <p>当前星座：{{ region_name }}</p>
         <p>你的选择：{{ selected or "未选择" }}</p>
         <p>正确答案：{{ answer }}</p>
         <div class="actions">
-          <a href="/">重新开始</a>
+          <a href="/?new=1&reset_lines=1">重新开始</a>
         </div>
         <img class="chart" src="data:image/png;base64,{{ chart_data }}" alt="星图">
       </section>

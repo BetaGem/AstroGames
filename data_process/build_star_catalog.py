@@ -13,11 +13,8 @@ BRIGHT_FILE = DATA_PROCESS_DIR / "hip_bright.csv"
 CONSTELLATION_FILE = DATA_PROCESS_DIR / "name.fab"
 CHINESE_NAME_FILE = DATA_PROCESS_DIR / "star_names.zh_CN.fab"
 ENGLISH_NAME_FILE = DATA_PROCESS_DIR / "common_star_names.fab"
+CONSTELLATION_LINES_FILE = DATA_PROCESS_DIR / "constellationship.fab"
 OUTPUT_FILE = DATA_DIR / "star_catalog.json"
-
-# Stars south of this declination are excluded when generating the catalog.
-MIN_DEC_DEG = -30.0
-
 
 CONSTELLATION_INFO = {
     "And": ("Andromeda", "仙女座"),
@@ -113,6 +110,15 @@ CONSTELLATION_INFO = {
 
 FAB_NAME_RE = re.compile(r'^\s*(\d+)\|_\("(.+)"\)\s+\d+\s*$')
 FAB_DESIGNATION_RE = re.compile(r"^\s*(\d+)\|([^\s]+)\s*$")
+PREFERRED_CHINESE_NAMES = {
+    "54061": "天枢",
+    "53910": "天璇",
+    "58001": "天玑",
+    "59774": "天权",
+    "62956": "玉衡",
+    "65378": "开阳",
+    "67301": "摇光",
+}
 
 
 def sanitize_id(value: str) -> str:
@@ -180,9 +186,40 @@ def parse_constellations() -> tuple[dict[str, str], dict[str, str]]:
     return constellation_by_hip, designation_by_hip
 
 
+def parse_constellation_lines() -> dict[str, list[list[str]]]:
+    lines_by_constellation: dict[str, list[list[str]]] = {}
+    for raw_line in CONSTELLATION_LINES_FILE.read_text(encoding="utf-8").splitlines():
+        line = raw_line.strip()
+        if not line or line.startswith("#"):
+            continue
+
+        parts = line.split()
+        if len(parts) < 2:
+            continue
+
+        abbreviation = parts[0]
+        try:
+            segment_count = int(parts[1])
+        except ValueError:
+            continue
+
+        hips = parts[2 : 2 + segment_count * 2]
+        if len(hips) < segment_count * 2:
+            continue
+
+        segments: list[list[str]] = []
+        for index in range(0, len(hips), 2):
+            segments.append([hips[index], hips[index + 1]])
+        lines_by_constellation[abbreviation] = segments
+    return lines_by_constellation
+
+
 def choose_chinese_name(hip: str, names: list[str]) -> str:
     if not names:
         return ""
+    preferred_name = PREFERRED_CHINESE_NAMES.get(hip)
+    if preferred_name and preferred_name in names:
+        return preferred_name
     for name in names:
         if "?" not in name:
             return name
@@ -224,6 +261,7 @@ def build_catalog() -> dict[str, dict]:
     english_names = parse_english_names()
     chinese_names = parse_chinese_names()
     constellation_by_hip, designation_by_hip = parse_constellations()
+    constellation_lines = parse_constellation_lines()
 
     grouped: dict[str, list[dict]] = defaultdict(list)
     with BRIGHT_FILE.open("r", encoding="utf-8") as file:
@@ -235,9 +273,6 @@ def build_catalog() -> dict[str, dict]:
                 continue
             if not row["RAdeg"] or not row["DEdeg"] or not row["Vmag"]:
                 continue
-            if float(row["DEdeg"]) < MIN_DEC_DEG:
-                continue
-
             english_name = english_names.get(hip, designation_by_hip.get(hip, constellation))
             chinese_name = choose_chinese_name(hip, chinese_names.get(hip, []))
             bv = float(row["B-V"]) if row["B-V"] else None
@@ -275,6 +310,7 @@ def build_catalog() -> dict[str, dict]:
                 "dec_min": round(dec_min, 3),
                 "dec_max": round(dec_max, 3),
             },
+            "lines": constellation_lines.get(abbreviation, []),
             "stars": sorted(stars, key=lambda star: star["mag"]),
         }
     return catalog

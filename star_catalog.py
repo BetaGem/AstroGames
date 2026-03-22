@@ -123,3 +123,6 @@ def get_region_stars(key: str, mag_limit: float = 6.5) -> list[dict[str, Any]]:
             star["constellation"] = named.get("constellation", "")
 
     return stars
+def get_constellation_line_segments(key: str) -> list[tuple[str, str]]:
+    region = get_constellation_region(key)
+    return [tuple(segment) for segment in region.get("lines", []) if len(segment) == 2]

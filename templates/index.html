@@ -114,6 +114,13 @@
       .hint-btn:hover {
         background: rgba(118, 168, 255, 0.2);
       }
+      .tool-row {
+        display: flex;
+        justify-content: flex-start;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin-top: 12px;
+      }
       .hint-text {
         margin-top: 12px;
         padding: 12px;
@@ -122,6 +129,7 @@
         color: var(--accent);
         font-weight: 600;
         display: none;
+        text-align: left;
       }
       .hint-text.show {
         display: block;
@@ -197,7 +205,14 @@
             {% endif %}
           </form>
         </div>
-        <button type="button" class="hint-btn" onclick="toggleHint()">💡 提示</button>
+        <div class="tool-row">
+          <button type="button" class="hint-btn" onclick="toggleHint()">💡 提示</button>
+          <form method="post" action="/toggle-lines">
+            <button type="submit" class="hint-btn">
+              {% if show_constellation_lines %}隐藏星座连线{% else %}显示星座连线{% endif %}
+            </button>
+          </form>
+        </div>
         <div class="hint-text" id="hintText">当前星座：{{ region_name }}</div>
         <br></br>
         <form method="post" action="/answer">
