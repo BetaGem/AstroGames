@@ -85,6 +85,17 @@
         background: rgba(118, 168, 255, 0.08);
         font-size: 14px;
       }
+      .knowledge {
+        margin: 0 auto 14px;
+        width: min(100%, 620px);
+        padding: 14px 16px;
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        background: rgba(118, 168, 255, 0.1);
+        color: var(--text);
+        line-height: 1.7;
+        text-align: left;
+      }
     </style>
   </head>
   <body>
@@ -94,6 +105,9 @@
         <p>当前星座：{{ region_name }}</p>
         <p>你的选择：{{ selected or "未选择" }}</p>
         <p>正确答案：{{ answer }}</p>
+        {% if knowledge_text %}
+        <div class="knowledge"><strong>关于这颗星：</strong>{{ knowledge_text }}</div>
+        {% endif %}
         <div class="actions">
           <a href="/?new=1&reset_lines=1">重新开始</a>
         </div>

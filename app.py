@@ -1,9 +1,12 @@
 import base64
 import io
+import json
 import math
 import os
 import random
+from pathlib import Path
 from typing import Any
+from functools import lru_cache
 
 os.environ.setdefault("MPLCONFIGDIR", os.path.join(os.path.dirname(__file__), ".mplconfig"))
 
@@ -24,6 +27,8 @@ from star_catalog import (
 
 app = Flask(__name__)
 app.config["SECRET_KEY"] = "dev-secret-key-change-me"
+STAR_KNOWLEDGE_FILE = Path(__file__).with_name("data").joinpath("star_knowledge.json")
+DEFAULT_KNOWLEDGE_TEXT = "这颗星的讲解员正在天上赶路，稍后再来吧～"
 
 # Maximum magnitude allowed for the missing correct answer star.
 MISSING_STAR_MAX_MAG = 2.0
@@ -31,7 +36,6 @@ MISSING_STAR_MAX_MAG = 2.0
 OPTION_STAR_MAG_OFFSET = 1.0
 # The UI does not allow difficulty above this magnitude yet.
 MAX_ALLOWED_DIFFICULTY = 4.0
-
 # Missing stars south of this declination are excluded from random selection.
 MIN_SELECTION_DEC_DEG = -40.0
 
@@ -67,7 +71,16 @@ def get_current_difficulty() -> float:
 
 
 def get_show_constellation_lines() -> bool:
-    return bool(session.get("show_constellation_lines", False))
+    return bool(session.get("show_constellation_lines", True))
+
+
+@lru_cache(maxsize=1)
+def load_star_knowledge() -> dict[str, str]:
+    if not STAR_KNOWLEDGE_FILE.exists():
+        return {}
+    with STAR_KNOWLEDGE_FILE.open("r", encoding="utf-8") as file:
+        data = json.load(file)
+    return {key: value for key, value in data.items() if not key.startswith("_") and isinstance(value, str)}
 
 
 def get_recent_history() -> tuple[list[str], list[str]]:
@@ -392,7 +405,7 @@ def render_chart(round_data: dict[str, Any], reveal_missing: bool = False, show_
 @app.route("/", methods=["GET"])
 def index():
     if request.args.get("reset_lines") == "1":
-        session["show_constellation_lines"] = False
+        session["show_constellation_lines"] = True
     round_data = get_or_create_round(force_new=request.args.get("new") == "1")
     region = get_constellation_region(round_data["region_key"])
     show_constellation_lines = get_show_constellation_lines()
@@ -440,19 +453,43 @@ def answer():
         return render_template("error.html"), 400
 
     selected = request.form.get("answer", "")
+    if not selected:
+        return redirect(url_for("index"))
+
+    session["result_data"] = {
+        "selected": selected,
+        "round_data": round_data,
+    }
+    return redirect(url_for("result"))
+
+
+@app.route("/result", methods=["GET"])
+def result():
+    result_data = session.get("result_data")
+    if not result_data:
+        return redirect(url_for("index"))
+
+    round_data = result_data.get("round_data")
+    if not round_data:
+        return redirect(url_for("index"))
+
+    selected = result_data.get("selected", "")
     region = get_constellation_region(round_data["region_key"])
     chart = render_chart(round_data, reveal_missing=True, show_constellation_lines=True)
     is_correct = selected == round_data["missing_star_name"]
+    answer_name = round_data["missing_star_name"]
+    knowledge_text = load_star_knowledge().get(answer_name, DEFAULT_KNOWLEDGE_TEXT)
 
     return render_template(
         "result.html",
         chart_data=chart,
         options=round_data["options"],
         selected=selected,
-        answer=round_data["missing_star_name"],
+        answer=answer_name,
         is_correct=is_correct,
         region_name=region["display_name_cn"],
         current_difficulty=round_data.get("missing_star_max_mag", MISSING_STAR_MAX_MAG),
+        knowledge_text=knowledge_text,
     )
 
 
