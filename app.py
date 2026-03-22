@@ -245,7 +245,7 @@ def build_round() -> dict[str, Any]:
 
     distractors = [name for name in get_all_named_star_names(option_star_max_mag) if name != missing_star["name_cn"]]
     random.shuffle(distractors)
-    options = distractors[:3] + [missing_star["name_cn"]]
+    options = distractors[:2] + [missing_star["name_cn"]]
     random.shuffle(options)
 
     return {
