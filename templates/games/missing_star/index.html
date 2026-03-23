@@ -38,6 +38,46 @@
         box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
         backdrop-filter: blur(10px);
       }
+      .topbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 14px;
+        margin-bottom: 18px;
+        flex-wrap: wrap;
+      }
+      .brand {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+      }
+      .brand-kicker {
+        color: var(--muted);
+        font-size: 13px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+      .brand-title {
+        margin: 0;
+        font-size: 20px;
+        color: var(--text);
+        text-align: left;
+      }
+      .menu-link {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 10px 16px;
+        border-radius: 999px;
+        border: 1px solid var(--line);
+        background: rgba(118, 168, 255, 0.08);
+        color: var(--muted);
+        text-decoration: none;
+      }
+      .menu-link:hover {
+        color: var(--text);
+        background: rgba(118, 168, 255, 0.12);
+      }
       h1 {
         margin: 0 0 8px;
         font-size: clamp(28px, 5vw, 42px);
@@ -54,9 +94,7 @@
         border-radius: 16px;
         display: block;
         border: 1px solid rgba(255, 255, 255, 0.12);
-        margin: 18px 0 22px;
-        margin-left: auto;
-        margin-right: auto;
+        margin: 18px auto 22px;
       }
       .options {
         display: grid;
@@ -75,7 +113,7 @@
       form {
         text-align: center;
       }
-      button, .link-btn {
+      button {
         margin-top: 18px;
         border: 0;
         border-radius: 999px;
@@ -84,31 +122,14 @@
         color: white;
         background: linear-gradient(135deg, #5b8fff, #7dc4ff);
         cursor: pointer;
-        text-decoration: none;
-        display: inline-block;
-      }
-      .meta {
-        display: flex;
-        justify-content: center;
-        margin-bottom: 10px;
-      }
-      .badge {
-        padding: 8px 14px;
-        border-radius: 999px;
-        border: 1px solid var(--line);
-        color: var(--text);
-        background: rgba(118, 168, 255, 0.08);
-        font-size: 14px;
       }
       .hint-btn {
-        margin-top: 12px;
+        margin-top: 0;
         border: 1px solid var(--line);
-        border-radius: 999px;
         padding: 8px 16px;
         font-size: 14px;
         color: var(--accent);
         background: rgba(118, 168, 255, 0.1);
-        cursor: pointer;
         transition: all 0.3s ease;
       }
       .hint-btn:hover {
@@ -168,24 +189,50 @@
         padding: 10px 16px;
         font-size: 15px;
       }
-      .difficulty-help {
-        margin: 10px 0 0;
-        font-size: 13px;
-      }
       .difficulty-error {
         margin: 10px 0 0;
         color: #ff9c9c;
         font-weight: 600;
+      }
+      .footer {
+        margin-top: 22px;
+        text-align: center;
+        font-size: 14px;
+      }
+      .footer-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        color: rgba(157, 176, 202, 0.56);
+        text-decoration: none;
+        transition: color 0.2s ease;
+      }
+      .footer-link:hover {
+        color: rgba(157, 176, 202, 0.74);
+        text-decoration: underline;
+      }
+      .footer-icon {
+        width: 15px;
+        height: 15px;
+        fill: currentColor;
+        opacity: 0.85;
       }
     </style>
   </head>
   <body>
     <main class="wrap">
       <section class="card">
+        <div class="topbar">
+          <div class="brand">
+            <div class="brand-kicker">AstroGames</div>
+            <p class="brand-title">小游戏 01</p>
+          </div>
+          <a class="menu-link" href="{{ url_for('home') }}">返回主菜单</a>
+        </div>
         <h1>消失的恒星</h1>
         <p>下图的星座中有颗星星消失了，请根据星座形状找到它。</p>
         <div class="difficulty-panel">
-          <form method="post" action="/difficulty">
+          <form method="post" action="{{ url_for('missing_star.set_difficulty') }}">
             <div class="difficulty-row">
               <span class="difficulty-label">极限星等：</span>
               <input
@@ -199,23 +246,26 @@
               >
               <button class="difficulty-submit" type="submit">确认</button>
             </div>
-            <!-- <p class="difficulty-help">当前出题极限星等：{{ '%.1f'|format(current_difficulty) }}，选项极限星等：{{ '%.1f'|format(option_difficulty) }}</p> -->
             {% if difficulty_error %}
             <p class="difficulty-error">{{ difficulty_error }}</p>
             {% endif %}
           </form>
         </div>
         <div class="tool-row">
-          <button type="button" class="hint-btn" onclick="toggleHint()">💡 提示</button>
-          <form method="post" action="/toggle-lines">
+          <button type="button" class="hint-btn" onclick="toggleHint()">获取提示</button>
+          <form method="post" action="{{ url_for('missing_star.toggle_lines') }}">
             <button type="submit" class="hint-btn">
               {% if show_constellation_lines %}隐藏星座连线{% else %}显示星座连线{% endif %}
             </button>
           </form>
+          <form method="get" action="{{ url_for('missing_star.index') }}">
+            <input type="hidden" name="new" value="1">
+            <button type="submit" class="hint-btn">跳过此题</button>
+          </form>
         </div>
         <div class="hint-text" id="hintText">当前星座：{{ region_name }}</div>
-        <br></br>
-        <form method="post" action="/answer">
+        <br>
+        <form method="post" action="{{ url_for('missing_star.answer') }}">
           <div class="options">
             {% for option in options %}
             <label>
@@ -227,6 +277,14 @@
           <button type="submit">提交答案</button>
         </form>
         <img class="chart" src="data:image/png;base64,{{ chart_data }}" alt="星图">
+        <div class="footer">
+          <a class="footer-link" href="https://github.com/BetaGem/AstroGames" target="_blank" rel="noreferrer" aria-label="Project source on GitHub">
+            <svg class="footer-icon" viewBox="0 0 16 16" aria-hidden="true">
+              <path d="M8 0C3.58 0 0 3.58 0 8a8 8 0 0 0 5.47 7.59c.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.5-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82A7.7 7.7 0 0 1 8 4.77c.68 0 1.37.09 2.01.27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8 8 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/>
+            </svg>
+            <span>Source</span>
+          </a>
+        </div>
       </section>
     </main>
     <script>
