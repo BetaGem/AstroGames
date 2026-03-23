@@ -1,4 +1,4 @@
-# Astro Game
+# AstroGames
 
 一个基于 Flask 的简单网页小游戏：
 
