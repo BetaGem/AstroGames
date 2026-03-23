@@ -38,3 +38,6 @@ instance/
 # Virtual environments
 env/
 venv/
+
+# data
+data_process/
