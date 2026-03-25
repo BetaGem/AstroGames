@@ -4,270 +4,17 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>AstroGames</title>
-    <style>
-      :root {
-        color-scheme: dark;
-        --bg: #040913;
-        --panel: rgba(9, 18, 32, 0.9);
-        --panel-strong: rgba(11, 24, 42, 0.96);
-        --line: rgba(129, 161, 226, 0.2);
-        --line-strong: rgba(129, 161, 226, 0.36);
-        --text: #edf4ff;
-        --muted: #97a9c4;
-        --accent: #8fc7ff;
-        --accent-strong: #70a9ff;
-        --warning: #ffcf74;
-      }
-      * { box-sizing: border-box; }
-      body {
-        margin: 0;
-        min-height: 100vh;
-        font-family: "PingFang SC", "Noto Sans SC", sans-serif;
-        color: var(--text);
-        background:
-          radial-gradient(circle at top, rgba(56, 93, 165, 0.28), transparent 30%),
-          radial-gradient(circle at 85% 15%, rgba(68, 119, 180, 0.18), transparent 22%),
-          radial-gradient(circle at bottom right, rgba(165, 102, 54, 0.2), transparent 26%),
-          var(--bg);
-      }
-      a {
-        color: inherit;
-        text-decoration: none;
-      }
-      .wrap {
-        width: min(1120px, calc(100vw - 32px));
-        margin: 0 auto;
-        padding: 28px 0 42px;
-      }
-      .hero {
-        position: relative;
-        overflow: hidden;
-        padding: 30px;
-        border: 1px solid var(--line);
-        border-radius: 30px;
-        background:
-          linear-gradient(135deg, rgba(20, 38, 68, 0.98), rgba(11, 22, 40, 0.94)),
-          var(--panel-strong);
-        box-shadow: 0 24px 80px rgba(0, 0, 0, 0.35);
-      }
-      .hero::after {
-        content: "";
-        position: absolute;
-        inset: auto -8% -55% auto;
-        width: 320px;
-        height: 320px;
-        border-radius: 50%;
-        background: radial-gradient(circle, rgba(140, 199, 255, 0.2), transparent 65%);
-        pointer-events: none;
-      }
-      .eyebrow {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        padding: 8px 14px;
-        border-radius: 999px;
-        border: 1px solid rgba(143, 199, 255, 0.22);
-        background: rgba(143, 199, 255, 0.08);
-        color: var(--accent);
-        font-size: 13px;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-      }
-      .hero-title {
-        margin: 18px 0 12px;
-        font-size: clamp(32px, 5.2vw, 52px);
-        line-height: 1.08;
-        font-weight: 700;
-      }
-      .subtitle {
-        max-width: 680px;
-        margin: 0;
-        font-size: clamp(16px, 2vw, 20px);
-        line-height: 1.8;
-        color: var(--muted);
-      }
-      .hero-meta {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 12px;
-        margin-top: 24px;
-      }
-      .hero-pill {
-        padding: 10px 14px;
-        border-radius: 999px;
-        border: 1px solid var(--line);
-        background: rgba(143, 199, 255, 0.05);
-        color: var(--muted);
-        font-size: 14px;
-      }
-      .section-head {
-        display: flex;
-        align-items: end;
-        justify-content: space-between;
-        gap: 12px;
-        margin: 26px 2px 14px;
-      }
-      .section-title {
-        margin: 0;
-        font-size: 22px;
-      }
-      .section-note {
-        margin: 0;
-        color: var(--muted);
-        font-size: 14px;
-      }
-      .grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-        gap: 16px;
-      }
-      .game-card {
-        position: relative;
-        display: flex;
-        flex-direction: column;
-        min-height: 260px;
-        padding: 20px;
-        border: 1px solid var(--line);
-        border-radius: 24px;
-        background:
-          linear-gradient(180deg, rgba(18, 35, 60, 0.92), rgba(11, 22, 38, 0.94)),
-          var(--panel);
-        box-shadow: 0 16px 44px rgba(0, 0, 0, 0.26);
-        transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
-      }
-      .game-card.available:hover {
-        transform: translateY(-4px);
-        border-color: var(--line-strong);
-        box-shadow: 0 20px 56px rgba(0, 0, 0, 0.34);
-      }
-      .game-card.locked {
-        opacity: 0.76;
-        border-color: rgba(129, 161, 226, 0.14);
-        background:
-          linear-gradient(180deg, rgba(12, 23, 39, 0.9), rgba(8, 16, 28, 0.94)),
-          rgba(8, 16, 28, 0.92);
-        box-shadow: 0 12px 34px rgba(0, 0, 0, 0.22);
-      }
-      .game-card.locked::after {
-        content: "";
-        position: absolute;
-        inset: 0;
-        border-radius: 24px;
-        background: linear-gradient(180deg, rgba(3, 7, 14, 0.08), rgba(3, 7, 14, 0.26));
-        pointer-events: none;
-      }
-      .game-top {
-        display: flex;
-        justify-content: space-between;
-        gap: 12px;
-        align-items: flex-start;
-      }
-      .game-status {
-        padding: 7px 11px;
-        border-radius: 999px;
-        font-size: 12px;
-        color: var(--text);
-        border: 1px solid rgba(143, 199, 255, 0.16);
-        background: rgba(143, 199, 255, 0.08);
-      }
-      .game-status.locked {
-        color: rgba(214, 210, 196, 0.86);
-        border-color: rgba(255, 207, 116, 0.12);
-        background: rgba(255, 207, 116, 0.05);
-      }
-      .game-icon {
-        width: 42px;
-        height: 42px;
-        display: grid;
-        place-items: center;
-        border-radius: 14px;
-        background: rgba(143, 199, 255, 0.08);
-        border: 1px solid rgba(143, 199, 255, 0.16);
-        color: var(--accent);
-        font-size: 18px;
-      }
-      .game-title {
-        margin: 20px 0 8px;
-        font-size: 24px;
-      }
-      .game-tagline {
-        margin: 0 0 10px;
-        color: var(--text);
-        line-height: 1.6;
-      }
-      .game-description {
-        margin: 0;
-        color: var(--muted);
-        line-height: 1.7;
-        flex: 1;
-      }
-      .game-actions {
-        margin-top: 18px;
-      }
-      .game-link,
-      .game-disabled {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        min-width: 122px;
-        padding: 11px 16px;
-        border-radius: 999px;
-        font-size: 15px;
-      }
-      .game-link {
-        color: white;
-        background: linear-gradient(135deg, var(--accent-strong), #83c7ff);
-        box-shadow: 0 10px 24px rgba(112, 169, 255, 0.24);
-      }
-      .game-disabled {
-        color: rgba(151, 169, 196, 0.8);
-        border: 1px solid rgba(151, 169, 196, 0.1);
-        background: rgba(151, 169, 196, 0.04);
-      }
-      .coming-soon {
-        margin-top: 8px;
-        color: rgba(255, 207, 116, 0.62);
-        font-size: 13px;
-      }
-      .footer {
-        margin-top: 20px;
-        text-align: center;
-        font-size: 14px;
-      }
-      .footer-link {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        color: rgba(157, 176, 202, 0.56);
-        text-decoration: none;
-        transition: color 0.2s ease;
-      }
-      .footer-link:hover {
-        color: rgba(157, 176, 202, 0.74);
-        text-decoration: underline;
-      }
-      .footer-icon {
-        width: 15px;
-        height: 15px;
-        fill: currentColor;
-        opacity: 0.85;
-      }
-      @media (max-width: 720px) {
-        .hero {
-          padding: 24px 20px;
-          border-radius: 24px;
-        }
-        .game-card {
-          min-height: 0;
-        }
-        .section-head {
-          align-items: flex-start;
-          flex-direction: column;
-        }
-      }
-    </style>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
   </head>
   <body>
+    <div class="meteor-field" aria-hidden="true">
+      <span class="meteor meteor-1"></span>
+      <span class="meteor meteor-2"></span>
+      <span class="meteor meteor-3"></span>
+      <span class="meteor meteor-4"></span>
+      <span class="meteor meteor-5"></span>
+    </div>
+
     <main class="wrap">
       <section class="hero">
         <div class="eyebrow">Astronomy Mini Games</div>
@@ -275,6 +22,21 @@
         <p class="subtitle">通过小游戏学习天文知识。现在已经开放第一个挑战，更多内容会陆续加入。</p>
         <div class="hero-meta">
           <div class="hero-pill">当前已解锁：1 / {{ games|length }}</div>
+          <button
+            class="bgm-control"
+            id="bgmToggle"
+            type="button"
+            aria-pressed="false"
+            aria-label="播放背景音乐"
+            title="背景音乐"
+            data-bgm-url="{{ url_for('static', filename='audio/home-bgm.mp3') }}"
+          >
+            <span class="bgm-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <path d="M12 3a1 1 0 0 1 1 1v11.55a4 4 0 1 1-2-3.46V7.41l7-1.75V4a1 1 0 1 1 2 0v6.22a1 1 0 0 1-.76.97L13 12.75v2.8a4 4 0 1 1-2-3.46V4a1 1 0 0 1 1-1Z"/>
+              </svg>
+            </span>
+          </button>
         </div>
       </section>
 
@@ -314,5 +76,7 @@
         </a>
       </div>
     </main>
+
+    <script src="{{ url_for('static', filename='js/home-bgm.js') }}"></script>
   </body>
 </html>
