@@ -12,6 +12,7 @@ import matplotlib
 
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
+from matplotlib import font_manager, patheffects
 
 from star_catalog import (
     CONSTELLATION_REGIONS,
@@ -27,8 +28,8 @@ blueprint = Blueprint("missing_star", __name__, url_prefix="/games/missing-star"
 GAME_INFO = {
     "slug": "missing-star",
     "title": "消失的恒星",
-    "tagline": "从残缺的星座里找回那颗消失的星。",
-    "description": "观察星座轮廓、亮星位置和连线关系，猜出被藏起来的恒星。",
+    "tagline": "难度：★★★★☆",
+    "description": "根据星座轮廓和亮星位置，找出被藏起来的那颗恒星。",
     "status": "live",
     "badge": "已解锁",
     "available": True,
@@ -57,6 +58,34 @@ LINES_KEY = "missing_star_show_constellation_lines"
 STAR_HISTORY_KEY = "missing_star_recent_star_ids"
 REGION_HISTORY_KEY = "missing_star_recent_region_keys"
 ERROR_KEY = "missing_star_difficulty_error"
+PREFERRED_CJK_FONTS = [
+    "PingFang SC",
+    "Hiragino Sans GB",
+    "Heiti TC",
+    "Arial Unicode MS",
+    "Noto Sans CJK SC",
+    "Source Han Sans SC",
+    "SimHei",
+]
+
+
+@lru_cache(maxsize=1)
+def get_preferred_font_family() -> str | None:
+    available = {font.name for font in font_manager.fontManager.ttflist}
+    for family in PREFERRED_CJK_FONTS:
+        if family in available:
+            return family
+    return None
+
+
+def configure_matplotlib_fonts() -> None:
+    preferred_family = get_preferred_font_family()
+    if preferred_family:
+        plt.rcParams["font.sans-serif"] = [preferred_family, "DejaVu Sans"]
+    plt.rcParams["axes.unicode_minus"] = False
+
+
+configure_matplotlib_fonts()
 
 
 def star_size_from_magnitude(magnitude: float) -> float:
@@ -376,35 +405,83 @@ def render_chart(round_data: dict[str, Any], reveal_missing: bool = False, show_
         missing_star = star_map.get(missing_id)
         if missing_star:
             mx, my = proj[missing_id]
+            span = max((x_max - x_min), (y_max - y_min))
+            label_dx = span * 0.1 if mx <= (x_min + x_max) / 2 else -span * 0.1
+            label_dy = span * 0.08 if my <= (y_min + y_max) / 2 else -span * 0.08
+            label_x = mx + label_dx
+            label_y = my + label_dy
+            name_cn = missing_star.get("name_cn", "")
+            name_en = missing_star.get("name_en", "")
+            if name_cn and name_en:
+                bilingual_name = f"{name_cn} / {name_en}"
+            else:
+                bilingual_name = name_cn or name_en or "Missing star"
+
+            # Add a stronger glow and multiple rings so the missing star reads immediately.
             ax.scatter(
                 mx,
                 my,
-                s=star_size_from_magnitude(missing_star["mag"]) * 1.4,
+                s=star_size_from_magnitude(missing_star["mag"]) * 7.0,
+                c="#ffe28a",
+                alpha=0.2,
+                edgecolors="none",
+                zorder=4,
+            )
+            ax.scatter(
+                mx,
+                my,
+                s=star_size_from_magnitude(missing_star["mag"]) * 1.7,
                 c=missing_star["color"],
                 alpha=0.98,
                 edgecolors="#ffe28a",
-                linewidths=1.2,
-                zorder=4,
+                linewidths=1.4,
+                zorder=5,
             )
             ax.scatter(
                 mx,
                 my,
-                s=star_size_from_magnitude(missing_star["mag"]) * 3.2,
+                s=star_size_from_magnitude(missing_star["mag"]) * 3.4,
                 facecolors="none",
                 edgecolors="#ffe28a",
-                linewidths=1.0,
+                linewidths=1.2,
                 alpha=0.7,
-                zorder=4,
+                zorder=5,
+            )
+            ax.scatter(
+                mx,
+                my,
+                s=star_size_from_magnitude(missing_star["mag"]) * 5.0,
+                facecolors="none",
+                edgecolors="#ffd15c",
+                linewidths=0.9,
+                alpha=0.42,
+                zorder=5,
+            )
+            ax.plot(
+                [mx, label_x],
+                [my, label_y],
+                color="#ffe28a",
+                linewidth=1.1,
+                alpha=0.9,
+                zorder=5,
             )
             ax.text(
-                mx,
-                my + 0.015,
-                star_map[missing_id]["name_en"] or "Missing star",
-                color="#ffe28a",
-                fontsize=9,
-                ha="center",
-                va="bottom",
-                zorder=5,
+                label_x,
+                label_y,
+                bilingual_name,
+                color="#fff4c3",
+                fontsize=9.2,
+                ha="left" if label_dx > 0 else "right",
+                va="center",
+                zorder=6,
+                bbox={
+                    "boxstyle": "round,pad=0.34,rounding_size=0.22",
+                    "facecolor": "#0a1322",
+                    "edgecolor": "#ffe28a",
+                    "linewidth": 1.0,
+                    "alpha": 0.94,
+                },
+                path_effects=[patheffects.withStroke(linewidth=1.2, foreground="#07111f")],
             )
 
     ax.tick_params(colors="#dce8ff")

@@ -85,22 +85,34 @@
         text-align: center;
       }
       .status {
+        margin-bottom: 10px;
         font-size: 32px;
         font-weight: 700;
         color: {% if is_correct %}var(--ok){% else %}var(--bad){% endif %};
+      }
+      .meta-line {
+        margin-bottom: 8px;
+      }
+      .chart-title {
+        margin: 28px 0 10px;
+        color: var(--text);
+        font-size: 18px;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        text-align: center;
       }
       .chart {
         width: min(100%, 620px);
         border-radius: 16px;
         display: block;
         border: 1px solid rgba(255, 255, 255, 0.12);
-        margin: 18px auto 22px;
+        margin: 0 auto 22px;
       }
       .actions {
         display: flex;
         justify-content: center;
         gap: 12px;
-        margin-top: 18px;
+        margin-top: 16px;
         flex-wrap: wrap;
       }
       .actions a {
@@ -120,7 +132,7 @@
         background: rgba(118, 168, 255, 0.08);
       }
       .knowledge {
-        margin: 0 auto 14px;
+        margin: 14px auto 0;
         width: min(100%, 620px);
         padding: 14px 16px;
         border: 1px solid var(--line);
@@ -170,9 +182,8 @@
           <a class="menu-link" href="{{ url_for('home') }}">返回主菜单</a>
         </div>
         <p class="status">{% if is_correct %}回答正确{% else %}回答错误{% endif %}</p>
-        <p>当前星座：{{ region_name }}</p>
-        <p>你的选择：{{ selected or "未选择" }}</p>
-        <p>正确答案：{{ answer }}</p>
+        <p class="meta-line">你的选择：{{ selected or "未选择" }}</p>
+        <p class="meta-line">正确答案：{{ answer }}</p>
         {% if knowledge_text %}
         <div class="knowledge"><strong>关于这颗星：</strong>{{ knowledge_text }}<span class="knowledge-source"> 来源：百度百科</span></div>
         {% endif %}
@@ -180,6 +191,7 @@
           <a class="primary" href="{{ url_for('missing_star.index', new=1, reset_lines=1) }}">再来一题</a>
           <a class="secondary" href="{{ url_for('missing_star.index') }}">回到本游戏</a>
         </div>
+        <div class="chart-title">{{ region_name }}</div>
         <img class="chart" src="data:image/png;base64,{{ chart_data }}" alt="星图">
         <div class="footer">
           <a class="footer-link" href="https://github.com/BetaGem/AstroGames" target="_blank" rel="noreferrer" aria-label="Project source on GitHub">

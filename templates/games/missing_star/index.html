@@ -230,7 +230,7 @@
           <a class="menu-link" href="{{ url_for('home') }}">返回主菜单</a>
         </div>
         <h1>消失的恒星</h1>
-        <p>下图的星座中有颗星星消失了，请根据星座形状找到它。</p>
+        <p>下图的星座中有颗星星消失了，请根据星座形状找到它。设置极限星等可以调整题目难度。</p>
         <div class="difficulty-panel">
           <form method="post" action="{{ url_for('missing_star.set_difficulty') }}">
             <div class="difficulty-row">

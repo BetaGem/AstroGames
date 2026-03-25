@@ -73,10 +73,11 @@
         letter-spacing: 0.08em;
         text-transform: uppercase;
       }
-      h1 {
+      .hero-title {
         margin: 18px 0 12px;
-        font-size: clamp(36px, 7vw, 68px);
-        line-height: 1;
+        font-size: clamp(32px, 5.2vw, 52px);
+        line-height: 1.08;
+        font-weight: 700;
       }
       .subtitle {
         max-width: 680px;
@@ -140,14 +141,19 @@
         box-shadow: 0 20px 56px rgba(0, 0, 0, 0.34);
       }
       .game-card.locked {
-        opacity: 0.82;
+        opacity: 0.76;
+        border-color: rgba(129, 161, 226, 0.14);
+        background:
+          linear-gradient(180deg, rgba(12, 23, 39, 0.9), rgba(8, 16, 28, 0.94)),
+          rgba(8, 16, 28, 0.92);
+        box-shadow: 0 12px 34px rgba(0, 0, 0, 0.22);
       }
       .game-card.locked::after {
         content: "";
         position: absolute;
         inset: 0;
         border-radius: 24px;
-        background: linear-gradient(180deg, rgba(3, 7, 14, 0.04), rgba(3, 7, 14, 0.18));
+        background: linear-gradient(180deg, rgba(3, 7, 14, 0.08), rgba(3, 7, 14, 0.26));
         pointer-events: none;
       }
       .game-top {
@@ -165,9 +171,9 @@
         background: rgba(143, 199, 255, 0.08);
       }
       .game-status.locked {
-        color: #d6d2c4;
-        border-color: rgba(255, 207, 116, 0.16);
-        background: rgba(255, 207, 116, 0.08);
+        color: rgba(214, 210, 196, 0.86);
+        border-color: rgba(255, 207, 116, 0.12);
+        background: rgba(255, 207, 116, 0.05);
       }
       .game-icon {
         width: 42px;
@@ -214,13 +220,13 @@
         box-shadow: 0 10px 24px rgba(112, 169, 255, 0.24);
       }
       .game-disabled {
-        color: rgba(151, 169, 196, 0.92);
-        border: 1px solid rgba(151, 169, 196, 0.14);
-        background: rgba(151, 169, 196, 0.06);
+        color: rgba(151, 169, 196, 0.8);
+        border: 1px solid rgba(151, 169, 196, 0.1);
+        background: rgba(151, 169, 196, 0.04);
       }
       .coming-soon {
         margin-top: 8px;
-        color: rgba(255, 207, 116, 0.74);
+        color: rgba(255, 207, 116, 0.62);
         font-size: 13px;
       }
       .footer {
@@ -265,18 +271,16 @@
     <main class="wrap">
       <section class="hero">
         <div class="eyebrow">Astronomy Mini Games</div>
-        <h1>AstroGames</h1>
-        <p class="subtitle">把辨认星座、理解天象和天文常识，做成一组可以随手开始的小挑战。现在已经解锁第一个小游戏，更多内容正在路上。</p>
+        <h2 class="hero-title">AstroGames 天文知识挑战</h2>
+        <p class="subtitle">通过小游戏学习天文知识。现在已经开放第一个挑战，更多内容会陆续加入。</p>
         <div class="hero-meta">
           <div class="hero-pill">当前已解锁：1 / {{ games|length }}</div>
-          <div class="hero-pill">系列首作：《消失的恒星》</div>
-          <div class="hero-pill">更多内容，敬请期待...</div>
         </div>
       </section>
 
       <div class="section-head">
         <h2 class="section-title">小游戏列表</h2>
-        <p class="section-note">每个小游戏都会作为独立模块持续扩展。</p>
+        <p class="section-note">点击「进入游戏」开始挑战</p>
       </div>
 
       <section class="grid">
