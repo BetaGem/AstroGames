@@ -194,6 +194,17 @@
         color: #ff9c9c;
         font-weight: 600;
       }
+      .debug-banner {
+        width: min(100%, 420px);
+        margin: 0 auto 18px;
+        padding: 10px 14px;
+        border: 1px dashed rgba(255, 214, 102, 0.48);
+        border-radius: 14px;
+        background: rgba(255, 214, 102, 0.08);
+        color: #ffd666;
+        font-size: 14px;
+        text-align: center;
+      }
       .footer {
         margin-top: 22px;
         text-align: center;
@@ -231,6 +242,9 @@
         </div>
         <h1>消失的恒星</h1>
         <p>下图的星座中有颗星星消失了，请根据星座形状找到它。设置极限星等可以调整题目难度。</p>
+        {% if debug_only_region_name %}
+        <div class="debug-banner">测试模式已开启：当前只出 {{ debug_only_region_name }} 的题。删掉代码里的调试开关即可恢复。</div>
+        {% endif %}
         <div class="difficulty-panel">
           <form method="post" action="{{ url_for('missing_star.set_difficulty') }}">
             <div class="difficulty-row">

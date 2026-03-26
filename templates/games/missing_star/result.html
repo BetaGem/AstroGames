@@ -185,11 +185,11 @@
         <p class="meta-line">你的选择：{{ selected or "未选择" }}</p>
         <p class="meta-line">正确答案：{{ answer }}</p>
         {% if knowledge_text %}
-        <div class="knowledge"><strong>关于这颗星：</strong>{{ knowledge_text }}<span class="knowledge-source"> 来源：百度百科</span></div>
+        <div class="knowledge"><strong>关于这颗星：</strong>{{ knowledge_text }}</div>
         {% endif %}
         <div class="actions">
           <a class="primary" href="{{ url_for('missing_star.index', new=1, reset_lines=1) }}">再来一题</a>
-          <a class="secondary" href="{{ url_for('missing_star.index') }}">回到本游戏</a>
+          <a class="secondary" href="{{ url_for('missing_star.index') }}">回到本题</a>
         </div>
         <div class="chart-title">{{ region_name }}</div>
         <img class="chart" src="data:image/png;base64,{{ chart_data }}" alt="星图">

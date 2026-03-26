@@ -296,10 +296,6 @@ def build_catalog() -> dict[str, dict]:
         decs = [star["dec"] for star in stars]
         ra_min, ra_max = compute_ra_bounds(ras)
         dec_min, dec_max = compute_dec_bounds(decs)
-        if ra_min > ra_max:
-            continue
-        if dec_max >= 89.5 or dec_min <= -89.5:
-            continue
         catalog[display_name_en.lower().replace(" ", "_")] = {
             "display_name_cn": display_name_cn,
             "display_name_en": display_name_en,

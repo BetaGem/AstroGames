@@ -20,6 +20,7 @@ from star_catalog import (
     get_constellation_region,
     get_region_center_ra,
     get_region_stars,
+    load_hipparcos,
 )
 
 
@@ -47,6 +48,8 @@ OPTION_STAR_MAG_OFFSET = 1.0
 MAX_ALLOWED_DIFFICULTY = 4.0
 # Missing stars south of this declination are excluded from random selection.
 MIN_SELECTION_DEC_DEG = -40.0
+# Temporary QA switch: set to a region key when narrowing random rounds for local testing.
+DEBUG_ONLY_REGION_KEY: str | None = None
 
 RECENT_STAR_HISTORY_LIMIT = 10
 RECENT_REGION_HISTORY_LIMIT = 10
@@ -119,6 +122,10 @@ def get_show_constellation_lines() -> bool:
     return bool(session.get(LINES_KEY, True))
 
 
+def get_debug_only_region_key() -> str | None:
+    return DEBUG_ONLY_REGION_KEY
+
+
 @lru_cache(maxsize=1)
 def load_star_knowledge() -> dict[str, str]:
     if not STAR_KNOWLEDGE_FILE.exists():
@@ -140,31 +147,105 @@ def update_recent_history(region_key: str, missing_star_id: str) -> None:
     session[REGION_HISTORY_KEY] = recent_region_keys[-RECENT_REGION_HISTORY_LIMIT:]
 
 
-def project_region(region: dict[str, Any], stars: list[dict[str, Any]]) -> dict[str, tuple[float, float]]:
-    ra0 = get_region_center_ra(region["bounds"])
-    dec0 = (region["bounds"]["dec_min"] + region["bounds"]["dec_max"]) / 2
-    ra0_rad = math.radians(ra0)
-    dec0_rad = math.radians(dec0)
+def get_region_ra_span(stars: list[dict[str, Any]], region: dict[str, Any]) -> float:
+    if stars:
+        ras = sorted(star["ra"] % 360 for star in stars)
+        if len(ras) == 1:
+            return 0.0
+        gaps = [(ras[index + 1] - ras[index]) for index in range(len(ras) - 1)]
+        gaps.append((ras[0] + 360) - ras[-1])
+        return 360 - max(gaps)
 
-    projected: dict[str, tuple[float, float]] = {}
+    bounds = region["bounds"]
+    if bounds["ra_min"] <= bounds["ra_max"]:
+        return bounds["ra_max"] - bounds["ra_min"]
+    return (bounds["ra_max"] + 360) - bounds["ra_min"]
+
+
+def is_polar_region(region: dict[str, Any], stars: list[dict[str, Any]]) -> bool:
+    max_dec = max((star["dec"] for star in stars), default=region["bounds"]["dec_max"])
+    min_dec = min((star["dec"] for star in stars), default=region["bounds"]["dec_min"])
+    return max_dec >= 85.0 or (min_dec >= 70.0 and get_region_ra_span(stars, region) >= 120.0)
+
+
+def get_projection_center(region: dict[str, Any], stars: list[dict[str, Any]]) -> tuple[float, float]:
+    if not stars:
+        return get_region_center_ra(region["bounds"]), (region["bounds"]["dec_min"] + region["bounds"]["dec_max"]) / 2
+
+    x_sum = 0.0
+    y_sum = 0.0
+    z_sum = 0.0
     for star in stars:
         ra_rad = math.radians(star["ra"])
         dec_rad = math.radians(star["dec"])
-        cos_c = math.sin(dec0_rad) * math.sin(dec_rad) + math.cos(dec0_rad) * math.cos(dec_rad) * math.cos(
-            ra_rad - ra0_rad
-        )
-        k = 2 / (1 + cos_c)
-        x = k * math.cos(dec_rad) * math.sin(ra_rad - ra0_rad)
-        y = k * (
-            math.cos(dec0_rad) * math.sin(dec_rad)
-            - math.sin(dec0_rad) * math.cos(dec_rad) * math.cos(ra_rad - ra0_rad)
-        )
-        projected[star["id"]] = (-x, y)
+        cos_dec = math.cos(dec_rad)
+        x_sum += cos_dec * math.cos(ra_rad)
+        y_sum += cos_dec * math.sin(ra_rad)
+        z_sum += math.sin(dec_rad)
+
+    hyp = math.hypot(x_sum, y_sum)
+    if hyp < 1e-8 and abs(z_sum) < 1e-8:
+        return get_region_center_ra(region["bounds"]), (region["bounds"]["dec_min"] + region["bounds"]["dec_max"]) / 2
+
+    ra0 = math.degrees(math.atan2(y_sum, x_sum)) % 360
+    dec0 = math.degrees(math.atan2(z_sum, hyp))
+    return ra0, dec0
+
+
+def get_projection_settings(region: dict[str, Any], stars: list[dict[str, Any]]) -> tuple[float, float, bool]:
+    ra0, dec0 = get_projection_center(region, stars)
+    return ra0, dec0, is_polar_region(region, stars)
+
+
+def project_region(region: dict[str, Any], stars: list[dict[str, Any]]) -> dict[str, tuple[float, float]]:
+    ra0, dec0, use_polar_projection = get_projection_settings(region, stars)
+
+    projected: dict[str, tuple[float, float]] = {}
+    for star in stars:
+        projected[star["id"]] = project_point(star["ra"], star["dec"], ra0, dec0, use_polar_projection)
 
     return projected
 
 
-def project_point(ra: float, dec: float, ra0: float, dec0: float) -> tuple[float, float]:
+def get_chart_stars(region_key: str, mag_limit: float = 6.5) -> list[dict[str, Any]]:
+    region = get_constellation_region(region_key)
+    region_stars = get_region_stars(region_key, mag_limit=mag_limit)
+    _, _, use_polar_projection = get_projection_settings(region, region_stars)
+    if not use_polar_projection:
+        return region_stars
+
+    # For circumpolar charts, use the full RA range so background stars fill the whole disk.
+    bounds = region["bounds"]
+    dec_min = bounds["dec_min"]
+    dec_max = bounds["dec_max"]
+    stars = [
+        dict(star)
+        for star in load_hipparcos()
+        if dec_min <= star["dec"] <= dec_max and star["mag"] <= mag_limit
+    ]
+
+    named_by_hip = {
+        star["catalog_id"].replace("HIP ", ""): star
+        for star in region["stars"]
+        if star.get("catalog_id", "").startswith("HIP ")
+    }
+    for star in stars:
+        named = named_by_hip.get(star["hip"])
+        if named:
+            star["id"] = named["id"]
+            star["name_cn"] = named.get("name_cn", "")
+            star["name_en"] = named.get("name_en", "")
+            star["constellation"] = named.get("constellation", "")
+
+    return stars
+
+
+def project_point(ra: float, dec: float, ra0: float, dec0: float, use_polar_projection: bool = False) -> tuple[float, float]:
+    if use_polar_projection:
+        radius = max(0.0, 90.0 - dec)
+        theta = math.radians(((ra - ra0 + 540.0) % 360.0) - 180.0)
+        return (-radius * math.sin(theta), radius * math.cos(theta))
+
     ra_rad = math.radians(ra)
     dec_rad = math.radians(dec)
     ra0_rad = math.radians(ra0)
@@ -172,6 +253,7 @@ def project_point(ra: float, dec: float, ra0: float, dec0: float) -> tuple[float
     cos_c = math.sin(dec0_rad) * math.sin(dec_rad) + math.cos(dec0_rad) * math.cos(dec_rad) * math.cos(
         ra_rad - ra0_rad
     )
+    cos_c = max(-0.999999, min(0.999999, cos_c))
     k = 2 / (1 + cos_c)
     x = k * math.cos(dec_rad) * math.sin(ra_rad - ra0_rad)
     y = k * (math.cos(dec0_rad) * math.sin(dec_rad) - math.sin(dec0_rad) * math.cos(dec_rad) * math.cos(ra_rad - ra0_rad))
@@ -184,7 +266,12 @@ def add_ra_dec_grid(
     ra0: float,
     dec0: float,
     bounds: tuple[float, float, float, float],
+    use_polar_projection: bool,
 ) -> None:
+    if use_polar_projection:
+        add_polar_grid(ax, region, ra0)
+        return
+
     ra_min = region["bounds"]["ra_min"]
     ra_max = region["bounds"]["ra_max"]
     dec_min = region["bounds"]["dec_min"]
@@ -192,7 +279,7 @@ def add_ra_dec_grid(
     x_min, x_max, y_min, y_max = bounds
     inset = max((x_max - x_min), (y_max - y_min)) * 0.02
 
-    ra_ticks = [round(val, 1) for val in _linspace(ra_min, ra_max, 4)]
+    ra_ticks = [round(val, 1) for val in _ra_linspace(ra_min, ra_max, 4)]
     dec_ticks = [round(val, 1) for val in _linspace(dec_min, dec_max, 4)]
 
     for ra in ra_ticks:
@@ -220,7 +307,7 @@ def add_ra_dec_grid(
     for dec in dec_ticks:
         xs = []
         ys = []
-        for ra in _linspace(ra_min, ra_max, 80):
+        for ra in _ra_linspace(ra_min, ra_max, 80):
             x, y = project_point(ra, dec, ra0, dec0)
             xs.append(x)
             ys.append(y)
@@ -247,26 +334,79 @@ def _linspace(start: float, end: float, count: int) -> list[float]:
     return [start + step * i for i in range(count)]
 
 
-def projected_bounds(region: dict[str, Any], ra0: float, dec0: float) -> tuple[float, float, float, float]:
+def _ra_linspace(ra_min: float, ra_max: float, count: int) -> list[float]:
+    if count <= 1:
+        return [ra_min % 360.0]
+    if ra_min <= ra_max:
+        return _linspace(ra_min, ra_max, count)
+
+    span = (ra_max + 360.0) - ra_min
+    step = span / (count - 1)
+    return [(ra_min + step * index) % 360.0 for index in range(count)]
+
+
+def add_polar_grid(ax: Any, region: dict[str, Any], ra0: float) -> None:
+    dec_min = max(60.0, region["bounds"]["dec_min"])
+    for dec in _linspace(dec_min, 88.0, 4):
+        xs = []
+        ys = []
+        for ra in _linspace(0.0, 360.0, 145):
+            x, y = project_point(ra, dec, ra0, 90.0, True)
+            xs.append(x)
+            ys.append(y)
+        ax.plot(xs, ys, color="white", alpha=0.07, linewidth=0.7, zorder=1)
+        label_x, label_y = project_point((ra0 + 32.0) % 360, dec, ra0, 90.0, True)
+        ax.text(label_x, label_y, f"+{dec:.0f}°", color="#8aa6c7", fontsize=8, ha="left", va="bottom", zorder=2)
+
+    for ra in range(0, 360, 45):
+        xs = []
+        ys = []
+        for dec in _linspace(dec_min, 90.0, 60):
+            x, y = project_point(float(ra), dec, ra0, 90.0, True)
+            xs.append(x)
+            ys.append(y)
+        ax.plot(xs, ys, color="white", alpha=0.06, linewidth=0.6, zorder=1)
+        label_x, label_y = project_point(float(ra), dec_min + 0.8, ra0, 90.0, True)
+        ax.text(label_x, label_y, f"{ra}°", color="#8aa6c7", fontsize=8, ha="center", va="center", zorder=2)
+
+
+def projected_bounds(
+    region: dict[str, Any],
+    stars: list[dict[str, Any]],
+    projected: dict[str, tuple[float, float]],
+    ra0: float,
+    dec0: float,
+    use_polar_projection: bool,
+) -> tuple[float, float, float, float]:
     ra_min = region["bounds"]["ra_min"]
     ra_max = region["bounds"]["ra_max"]
     dec_min = region["bounds"]["dec_min"]
     dec_max = region["bounds"]["dec_max"]
 
-    xs: list[float] = []
-    ys: list[float] = []
+    xs = [point[0] for point in projected.values()]
+    ys = [point[1] for point in projected.values()]
 
-    for ra in _linspace(ra_min, ra_max, 80):
-        for dec in (dec_min, dec_max):
-            x, y = project_point(ra, dec, ra0, dec0)
+    if use_polar_projection:
+        ring_dec = max(60.0, dec_min - 1.5)
+        for ra in _linspace(0.0, 360.0, 145):
+            x, y = project_point(ra, ring_dec, ra0, dec0, True)
             xs.append(x)
             ys.append(y)
+        pole_x, pole_y = project_point(ra0, 90.0, ra0, dec0, True)
+        xs.append(pole_x)
+        ys.append(pole_y)
+    else:
+        for ra in _ra_linspace(ra_min, ra_max, 80):
+            for dec in (dec_min, dec_max):
+                x, y = project_point(ra, dec, ra0, dec0)
+                xs.append(x)
+                ys.append(y)
 
-    for dec in _linspace(dec_min, dec_max, 80):
-        for ra in (ra_min, ra_max):
-            x, y = project_point(ra, dec, ra0, dec0)
-            xs.append(x)
-            ys.append(y)
+        for dec in _linspace(dec_min, dec_max, 80):
+            for ra in (ra_min, ra_max):
+                x, y = project_point(ra, dec, ra0, dec0)
+                xs.append(x)
+                ys.append(y)
 
     x_min, x_max = min(xs), max(xs)
     y_min, y_max = min(ys), max(ys)
@@ -282,6 +422,9 @@ def build_round() -> dict[str, Any]:
         for key, region in CONSTELLATION_REGIONS.items()
         if len(get_named_bright_stars(region, missing_star_max_mag)) >= 1
     ]
+    debug_only_region_key = get_debug_only_region_key()
+    if debug_only_region_key in eligible_regions:
+        eligible_regions = [debug_only_region_key]
     preferred_regions = [key for key in eligible_regions if key not in recent_region_keys]
     region_pool = preferred_regions or eligible_regions
     region_key = random.choice(region_pool)
@@ -355,17 +498,16 @@ def render_chart(round_data: dict[str, Any], reveal_missing: bool = False, show_
     fig, ax = plt.subplots(figsize=(6.2, 6.2), facecolor="#07111f")
     ax.set_facecolor("#07111f")
 
-    stars = sorted(get_region_stars(round_data["region_key"]), key=lambda star: star["mag"], reverse=True)
+    stars = sorted(get_chart_stars(round_data["region_key"]), key=lambda star: star["mag"], reverse=True)
     star_map = {star["id"]: star for star in stars}
     proj = project_region(region, stars)
-    ra0 = get_region_center_ra(region["bounds"])
-    dec0 = (region["bounds"]["dec_min"] + region["bounds"]["dec_max"]) / 2
-    x_min, x_max, y_min, y_max = projected_bounds(region, ra0, dec0)
+    ra0, dec0, use_polar_projection = get_projection_settings(region, stars)
+    x_min, x_max, y_min, y_max = projected_bounds(region, stars, proj, ra0, dec0, use_polar_projection)
     pad = max((x_max - x_min), (y_max - y_min)) * 0.06 or 0.05
     ax.set_xlim(x_min - pad, x_max + pad)
     ax.set_ylim(y_min - pad, y_max + pad)
     ax.set_aspect("equal", adjustable="box")
-    add_ra_dec_grid(ax, region, ra0, dec0, (x_min, x_max, y_min, y_max))
+    add_ra_dec_grid(ax, region, ra0, dec0, (x_min, x_max, y_min, y_max), use_polar_projection)
 
     if show_constellation_lines:
         add_constellation_lines(ax, round_data["region_key"], star_map, proj)
@@ -514,6 +656,7 @@ def index():
         current_difficulty=round_data["missing_star_max_mag"],
         difficulty_error=session.pop(ERROR_KEY, ""),
         show_constellation_lines=show_constellation_lines,
+        debug_only_region_name=CONSTELLATION_REGIONS.get(get_debug_only_region_key(), {}).get("display_name_cn", ""),
     )
 
 
