@@ -137,10 +137,48 @@
       }
       .tool-row {
         display: flex;
-        justify-content: flex-start;
+        justify-content: center;
         gap: 10px;
         flex-wrap: wrap;
-        margin-top: 12px;
+        margin-top: 0;
+      }
+      .atlas-row {
+        display: block;
+        margin: 16px 0 14px;
+        padding: 12px 0;
+        border-top: 1px solid rgba(146, 182, 255, 0.18);
+        border-bottom: 1px solid rgba(146, 182, 255, 0.18);
+      }
+      .atlas-launch {
+        position: relative;
+        margin-top: 0;
+        border: 1px solid rgba(245, 203, 126, 0.28);
+        padding: 8px 16px 8px 42px;
+        font-size: 14px;
+        color: #f4d291;
+        background: linear-gradient(135deg, rgba(255, 226, 173, 0.12), rgba(118, 168, 255, 0.08));
+      }
+      .atlas-launch::before,
+      .atlas-launch::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        border-radius: 6px 3px 3px 6px;
+      }
+      .atlas-launch::before {
+        left: 14px;
+        width: 12px;
+        height: 17px;
+        background: linear-gradient(180deg, #ffd894, #d79a4d);
+        box-shadow: inset -1px 0 0 rgba(71, 42, 18, 0.28);
+      }
+      .atlas-launch::after {
+        left: 24px;
+        width: 12px;
+        height: 17px;
+        background: linear-gradient(180deg, #ffe8bb, #e9b96c);
+        box-shadow: inset 1px 0 0 rgba(71, 42, 18, 0.22);
       }
       .hint-text {
         margin-top: 12px;
@@ -228,6 +266,157 @@
         fill: currentColor;
         opacity: 0.85;
       }
+      .atlas-modal {
+        position: fixed;
+        inset: 0;
+        z-index: 40;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        padding: 18px;
+        background: rgba(4, 10, 18, 0.72);
+        backdrop-filter: blur(10px);
+      }
+      .atlas-modal.show {
+        display: flex;
+      }
+      .atlas-dialog {
+        width: min(920px, 100%);
+        max-height: min(88vh, 900px);
+        overflow: auto;
+        border-radius: 24px;
+        border: 1px solid rgba(146, 182, 255, 0.2);
+        background:
+          radial-gradient(circle at top right, rgba(223, 167, 89, 0.12), transparent 24%),
+          linear-gradient(180deg, rgba(10, 19, 33, 0.98), rgba(7, 13, 24, 0.98));
+        box-shadow: 0 28px 80px rgba(0, 0, 0, 0.42);
+      }
+      .atlas-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        padding: 20px 22px 16px;
+        border-bottom: 1px solid rgba(146, 182, 255, 0.14);
+      }
+      .atlas-head h2 {
+        margin: 0;
+        font-size: 24px;
+        text-align: left;
+      }
+      .atlas-close {
+        width: 38px;
+        height: 38px;
+        margin-top: 0;
+        padding: 0;
+        border-radius: 999px;
+        border: 1px solid rgba(146, 182, 255, 0.18);
+        background: rgba(118, 168, 255, 0.08);
+        color: var(--muted);
+        font-size: 24px;
+        line-height: 1;
+      }
+      .atlas-close:hover {
+        color: var(--text);
+        border-color: rgba(245, 203, 126, 0.36);
+        background: rgba(245, 203, 126, 0.08);
+      }
+      .atlas-body {
+        display: grid;
+        grid-template-columns: 148px minmax(0, 1fr);
+        gap: 18px;
+        padding: 18px 22px 22px;
+      }
+      .atlas-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 4px;
+        align-content: start;
+      }
+      .atlas-card {
+        width: 100%;
+        padding: 6px 9px;
+        border: 1px solid rgba(146, 182, 255, 0.14);
+        border-radius: 10px;
+        background: linear-gradient(180deg, rgba(18, 31, 52, 0.92), rgba(10, 16, 27, 0.94));
+        color: var(--text);
+        text-align: left;
+        cursor: pointer;
+        transition: transform 0.16s ease, border-color 0.16s ease, background 0.16s ease;
+      }
+      .atlas-card:hover,
+      .atlas-card.active {
+        transform: translateY(-2px);
+        border-color: rgba(245, 203, 126, 0.4);
+        background: linear-gradient(180deg, rgba(24, 38, 62, 0.98), rgba(11, 18, 31, 0.98));
+      }
+      .atlas-card-name {
+        font-size: 12px;
+        line-height: 1.2;
+        font-weight: 700;
+      }
+      .atlas-detail {
+        min-height: 380px;
+        padding: 18px;
+        border: 1px solid rgba(146, 182, 255, 0.14);
+        border-radius: 22px;
+        background: rgba(8, 15, 27, 0.78);
+      }
+      .atlas-detail h3 {
+        margin: 0 0 10px;
+        font-size: 26px;
+        text-align: left;
+      }
+      .atlas-stats {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 10px;
+        margin-bottom: 16px;
+      }
+      .atlas-stat {
+        padding: 10px 12px;
+        border: 1px solid rgba(146, 182, 255, 0.12);
+        border-radius: 14px;
+        background: rgba(118, 168, 255, 0.06);
+        text-align: left;
+      }
+      .atlas-stat strong {
+        display: block;
+        margin-bottom: 4px;
+        color: var(--text);
+        font-size: 13px;
+      }
+      .atlas-stat span {
+        color: var(--muted);
+        font-size: 14px;
+        line-height: 1.5;
+      }
+      .atlas-color-dot {
+        display: inline-block;
+        width: 10px;
+        height: 10px;
+        margin-right: 7px;
+        border-radius: 50%;
+        border: 1px solid rgba(255, 255, 255, 0.24);
+        vertical-align: middle;
+      }
+      .atlas-text {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.8;
+        text-align: left;
+      }
+      @media (max-width: 760px) {
+        .atlas-body {
+          grid-template-columns: 1fr;
+        }
+        .atlas-grid {
+          grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+        }
+        .atlas-stats {
+          grid-template-columns: 1fr;
+        }
+      }
     </style>
   </head>
   <body>
@@ -265,17 +454,20 @@
             {% endif %}
           </form>
         </div>
-        <div class="tool-row">
-          <button type="button" class="hint-btn" onclick="toggleHint()">获取提示</button>
-          <form method="post" action="{{ url_for('missing_star.toggle_lines') }}">
-            <button type="submit" class="hint-btn">
-              {% if show_constellation_lines %}隐藏星座连线{% else %}显示星座连线{% endif %}
-            </button>
-          </form>
-          <form method="get" action="{{ url_for('missing_star.index') }}">
-            <input type="hidden" name="new" value="1">
-            <button type="submit" class="hint-btn">跳过此题</button>
-          </form>
+        <div class="atlas-row">
+          <div class="tool-row">
+            <button type="button" class="hint-btn" onclick="toggleHint()">💡提示</button>
+            <form method="post" action="{{ url_for('missing_star.toggle_lines') }}">
+              <button type="submit" class="hint-btn">
+                {% if show_constellation_lines %}隐藏星座连线{% else %}显示星座连线{% endif %}
+              </button>
+            </form>
+            <form method="get" action="{{ url_for('missing_star.index') }}">
+              <input type="hidden" name="new" value="1">
+              <button type="submit" class="hint-btn">跳过此题</button>
+            </form>
+            <button type="button" class="hint-btn atlas-launch" onclick="openStarAtlas()">明亮恒星图鉴</button>
+          </div>
         </div>
         <div class="hint-text" id="hintText">当前星座：{{ region_name }}</div>
         <br>
@@ -291,6 +483,22 @@
           <button type="submit">提交答案</button>
         </form>
         <img class="chart" src="data:image/png;base64,{{ chart_data }}" alt="星图">
+
+        <div class="atlas-modal" id="starAtlasModal" aria-hidden="true">
+          <div class="atlas-dialog" role="dialog" aria-modal="true" aria-labelledby="starAtlasTitle">
+            <div class="atlas-head">
+              <div>
+                <h2 id="starAtlasTitle">恒星图鉴</h2>
+              </div>
+              <button type="button" class="atlas-close" onclick="closeStarAtlas()" aria-label="关闭图鉴">×</button>
+            </div>
+            <div class="atlas-body">
+              <div class="atlas-grid" id="starAtlasGrid"></div>
+              <div class="atlas-detail" id="starAtlasDetail"></div>
+            </div>
+          </div>
+        </div>
+
         <div class="footer">
           <a class="footer-link" href="https://github.com/BetaGem/AstroGames" target="_blank" rel="noreferrer" aria-label="Project source on GitHub">
             <svg class="footer-icon" viewBox="0 0 16 16" aria-hidden="true">
@@ -302,10 +510,67 @@
       </section>
     </main>
     <script>
+      const starAtlasEntries = {{ star_atlas_entries|tojson }};
+      let activeStarAtlasName = starAtlasEntries.length ? starAtlasEntries[0].name : "";
+
       function toggleHint() {
         const hintText = document.getElementById('hintText');
         hintText.classList.toggle('show');
       }
+
+      function renderStarAtlas() {
+        const grid = document.getElementById('starAtlasGrid');
+        const detail = document.getElementById('starAtlasDetail');
+        if (!grid || !detail || !starAtlasEntries.length) return;
+
+        grid.innerHTML = '';
+        starAtlasEntries.forEach((entry) => {
+          const button = document.createElement('button');
+          button.type = 'button';
+          button.className = `atlas-card${entry.name === activeStarAtlasName ? ' active' : ''}`;
+          button.innerHTML = `<div class="atlas-card-name">${entry.name}</div>`;
+          button.addEventListener('click', () => {
+            activeStarAtlasName = entry.name;
+            renderStarAtlas();
+          });
+          grid.appendChild(button);
+        });
+
+        const activeEntry = starAtlasEntries.find((entry) => entry.name === activeStarAtlasName) || starAtlasEntries[0];
+        detail.innerHTML = `
+          <h3>${activeEntry.name}</h3>
+          <div class="atlas-stats">
+            <div class="atlas-stat"><strong>星等</strong><span>${activeEntry.magnitude}</span></div>
+            <div class="atlas-stat"><strong>颜色</strong><span><span class="atlas-color-dot" style="background:${activeEntry.color_hex}"></span>${activeEntry.color_name}</span></div>
+            <div class="atlas-stat"><strong>所属星座</strong><span>${activeEntry.constellation}</span></div>
+          </div>
+          <p class="atlas-text">${activeEntry.text}</p>
+        `;
+      }
+
+      function openStarAtlas() {
+        const modal = document.getElementById('starAtlasModal');
+        if (!modal) return;
+        renderStarAtlas();
+        modal.classList.add('show');
+        modal.setAttribute('aria-hidden', 'false');
+      }
+
+      function closeStarAtlas() {
+        const modal = document.getElementById('starAtlasModal');
+        if (!modal) return;
+        modal.classList.remove('show');
+        modal.setAttribute('aria-hidden', 'true');
+      }
+
+      document.addEventListener('click', (event) => {
+        const modal = document.getElementById('starAtlasModal');
+        if (modal && event.target === modal) closeStarAtlas();
+      });
+
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') closeStarAtlas();
+      });
     </script>
   </body>
 </html>

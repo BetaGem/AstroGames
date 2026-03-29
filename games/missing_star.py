@@ -135,6 +135,60 @@ def load_star_knowledge() -> dict[str, str]:
     return {key: value for key, value in data.items() if not key.startswith("_") and isinstance(value, str)}
 
 
+def describe_star_color(hex_color: str) -> str:
+    if not hex_color.startswith("#") or len(hex_color) != 7:
+        return "未知"
+
+    red = int(hex_color[1:3], 16)
+    green = int(hex_color[3:5], 16)
+    blue = int(hex_color[5:7], 16)
+
+    if blue >= red + 22 and blue >= green:
+        return "蓝白色"
+    if blue > red and green > red:
+        return "白蓝色"
+    if red >= 235 and green <= 195 and blue <= 150:
+        return "橙红色"
+    if red >= 235 and green >= 210:
+        return "偏黄色"
+    if red > blue + 30 and green > blue:
+        return "橙黄色"
+    return "白色"
+
+
+def build_star_metadata_map() -> dict[str, dict[str, str]]:
+    metadata: dict[str, dict[str, str]] = {}
+    for region in CONSTELLATION_REGIONS.values():
+        constellation_name = region.get("display_name_cn") or region.get("display_name_en") or region.get("key", "")
+        for star in region["stars"]:
+            name = star.get("name_cn")
+            if not name or name in metadata:
+                continue
+            metadata[name] = {
+                "magnitude": f"{star.get('mag', 0.0):.2f}",
+                "color_name": describe_star_color(star.get("color", "")),
+                "color_hex": star.get("color", "#dce8ff"),
+                "constellation": constellation_name,
+            }
+    return metadata
+
+
+def build_star_atlas_entries() -> list[dict[str, str]]:
+    knowledge = load_star_knowledge()
+    metadata_map = build_star_metadata_map()
+    return [
+        {
+            "name": name,
+            "text": knowledge[name],
+            "magnitude": metadata_map.get(name, {}).get("magnitude", "未知"),
+            "color_name": metadata_map.get(name, {}).get("color_name", "未知"),
+            "color_hex": metadata_map.get(name, {}).get("color_hex", "#dce8ff"),
+            "constellation": metadata_map.get(name, {}).get("constellation", "未知"),
+        }
+        for name in sorted(knowledge)
+    ]
+
+
 def get_recent_history() -> tuple[list[str], list[str]]:
     return list(session.get(STAR_HISTORY_KEY, [])), list(session.get(REGION_HISTORY_KEY, []))
 
@@ -653,6 +707,7 @@ def index():
         chart_data=chart,
         options=round_data["options"],
         region_name=region["display_name_cn"],
+        star_atlas_entries=build_star_atlas_entries(),
         current_difficulty=round_data["missing_star_max_mag"],
         difficulty_error=session.pop(ERROR_KEY, ""),
         show_constellation_lines=show_constellation_lines,

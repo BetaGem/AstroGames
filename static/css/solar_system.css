@@ -1,0 +1,862 @@
+:root {
+  color-scheme: dark;
+  --bg: #07111d;
+  --panel: rgba(10, 20, 36, 0.92);
+  --line: rgba(157, 191, 255, 0.18);
+  --text: #edf4ff;
+  --muted: #9fb3cf;
+  --accent: #79b8ff;
+  --accent-2: #ffd36d;
+  --ok: #68d8a2;
+  --warn: #ffb76c;
+  --bad: #ff8e96;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: "PingFang SC", "Noto Sans SC", sans-serif;
+  color: var(--text);
+  background:
+    radial-gradient(circle at top, rgba(79, 118, 196, 0.28), transparent 32%),
+    radial-gradient(circle at bottom left, rgba(192, 113, 46, 0.18), transparent 28%),
+    var(--bg);
+}
+
+.wrap {
+  width: min(1120px, calc(100vw - 28px));
+  margin: 0 auto;
+  padding: 26px 0 40px;
+}
+
+.card {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  padding: 24px;
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.34);
+  backdrop-filter: blur(12px);
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-bottom: 18px;
+}
+
+.brand-kicker {
+  color: var(--muted);
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.brand-title {
+  margin: 4px 0 0;
+  font-size: 20px;
+}
+
+.menu-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 16px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: rgba(121, 184, 255, 0.08);
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.menu-link:hover { color: var(--text); }
+
+h1 {
+  margin: 0 0 10px;
+  text-align: center;
+  font-size: clamp(30px, 5vw, 44px);
+}
+
+.subtitle {
+  margin: 0 auto 16px;
+  max-width: 720px;
+  color: var(--muted);
+  text-align: center;
+  line-height: 1.7;
+}
+
+.page-tools {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 22px;
+  flex-wrap: wrap;
+}
+
+.atlas-launch {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 164px;
+  padding: 11px 16px 11px 44px;
+  border: 1px solid rgba(238, 184, 114, 0.26);
+  border-radius: 999px;
+  background: linear-gradient(135deg, rgba(255, 227, 172, 0.12), rgba(118, 168, 255, 0.08));
+  color: #f7d59a;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.atlas-launch::before,
+.atlas-launch::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  border-radius: 6px 3px 3px 6px;
+  transform: translateY(-50%);
+}
+
+.atlas-launch::before {
+  left: 15px;
+  width: 13px;
+  height: 18px;
+  background: linear-gradient(180deg, #ffd998, #d99a4a);
+  box-shadow: inset -1px 0 0 rgba(76, 43, 16, 0.3);
+}
+
+.atlas-launch::after {
+  left: 26px;
+  width: 13px;
+  height: 18px;
+  background: linear-gradient(180deg, #ffe8bb, #e9bb6c);
+  box-shadow: inset 1px 0 0 rgba(76, 43, 16, 0.22);
+}
+
+.hero-strip {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+  margin-bottom: 22px;
+}
+
+.hero-pill {
+  padding: 14px 16px;
+  border-radius: 18px;
+  border: 1px solid var(--line);
+  background: rgba(121, 184, 255, 0.07);
+}
+
+.hero-pill strong {
+  display: block;
+  margin-bottom: 5px;
+  color: var(--text);
+  font-size: 15px;
+}
+
+.hero-pill span {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.stage-shell {
+  display: grid;
+  grid-template-columns: 1.25fr 0.75fr;
+  gap: 18px;
+}
+
+.panel {
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  background: rgba(7, 14, 26, 0.86);
+  padding: 18px;
+}
+
+.panel-title {
+  margin: 0 0 10px;
+  font-size: 18px;
+}
+
+.panel-note {
+  margin: 0 0 16px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.slot-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.slot {
+  min-height: 132px;
+  padding: 12px;
+  border-radius: 20px;
+  border: 1px dashed rgba(157, 191, 255, 0.26);
+  background: rgba(121, 184, 255, 0.05);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  text-align: center;
+  transition: all 0.18s ease;
+}
+
+.slot[data-filled="true"] {
+  border-style: solid;
+  background: rgba(121, 184, 255, 0.09);
+}
+
+.slot.drag-over {
+  border-color: rgba(255, 211, 109, 0.7);
+  background: rgba(255, 211, 109, 0.09);
+  transform: translateY(-2px);
+}
+
+.slot.correct {
+  border-color: rgba(104, 216, 162, 0.55);
+  background: rgba(104, 216, 162, 0.08);
+}
+
+.slot.wrong {
+  border-color: rgba(255, 142, 150, 0.58);
+  background: rgba(255, 142, 150, 0.08);
+}
+
+.slot-index {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.slot-placeholder {
+  color: rgba(159, 179, 207, 0.42);
+  font-size: 13px;
+}
+
+.tray {
+  min-height: 148px;
+  padding: 12px;
+  border-radius: 22px;
+  border: 1px solid var(--line);
+  background: rgba(121, 184, 255, 0.05);
+}
+
+.tray-title {
+  margin: 0 0 12px;
+  font-size: 15px;
+  color: var(--muted);
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(124px, 1fr));
+  gap: 12px;
+}
+
+.planet-card {
+  position: relative;
+  min-height: 108px;
+  padding: 10px 10px 8px;
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: linear-gradient(180deg, rgba(19, 35, 59, 0.96), rgba(10, 18, 31, 0.98));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  text-align: center;
+  cursor: grab;
+  user-select: none;
+}
+
+.planet-card.slot-card {
+  min-height: 72px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+  gap: 0;
+}
+
+.planet-card.dragging { opacity: 0.52; }
+
+.planet-card.revealed .planet-name {
+  color: var(--text);
+  opacity: 1;
+}
+
+.planet-card.quiz-selected {
+  border-color: rgba(255, 211, 109, 0.62);
+  box-shadow: 0 0 0 2px rgba(255, 211, 109, 0.16);
+}
+
+.planet-card.quiz-correct {
+  border-color: rgba(104, 216, 162, 0.62);
+  box-shadow: 0 0 0 2px rgba(104, 216, 162, 0.14);
+}
+
+.planet-card.quiz-wrong {
+  border-color: rgba(255, 142, 150, 0.62);
+  box-shadow: 0 0 0 2px rgba(255, 142, 150, 0.12);
+}
+
+.planet-visual {
+  position: relative;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--planet-bg, #b5c8ff);
+  box-shadow: inset -12px -10px 18px rgba(0, 0, 0, 0.22), 0 0 18px rgba(255, 255, 255, 0.08);
+}
+
+.planet-visual-sphere {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.planet-visual::after {
+  content: "";
+  position: absolute;
+  inset: 7px 9px auto auto;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.16);
+  filter: blur(1px);
+  z-index: 3;
+}
+
+.planet-visual.ringed::before {
+  content: "";
+  position: absolute;
+  inset: 50% auto auto 50%;
+  width: 68px;
+  height: 16px;
+  border-radius: 50%;
+  border: 2px solid rgba(227, 207, 164, 0.62);
+  transform: translate(-50%, -50%) rotate(-18deg);
+  z-index: 1;
+}
+
+.planet-texture,
+.planet-clouds,
+.planet-detail {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.planet-clouds {
+  opacity: 0.85;
+  mix-blend-mode: screen;
+}
+
+.planet-detail { opacity: 0.9; }
+
+.planet-visual.mercury .planet-texture {
+  background:
+    radial-gradient(circle at 36% 42%, rgba(255,255,255,0.16) 0 5px, transparent 5px),
+    radial-gradient(circle at 68% 64%, rgba(40,30,28,0.28) 0 6px, transparent 6px),
+    radial-gradient(circle at 57% 20%, rgba(86,72,67,0.34) 0 7px, transparent 7px),
+    radial-gradient(circle at 20% 70%, rgba(65,54,50,0.25) 0 8px, transparent 8px);
+}
+
+.planet-visual.venus .planet-clouds {
+  background:
+    radial-gradient(circle at 50% 18%, rgba(255,240,201,0.55) 0 10px, transparent 11px),
+    linear-gradient(180deg, transparent 10%, rgba(246,216,146,0.34) 20%, transparent 32%, rgba(224,170,92,0.32) 45%, transparent 58%, rgba(245,225,174,0.34) 72%, transparent 84%);
+  transform: rotate(-14deg) scale(1.08);
+}
+
+.planet-visual.earth .planet-texture {
+  background:
+    radial-gradient(circle at 36% 40%, rgba(120, 207, 103, 0.95) 0 8px, transparent 9px),
+    radial-gradient(circle at 58% 58%, rgba(72, 170, 84, 0.96) 0 9px, transparent 10px),
+    radial-gradient(circle at 68% 28%, rgba(171, 216, 111, 0.8) 0 5px, transparent 6px);
+}
+
+.planet-visual.earth .planet-clouds {
+  background:
+    radial-gradient(circle at 28% 26%, rgba(255,255,255,0.72) 0 8px, transparent 9px),
+    radial-gradient(circle at 63% 35%, rgba(255,255,255,0.54) 0 6px, transparent 7px),
+    radial-gradient(circle at 46% 72%, rgba(255,255,255,0.48) 0 7px, transparent 8px);
+  filter: blur(1px);
+}
+
+.planet-visual.mars .planet-texture {
+  background:
+    radial-gradient(circle at 32% 46%, rgba(122, 46, 24, 0.42) 0 8px, transparent 9px),
+    radial-gradient(circle at 70% 36%, rgba(255, 187, 130, 0.24) 0 6px, transparent 7px),
+    radial-gradient(circle at 64% 70%, rgba(92, 34, 20, 0.3) 0 9px, transparent 10px);
+}
+
+.planet-visual.jupiter .planet-texture {
+  background:
+    linear-gradient(180deg, rgba(134,84,48,0.34) 10%, transparent 18%, rgba(255,236,214,0.22) 20%, transparent 30%, rgba(144,91,53,0.28) 34%, transparent 44%, rgba(255,229,200,0.18) 50%, transparent 60%, rgba(146,88,55,0.24) 66%, transparent 78%);
+}
+
+.planet-visual.jupiter .planet-detail {
+  background: radial-gradient(circle at 70% 62%, rgba(196, 104, 66, 0.85) 0 6px, transparent 7px);
+}
+
+.planet-visual.saturn .planet-texture {
+  background:
+    linear-gradient(180deg, rgba(181,145,83,0.28) 14%, transparent 24%, rgba(246,230,183,0.18) 28%, transparent 40%, rgba(170,132,71,0.22) 46%, transparent 58%, rgba(247,228,176,0.18) 64%, transparent 78%);
+}
+
+.planet-visual.uranus .planet-texture {
+  background:
+    linear-gradient(180deg, rgba(213,255,255,0.16) 18%, transparent 30%, rgba(127,225,220,0.2) 44%, transparent 56%, rgba(194,248,244,0.18) 70%, transparent 82%);
+}
+
+.planet-visual.neptune .planet-texture {
+  background:
+    linear-gradient(180deg, rgba(210,235,255,0.16) 14%, transparent 26%, rgba(72,123,223,0.25) 38%, transparent 52%, rgba(173,210,255,0.14) 64%, transparent 78%);
+}
+
+.planet-visual.neptune .planet-detail {
+  background: radial-gradient(circle at 40% 62%, rgba(41, 74, 168, 0.46) 0 8px, transparent 9px);
+}
+
+.planet-visual.pluto .planet-texture {
+  background:
+    radial-gradient(circle at 58% 46%, rgba(246, 230, 212, 0.9) 0 10px, transparent 11px),
+    radial-gradient(circle at 30% 62%, rgba(112, 82, 63, 0.34) 0 9px, transparent 10px),
+    radial-gradient(circle at 68% 74%, rgba(92, 68, 54, 0.28) 0 7px, transparent 8px);
+}
+
+.planet-visual.pluto .planet-clouds {
+  background: radial-gradient(circle at 56% 44%, rgba(255,255,255,0.2) 0 9px, transparent 10px);
+}
+
+.planet-visual.ceres .planet-texture {
+  background:
+    radial-gradient(circle at 34% 38%, rgba(255,255,255,0.16) 0 5px, transparent 6px),
+    radial-gradient(circle at 62% 56%, rgba(84,76,71,0.26) 0 7px, transparent 8px),
+    radial-gradient(circle at 68% 30%, rgba(240,240,244,0.44) 0 4px, transparent 5px),
+    radial-gradient(circle at 26% 70%, rgba(78,72,69,0.24) 0 8px, transparent 9px);
+}
+
+.planet-visual.vesta .planet-texture {
+  background:
+    radial-gradient(circle at 36% 42%, rgba(255,239,221,0.22) 0 6px, transparent 7px),
+    radial-gradient(circle at 66% 60%, rgba(94,68,51,0.34) 0 10px, transparent 11px),
+    radial-gradient(circle at 24% 72%, rgba(130,96,72,0.24) 0 8px, transparent 9px);
+}
+
+.planet-visual.eris .planet-texture {
+  background:
+    radial-gradient(circle at 38% 34%, rgba(255,255,255,0.46) 0 7px, transparent 8px),
+    radial-gradient(circle at 66% 64%, rgba(132,145,170,0.28) 0 9px, transparent 10px),
+    radial-gradient(circle at 28% 72%, rgba(98,112,140,0.22) 0 7px, transparent 8px);
+}
+
+.planet-visual.eris .planet-clouds {
+  background: linear-gradient(180deg, rgba(255,255,255,0.08) 12%, transparent 30%, rgba(220,232,255,0.12) 58%, transparent 76%);
+}
+
+.planet-name {
+  min-height: 18px;
+  font-weight: 700;
+  font-size: 14px;
+  color: rgba(237, 244, 255, 0.08);
+  opacity: 0.15;
+  transition: all 0.16s ease;
+}
+
+.planet-name.is-hidden { visibility: hidden; }
+
+.hint-button {
+  border: 1px solid rgba(157, 191, 255, 0.24);
+  border-radius: 999px;
+  padding: 5px 9px;
+  color: var(--accent);
+  background: rgba(121, 184, 255, 0.08);
+  font-size: 11px;
+  cursor: pointer;
+}
+
+.action-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.button {
+  border: 0;
+  border-radius: 999px;
+  padding: 11px 18px;
+  font-size: 15px;
+  color: white;
+  background: linear-gradient(135deg, #5f96ff, #7dc8ff);
+  cursor: pointer;
+}
+
+.button.alt {
+  color: var(--muted);
+  border: 1px solid var(--line);
+  background: rgba(121, 184, 255, 0.08);
+}
+
+.status-box {
+  margin-top: 14px;
+  min-height: 52px;
+  padding: 12px 14px;
+  border-radius: 16px;
+  border: 1px solid rgba(157, 191, 255, 0.14);
+  background: rgba(121, 184, 255, 0.06);
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.status-box.good {
+  color: #d8fff0;
+  border-color: rgba(104, 216, 162, 0.3);
+  background: rgba(104, 216, 162, 0.08);
+}
+
+.status-box.bad {
+  color: #ffe0e2;
+  border-color: rgba(255, 142, 150, 0.28);
+  background: rgba(255, 142, 150, 0.08);
+}
+
+.progress {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: 16px;
+  border: 1px solid var(--line);
+  background: rgba(121, 184, 255, 0.06);
+  margin-bottom: 14px;
+}
+
+.progress strong {
+  display: block;
+  margin-bottom: 4px;
+}
+
+.progress span { color: var(--muted); font-size: 14px; }
+
+.quiz-cards {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.quiz-cards .planet-card { cursor: pointer; }
+
+.question-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 12px;
+  border-radius: 999px;
+  background: rgba(255, 211, 109, 0.1);
+  color: var(--accent-2);
+  font-size: 13px;
+  margin-bottom: 12px;
+}
+
+.question-title {
+  margin: 0 0 8px;
+  font-size: 22px;
+}
+
+.explanation,
+.planet-hint {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.score-ring {
+  width: 132px;
+  height: 132px;
+  margin: 10px auto 16px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  border: 7px solid rgba(121, 184, 255, 0.18);
+  background: radial-gradient(circle at top, rgba(121, 184, 255, 0.14), rgba(10, 20, 36, 0.18));
+  font-size: 34px;
+  font-weight: 700;
+}
+
+.summary-list {
+  display: grid;
+  gap: 10px;
+}
+
+.summary-item {
+  padding: 12px 14px;
+  border-radius: 16px;
+  border: 1px solid var(--line);
+  background: rgba(121, 184, 255, 0.05);
+}
+
+.summary-item strong {
+  display: block;
+  margin-bottom: 4px;
+}
+
+.hidden { display: none !important; }
+
+.footer {
+  margin-top: 24px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.footer-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: rgba(157, 179, 207, 0.62);
+  text-decoration: none;
+}
+
+.footer-icon {
+  width: 15px;
+  height: 15px;
+  fill: currentColor;
+  opacity: 0.85;
+}
+
+.atlas-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 18px;
+  background: rgba(4, 10, 18, 0.72);
+  backdrop-filter: blur(10px);
+}
+
+.atlas-modal.show { display: flex; }
+
+.atlas-dialog {
+  width: min(980px, 100%);
+  max-height: min(88vh, 900px);
+  overflow: auto;
+  border-radius: 24px;
+  border: 1px solid rgba(157, 196, 255, 0.2);
+  background:
+    radial-gradient(circle at top right, rgba(230, 170, 96, 0.12), transparent 24%),
+    linear-gradient(180deg, rgba(12, 22, 38, 0.98), rgba(8, 15, 27, 0.98));
+  box-shadow: 0 28px 80px rgba(0, 0, 0, 0.42);
+}
+
+.atlas-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 20px 22px 16px;
+  border-bottom: 1px solid rgba(157, 196, 255, 0.12);
+}
+
+.atlas-head h2 {
+  margin: 0 0 6px;
+  font-size: 24px;
+}
+
+.atlas-head p {
+  margin: 0;
+  text-align: left;
+}
+
+.atlas-close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  margin-top: 0;
+  padding: 0;
+  border-radius: 999px;
+  font-size: 24px;
+  line-height: 1;
+  color: var(--muted);
+  border: 1px solid rgba(157, 196, 255, 0.16);
+  background: rgba(118, 168, 255, 0.08);
+  cursor: pointer;
+}
+
+.atlas-close:hover {
+  color: var(--text);
+  border-color: rgba(238, 184, 114, 0.36);
+  background: rgba(238, 184, 114, 0.08);
+}
+
+.atlas-body {
+  display: grid;
+  grid-template-columns: 132px minmax(0, 1fr);
+  gap: 18px;
+  padding: 18px 22px 22px;
+}
+
+.atlas-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px;
+  align-content: start;
+}
+
+.atlas-card {
+  border: 1px solid rgba(157, 196, 255, 0.14);
+  border-radius: 14px;
+  background: linear-gradient(180deg, rgba(20, 34, 58, 0.9), rgba(10, 17, 30, 0.92));
+  padding: 10px 12px;
+  text-align: left;
+  color: var(--text);
+  cursor: pointer;
+  transition: transform 0.16s ease, border-color 0.16s ease, background 0.16s ease;
+}
+
+.atlas-card:hover,
+.atlas-card.active {
+  transform: translateY(-2px);
+  border-color: rgba(238, 184, 114, 0.42);
+  background: linear-gradient(180deg, rgba(27, 40, 66, 0.98), rgba(12, 20, 35, 0.98));
+}
+
+.atlas-card-name {
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.atlas-detail {
+  border: 1px solid rgba(157, 196, 255, 0.14);
+  border-radius: 22px;
+  padding: 18px;
+  background: rgba(7, 13, 24, 0.72);
+}
+
+.atlas-detail-head {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 16px;
+}
+
+.atlas-planet-visual {
+  flex: 0 0 auto;
+  width: 72px;
+  height: 72px;
+}
+
+.atlas-planet-visual::after {
+  inset: 10px 12px auto auto;
+  width: 14px;
+  height: 14px;
+}
+
+.atlas-planet-visual.ringed::before {
+  width: 96px;
+  height: 20px;
+  border: 3px solid rgba(227, 207, 164, 0.62);
+}
+
+.atlas-detail h3 {
+  margin: 0 0 6px;
+  font-size: 26px;
+}
+
+.atlas-subtitle {
+  color: #efc788;
+  font-size: 14px;
+}
+
+.atlas-stats {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin: 16px 0;
+}
+
+.atlas-stat {
+  padding: 12px 12px 10px;
+  border-radius: 16px;
+  border: 1px solid rgba(157, 196, 255, 0.12);
+  background: rgba(118, 168, 255, 0.06);
+}
+
+.atlas-stat strong {
+  display: block;
+  margin-bottom: 5px;
+  color: var(--text);
+  font-size: 13px;
+}
+
+.atlas-stat span {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.atlas-section { margin-top: 14px; }
+
+.atlas-section h4 {
+  margin: 0 0 8px;
+  color: var(--text);
+  font-size: 15px;
+}
+
+.atlas-section p {
+  margin: 0;
+  text-align: left;
+}
+
+@media (max-width: 920px) {
+  .stage-shell { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 860px) {
+  .atlas-body { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 760px) {
+  .slot-grid,
+  .quiz-cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .atlas-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .atlas-stats {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 520px) {
+  .wrap { width: min(100vw - 18px, 1000px); }
+  .card { padding: 18px; }
+  .slot-grid,
+  .quiz-cards,
+  .card-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
