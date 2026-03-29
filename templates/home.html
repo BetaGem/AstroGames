@@ -21,7 +21,7 @@
         <h2 class="hero-title">AstroGames 天文知识挑战</h2>
         <p class="subtitle">通过小游戏学习天文知识。现在已经开放第一个挑战，更多内容会陆续加入。</p>
         <div class="hero-meta">
-          <div class="hero-pill">当前已解锁：1 / {{ games|length }}</div>
+          <div class="hero-pill">当前已解锁：{{ games|selectattr('available')|list|length }} / {{ games|length }}</div>
           <button
             class="bgm-control"
             id="bgmToggle"

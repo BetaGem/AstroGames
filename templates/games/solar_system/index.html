@@ -1,0 +1,1201 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>认识太阳系</title>
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #07111d;
+        --panel: rgba(10, 20, 36, 0.92);
+        --line: rgba(157, 191, 255, 0.18);
+        --text: #edf4ff;
+        --muted: #9fb3cf;
+        --accent: #79b8ff;
+        --accent-2: #ffd36d;
+        --ok: #68d8a2;
+        --warn: #ffb76c;
+        --bad: #ff8e96;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: "PingFang SC", "Noto Sans SC", sans-serif;
+        color: var(--text);
+        background:
+          radial-gradient(circle at top, rgba(79, 118, 196, 0.28), transparent 32%),
+          radial-gradient(circle at bottom left, rgba(192, 113, 46, 0.18), transparent 28%),
+          var(--bg);
+      }
+      .wrap {
+        width: min(1120px, calc(100vw - 28px));
+        margin: 0 auto;
+        padding: 26px 0 40px;
+      }
+      .card {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: 24px;
+        padding: 24px;
+        box-shadow: 0 24px 70px rgba(0, 0, 0, 0.34);
+        backdrop-filter: blur(12px);
+      }
+      .topbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 14px;
+        flex-wrap: wrap;
+        margin-bottom: 18px;
+      }
+      .brand-kicker {
+        color: var(--muted);
+        font-size: 13px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+      .brand-title {
+        margin: 4px 0 0;
+        font-size: 20px;
+      }
+      .menu-link {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 10px 16px;
+        border-radius: 999px;
+        border: 1px solid var(--line);
+        background: rgba(121, 184, 255, 0.08);
+        color: var(--muted);
+        text-decoration: none;
+      }
+      .menu-link:hover { color: var(--text); }
+      h1 {
+        margin: 0 0 10px;
+        text-align: center;
+        font-size: clamp(30px, 5vw, 44px);
+      }
+      .subtitle {
+        margin: 0 auto 22px;
+        max-width: 720px;
+        color: var(--muted);
+        text-align: center;
+        line-height: 1.7;
+      }
+      .hero-strip {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 12px;
+        margin-bottom: 22px;
+      }
+      .hero-pill {
+        padding: 14px 16px;
+        border-radius: 18px;
+        border: 1px solid var(--line);
+        background: rgba(121, 184, 255, 0.07);
+      }
+      .hero-pill strong {
+        display: block;
+        margin-bottom: 5px;
+        color: var(--text);
+        font-size: 15px;
+      }
+      .hero-pill span {
+        color: var(--muted);
+        font-size: 14px;
+        line-height: 1.5;
+      }
+      .stage-shell {
+        display: grid;
+        grid-template-columns: 1.25fr 0.75fr;
+        gap: 18px;
+      }
+      .panel {
+        border: 1px solid var(--line);
+        border-radius: 22px;
+        background: rgba(7, 14, 26, 0.86);
+        padding: 18px;
+      }
+      .panel-title {
+        margin: 0 0 10px;
+        font-size: 18px;
+      }
+      .panel-note {
+        margin: 0 0 16px;
+        color: var(--muted);
+        line-height: 1.6;
+      }
+      .slot-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 12px;
+        margin-bottom: 16px;
+      }
+      .slot {
+        min-height: 132px;
+        padding: 12px;
+        border-radius: 20px;
+        border: 1px dashed rgba(157, 191, 255, 0.26);
+        background: rgba(121, 184, 255, 0.05);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+        text-align: center;
+        transition: all 0.18s ease;
+      }
+      .slot[data-filled="true"] {
+        border-style: solid;
+        background: rgba(121, 184, 255, 0.09);
+      }
+      .slot.drag-over {
+        border-color: rgba(255, 211, 109, 0.7);
+        background: rgba(255, 211, 109, 0.09);
+        transform: translateY(-2px);
+      }
+      .slot.correct {
+        border-color: rgba(104, 216, 162, 0.55);
+        background: rgba(104, 216, 162, 0.08);
+      }
+      .slot.wrong {
+        border-color: rgba(255, 142, 150, 0.58);
+        background: rgba(255, 142, 150, 0.08);
+      }
+      .slot-index {
+        color: var(--muted);
+        font-size: 13px;
+      }
+      .slot-placeholder {
+        color: rgba(159, 179, 207, 0.42);
+        font-size: 13px;
+      }
+      .tray {
+        min-height: 148px;
+        padding: 12px;
+        border-radius: 22px;
+        border: 1px solid var(--line);
+        background: rgba(121, 184, 255, 0.05);
+      }
+      .tray-title {
+        margin: 0 0 12px;
+        font-size: 15px;
+        color: var(--muted);
+      }
+      .card-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(124px, 1fr));
+        gap: 12px;
+      }
+      .planet-card {
+        position: relative;
+        min-height: 108px;
+        padding: 10px 10px 8px;
+        border-radius: 18px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        background: linear-gradient(180deg, rgba(19, 35, 59, 0.96), rgba(10, 18, 31, 0.98));
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        text-align: center;
+        cursor: grab;
+        user-select: none;
+      }
+      .planet-card.slot-card {
+        min-height: 72px;
+        padding: 0;
+        border: 0;
+        background: transparent;
+        box-shadow: none;
+        gap: 0;
+      }
+      .planet-card.dragging {
+        opacity: 0.52;
+      }
+      .planet-card.revealed .planet-name {
+        color: var(--text);
+        opacity: 1;
+      }
+      .planet-card.quiz-selected {
+        border-color: rgba(255, 211, 109, 0.62);
+        box-shadow: 0 0 0 2px rgba(255, 211, 109, 0.16);
+      }
+      .planet-card.quiz-correct {
+        border-color: rgba(104, 216, 162, 0.62);
+        box-shadow: 0 0 0 2px rgba(104, 216, 162, 0.14);
+      }
+      .planet-card.quiz-wrong {
+        border-color: rgba(255, 142, 150, 0.62);
+        box-shadow: 0 0 0 2px rgba(255, 142, 150, 0.12);
+      }
+      .planet-visual {
+        position: relative;
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        background: var(--planet-bg, #b5c8ff);
+        box-shadow: inset -12px -10px 18px rgba(0, 0, 0, 0.22), 0 0 18px rgba(255, 255, 255, 0.08);
+      }
+      .planet-visual-sphere {
+        position: absolute;
+        inset: 0;
+        border-radius: 50%;
+        overflow: hidden;
+      }
+      .planet-visual::after {
+        content: "";
+        position: absolute;
+        inset: 7px 9px auto auto;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.16);
+        filter: blur(1px);
+        z-index: 3;
+      }
+      .planet-visual.ringed::before {
+        content: "";
+        position: absolute;
+        inset: 50% auto auto 50%;
+        width: 68px;
+        height: 16px;
+        border-radius: 50%;
+        border: 2px solid rgba(227, 207, 164, 0.62);
+        transform: translate(-50%, -50%) rotate(-18deg);
+        z-index: 1;
+      }
+      .planet-texture,
+      .planet-clouds,
+      .planet-detail {
+        position: absolute;
+        inset: 0;
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 2;
+      }
+      .planet-clouds {
+        opacity: 0.85;
+        mix-blend-mode: screen;
+      }
+      .planet-detail {
+        opacity: 0.9;
+      }
+      .planet-hint {
+        margin-top: 4px;
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.5;
+      }
+      .planet-visual.mercury .planet-texture {
+        background:
+          radial-gradient(circle at 36% 42%, rgba(255,255,255,0.16) 0 5px, transparent 5px),
+          radial-gradient(circle at 68% 64%, rgba(40,30,28,0.28) 0 6px, transparent 6px),
+          radial-gradient(circle at 57% 20%, rgba(86,72,67,0.34) 0 7px, transparent 7px),
+          radial-gradient(circle at 20% 70%, rgba(65,54,50,0.25) 0 8px, transparent 8px);
+      }
+      .planet-visual.venus .planet-clouds {
+        background:
+          radial-gradient(circle at 50% 18%, rgba(255,240,201,0.55) 0 10px, transparent 11px),
+          linear-gradient(180deg, transparent 10%, rgba(246,216,146,0.34) 20%, transparent 32%, rgba(224,170,92,0.32) 45%, transparent 58%, rgba(245,225,174,0.34) 72%, transparent 84%);
+        transform: rotate(-14deg) scale(1.08);
+      }
+      .planet-visual.earth .planet-texture {
+        background:
+          radial-gradient(circle at 36% 40%, rgba(120, 207, 103, 0.95) 0 8px, transparent 9px),
+          radial-gradient(circle at 58% 58%, rgba(72, 170, 84, 0.96) 0 9px, transparent 10px),
+          radial-gradient(circle at 68% 28%, rgba(171, 216, 111, 0.8) 0 5px, transparent 6px);
+      }
+      .planet-visual.earth .planet-clouds {
+        background:
+          radial-gradient(circle at 28% 26%, rgba(255,255,255,0.72) 0 8px, transparent 9px),
+          radial-gradient(circle at 63% 35%, rgba(255,255,255,0.54) 0 6px, transparent 7px),
+          radial-gradient(circle at 46% 72%, rgba(255,255,255,0.48) 0 7px, transparent 8px);
+        filter: blur(1px);
+      }
+      .planet-visual.mars .planet-texture {
+        background:
+          radial-gradient(circle at 32% 46%, rgba(122, 46, 24, 0.42) 0 8px, transparent 9px),
+          radial-gradient(circle at 70% 36%, rgba(255, 187, 130, 0.24) 0 6px, transparent 7px),
+          radial-gradient(circle at 64% 70%, rgba(92, 34, 20, 0.3) 0 9px, transparent 10px);
+      }
+      .planet-visual.jupiter .planet-texture {
+        background:
+          linear-gradient(180deg, rgba(134,84,48,0.34) 10%, transparent 18%, rgba(255,236,214,0.22) 20%, transparent 30%, rgba(144,91,53,0.28) 34%, transparent 44%, rgba(255,229,200,0.18) 50%, transparent 60%, rgba(146,88,55,0.24) 66%, transparent 78%);
+      }
+      .planet-visual.jupiter .planet-detail {
+        background: radial-gradient(circle at 70% 62%, rgba(196, 104, 66, 0.85) 0 6px, transparent 7px);
+      }
+      .planet-visual.saturn .planet-texture {
+        background:
+          linear-gradient(180deg, rgba(181,145,83,0.28) 14%, transparent 24%, rgba(246,230,183,0.18) 28%, transparent 40%, rgba(170,132,71,0.22) 46%, transparent 58%, rgba(247,228,176,0.18) 64%, transparent 78%);
+      }
+      .planet-visual.uranus .planet-texture {
+        background:
+          linear-gradient(180deg, rgba(213,255,255,0.16) 18%, transparent 30%, rgba(127,225,220,0.2) 44%, transparent 56%, rgba(194,248,244,0.18) 70%, transparent 82%);
+      }
+      .planet-visual.neptune .planet-texture {
+        background:
+          linear-gradient(180deg, rgba(210,235,255,0.16) 14%, transparent 26%, rgba(72,123,223,0.25) 38%, transparent 52%, rgba(173,210,255,0.14) 64%, transparent 78%);
+      }
+      .planet-visual.neptune .planet-detail {
+        background: radial-gradient(circle at 40% 62%, rgba(41, 74, 168, 0.46) 0 8px, transparent 9px);
+      }
+      .planet-name {
+        min-height: 18px;
+        font-weight: 700;
+        font-size: 14px;
+        color: rgba(237, 244, 255, 0.08);
+        opacity: 0.15;
+        transition: all 0.16s ease;
+      }
+      .planet-name.is-hidden {
+        visibility: hidden;
+      }
+      .hint-button {
+        border: 1px solid rgba(157, 191, 255, 0.24);
+        border-radius: 999px;
+        padding: 5px 9px;
+        color: var(--accent);
+        background: rgba(121, 184, 255, 0.08);
+        font-size: 11px;
+        cursor: pointer;
+      }
+      .action-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 16px;
+      }
+      .button {
+        border: 0;
+        border-radius: 999px;
+        padding: 11px 18px;
+        font-size: 15px;
+        color: white;
+        background: linear-gradient(135deg, #5f96ff, #7dc8ff);
+        cursor: pointer;
+      }
+      .button.alt {
+        color: var(--muted);
+        border: 1px solid var(--line);
+        background: rgba(121, 184, 255, 0.08);
+      }
+      .status-box {
+        margin-top: 14px;
+        min-height: 52px;
+        padding: 12px 14px;
+        border-radius: 16px;
+        border: 1px solid rgba(157, 191, 255, 0.14);
+        background: rgba(121, 184, 255, 0.06);
+        color: var(--muted);
+        line-height: 1.6;
+      }
+      .status-box.good {
+        color: #d8fff0;
+        border-color: rgba(104, 216, 162, 0.3);
+        background: rgba(104, 216, 162, 0.08);
+      }
+      .status-box.bad {
+        color: #ffe0e2;
+        border-color: rgba(255, 142, 150, 0.28);
+        background: rgba(255, 142, 150, 0.08);
+      }
+      .progress {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 12px 14px;
+        border-radius: 16px;
+        border: 1px solid var(--line);
+        background: rgba(121, 184, 255, 0.06);
+        margin-bottom: 14px;
+      }
+      .progress strong {
+        display: block;
+        margin-bottom: 4px;
+      }
+      .progress span { color: var(--muted); font-size: 14px; }
+      .quiz-cards {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 12px;
+      }
+      .quiz-cards .planet-card {
+        cursor: pointer;
+      }
+      .question-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 7px 12px;
+        border-radius: 999px;
+        background: rgba(255, 211, 109, 0.1);
+        color: var(--accent-2);
+        font-size: 13px;
+        margin-bottom: 12px;
+      }
+      .question-title {
+        margin: 0 0 8px;
+        font-size: 22px;
+      }
+      .question-note,
+      .explanation {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.6;
+      }
+      .score-ring {
+        width: 132px;
+        height: 132px;
+        margin: 10px auto 16px;
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        border: 7px solid rgba(121, 184, 255, 0.18);
+        background: radial-gradient(circle at top, rgba(121, 184, 255, 0.14), rgba(10, 20, 36, 0.18));
+        font-size: 34px;
+        font-weight: 700;
+      }
+      .summary-list {
+        display: grid;
+        gap: 10px;
+      }
+      .summary-item {
+        padding: 12px 14px;
+        border-radius: 16px;
+        border: 1px solid var(--line);
+        background: rgba(121, 184, 255, 0.05);
+      }
+      .summary-item strong {
+        display: block;
+        margin-bottom: 4px;
+      }
+      .hidden { display: none !important; }
+      .footer {
+        margin-top: 24px;
+        text-align: center;
+        font-size: 14px;
+      }
+      .footer-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        color: rgba(157, 179, 207, 0.62);
+        text-decoration: none;
+      }
+      .footer-icon {
+        width: 15px;
+        height: 15px;
+        fill: currentColor;
+        opacity: 0.85;
+      }
+      @media (max-width: 920px) {
+        .stage-shell { grid-template-columns: 1fr; }
+      }
+      @media (max-width: 760px) {
+        .slot-grid,
+        .quiz-cards {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+      @media (max-width: 520px) {
+        .wrap { width: min(100vw - 18px, 1000px); }
+        .card { padding: 18px; }
+        .slot-grid,
+        .quiz-cards,
+        .card-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="wrap">
+      <section class="card">
+        <div class="topbar">
+          <div>
+            <div class="brand-kicker">AstroGames</div>
+            <p class="brand-title">小游戏 01</p>
+          </div>
+          <a class="menu-link" href="{{ url_for('home') }}">返回主菜单</a>
+        </div>
+
+        <h1>认识太阳系</h1>
+        <p class="subtitle">先将八大行星按离太阳由近到远排序，再完成 10 道随机知识问答。</p>
+
+        <div class="stage-shell">
+          <section class="panel" id="stageOnePanel">
+            <h2 class="panel-title">第一轮：八大行星归位</h2>
+            <p class="panel-note">把行星卡片按顺序拖进 8 个虚线框中。全部排对后自动进入下一轮。</p>
+
+            <div class="slot-grid" id="slotGrid"></div>
+
+            <div class="tray">
+              <p class="tray-title">待排序行星卡</p>
+              <div class="card-grid" id="tray"></div>
+            </div>
+
+            <div class="action-row">
+              <button class="button alt" id="checkOrderButton" type="button">立即检查</button>
+              <button class="button alt" id="resetOrderButton" type="button">重新开始</button>
+            </div>
+
+            <div class="status-box" id="stageOneStatus">先试试看，不用急着点提示。你可以先根据外观和已知特征排一遍。</div>
+          </section>
+
+          <section class="panel" id="stageTwoPanel">
+            <div id="stageTwoLocked">
+              <h2 class="panel-title">第二轮：太阳系小测验</h2>
+              <p class="panel-note">第一轮完成后解锁。回答 10 道随机知识问答。</p>
+            </div>
+
+            <div id="quizArea" class="hidden">
+              <div class="progress">
+                <div>
+                  <strong id="quizProgressTitle">第 1 / 10 题</strong>
+                  <span id="quizProgressMeta">当前得分：0</span>
+                </div>
+                <button class="button alt hidden" id="nextQuestionButton" type="button">下一题</button>
+              </div>
+
+              <div class="question-badge" id="questionTypeBadge">单选题</div>
+              <h2 class="question-title" id="questionTitle">题目加载中...</h2>
+
+              <div class="quiz-cards" id="quizCards"></div>
+
+              <div class="action-row">
+                <button class="button" id="submitQuizAnswerButton" type="button">提交答案</button>
+                <button class="button alt" id="clearSelectionButton" type="button">清空选择</button>
+              </div>
+
+              <div class="status-box" id="quizStatus">题目会从常识题库中随机抽取。单选题只能选一颗，多选题可以选多颗。</div>
+              <p class="explanation hidden" id="quizExplanation"></p>
+            </div>
+
+            <div id="quizSummary" class="hidden">
+              <h2 class="panel-title">本轮总结</h2>
+              <div class="score-ring" id="scoreRing">0</div>
+              <p class="panel-note" id="summaryText"></p>
+              <div class="summary-list" id="summaryList"></div>
+              <div class="action-row">
+                <button class="button" id="restartGameButton" type="button">再玩一次</button>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <div class="footer">
+          <a class="footer-link" href="https://github.com/BetaGem/AstroGames" target="_blank" rel="noreferrer" aria-label="Project source on GitHub">
+            <svg class="footer-icon" viewBox="0 0 16 16" aria-hidden="true">
+              <path d="M8 0C3.58 0 0 3.58 0 8a8 8 0 0 0 5.47 7.59c.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.5-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82A7.7 7.7 0 0 1 8 4.77c.68 0 1.37.09 2.01.27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8 8 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/>
+            </svg>
+            <span>Source</span>
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      const planetCatalog = [
+        {
+          id: "mercury",
+          name: "水星",
+          order: 1,
+          visualClass: "mercury",
+          visualStyle: "background: radial-gradient(circle at 35% 30%, #ded8cf, #8d7f73 68%, #584e49 100%);",
+          facts: ["smallest", "inner", "rocky"],
+        },
+        {
+          id: "venus",
+          name: "金星",
+          order: 2,
+          visualClass: "venus",
+          visualStyle: "background: radial-gradient(circle at 35% 30%, #f3d59a, #cc9354 70%, #8a5830 100%);",
+          facts: ["hottest", "inner", "rocky"],
+        },
+        {
+          id: "earth",
+          name: "地球",
+          order: 3,
+          visualClass: "earth",
+          visualStyle: "background: radial-gradient(circle at 35% 30%, #bde7ff, #2a7fcb 62%, #145384 100%);",
+          facts: ["life", "inner", "rocky"],
+        },
+        {
+          id: "mars",
+          name: "火星",
+          order: 4,
+          visualClass: "mars",
+          visualStyle: "background: radial-gradient(circle at 35% 30%, #ffbd8d, #cb6944 64%, #7b3322 100%);",
+          facts: ["red", "inner", "rocky"],
+        },
+        {
+          id: "jupiter",
+          name: "木星",
+          order: 5,
+          visualClass: "jupiter",
+          visualStyle: "background: linear-gradient(180deg, #e7c9a7, #d89762 25%, #f2d9bc 45%, #b57145 68%, #f4d6ae 100%);",
+          facts: ["largest", "gas_giant", "outer"],
+        },
+        {
+          id: "saturn",
+          name: "土星",
+          order: 6,
+          visualClass: "saturn ringed",
+          visualStyle: "background: radial-gradient(circle at 35% 30%, #f1deb0, #c7aa67 68%, #8f7342 100%);",
+          facts: ["rings", "gas_giant", "outer"],
+        },
+        {
+          id: "uranus",
+          name: "天王星",
+          order: 7,
+          visualClass: "uranus",
+          visualStyle: "background: radial-gradient(circle at 35% 30%, #d3fbff, #7cd5d9 65%, #3b8b93 100%);",
+          facts: ["ice_giant", "outer", "tilted"],
+        },
+        {
+          id: "neptune",
+          name: "海王星",
+          order: 8,
+          visualClass: "neptune",
+          visualStyle: "background: radial-gradient(circle at 35% 30%, #bfe2ff, #457dd8 62%, #183d8c 100%);",
+          facts: ["farthest", "ice_giant", "outer", "windy"],
+        },
+      ];
+
+      const questionBank = [
+        {
+          id: "asteroid-belt",
+          type: "multi",
+          prompt: "小行星带位于哪两颗行星之间？",
+          answers: ["mars", "jupiter"],
+          explanation: "小行星带位于火星和木星的轨道之间。范围大约是距离太阳2.17到3.64天文单位。",
+        },
+        {
+          id: "kuiper-belt",
+          type: "single",
+          prompt: "柯伊伯带位于哪颗行星之外？",
+          answers: ["neptune"],
+          explanation: "柯伊伯带是一个小型冰冻天体聚集的区域，位于海王星轨道之外，距离太阳大约30到55天文单位之间。",
+        },
+        {
+          id: "closest",
+          type: "single",
+          prompt: "离太阳最近的行星是哪一颗？",
+          answers: ["mercury"],
+          explanation: "水星是距离太阳最近的行星，平均距离约为5790万公里。",
+        },
+        {
+          id: "smallest",
+          type: "single",
+          prompt: "最小的行星是哪一颗？",
+          answers: ["mercury"],
+          explanation: "水星是太阳系八大行星中体积和质量都最小的一颗。",
+        },
+        {
+          id: "largest",
+          type: "single",
+          prompt: "最大的行星是哪一颗？",
+          answers: ["jupiter"],
+          explanation: "木星是太阳系里最大的行星，体积可以装下1300多个地球。",
+        },
+        {
+          id: "hottest",
+          type: "single",
+          prompt: "最热的行星是哪一颗？",
+          answers: ["venus"],
+          explanation: "虽然水星离太阳最近，但金星的浓厚大气引发了强烈温室效应，平均温度比水星更高。",
+        },
+        {
+          id: "rocky-planets",
+          type: "multi",
+          prompt: "岩石行星有哪些？",
+          answers: ["mercury", "venus", "earth", "mars"],
+          explanation: "水星、金星、地球、火星属于内侧的类地行星，也就是岩石行星。",
+        },
+        {
+          id: "rings",
+          type: "single",
+          prompt: "哪颗行星以最显眼的光环著称？",
+          answers: ["saturn"],
+          explanation: "土星的环最醒目，也是很多人一眼就能认出来的行星特征。",
+        },
+        {
+          id: "blue-green",
+          type: "single",
+          prompt: "自转轴倾斜很大的是哪颗行星？",
+          answers: ["uranus"],
+          explanation: "天王星的自转轴倾角约98度，几乎与其公转轨道平面平行，是“躺着转”的行星。",
+        },
+        {
+          id: "red",
+          type: "single",
+          prompt: "被称为“红色星球”的是哪一颗？",
+          answers: ["mars"],
+          explanation: "火星表面富含氧化铁，因此整体看起来偏红。",
+        },
+        {
+          id: "ice-giants",
+          type: "multi",
+          prompt: "冰巨星有哪些？",
+          answers: ["uranus", "neptune"],
+          explanation: "天王星和海王星通常被归为冰巨星，它们内部含有更多“冰”成分，如水冰、固态的氨和甲烷等。",
+        },
+        {
+          id: "cloudiest",
+          type: "single",
+          prompt: "哪颗岩石行星被厚厚的大气包裹，表面很难直接看到？",
+          answers: ["venus"],
+          explanation: "金星有非常浓厚的大气和云层，它虽然明亮，却很难直接看到表面。",
+        },
+        {
+          id: "cratered",
+          type: "single",
+          prompt: "哪颗行星表面布满陨石坑，外观看起来最像灰色岩石球？",
+          answers: ["mercury"],
+          explanation: "水星几乎没有大气层保护，保留了大量古老的撞击坑。",
+        },
+        {
+          id: "great-red-spot",
+          type: "single",
+          prompt: "哪颗行星以巨大的条纹和“大红斑”最有名？",
+          answers: ["jupiter"],
+          explanation: "木星表面的条纹来自大气流动，而大红斑则是一场持续多年的巨大风暴。",
+        },
+        {
+          id: "history",
+          type: "single",
+          prompt: "哪颗行星被称为“笔尖上的行星”？",
+          answers: ["neptune"],
+          explanation: "天文学者利用天王星轨道的摄动现象推测出了海王星的存在与可能的位置，最终被证实，因而它被称为“笔尖上算出的行星”。",
+        },
+        {
+          id: "satellite-free",
+          type: "multi",
+          prompt: "哪些行星没有天然卫星环绕？",
+          answers: ["mercury", "venus"],
+          explanation: "水星、金星没有天然卫星。地球有一颗（月球），火星有两颗（火卫一、火卫二），其他四颗巨行星都有众多卫星。",
+        }
+      ];
+
+      const slotGrid = document.getElementById("slotGrid");
+      const tray = document.getElementById("tray");
+      const stageOneStatus = document.getElementById("stageOneStatus");
+      const checkOrderButton = document.getElementById("checkOrderButton");
+      const resetOrderButton = document.getElementById("resetOrderButton");
+
+      const stageTwoLocked = document.getElementById("stageTwoLocked");
+      const quizArea = document.getElementById("quizArea");
+      const quizSummary = document.getElementById("quizSummary");
+      const quizCards = document.getElementById("quizCards");
+      const quizProgressTitle = document.getElementById("quizProgressTitle");
+      const quizProgressMeta = document.getElementById("quizProgressMeta");
+      const questionTypeBadge = document.getElementById("questionTypeBadge");
+      const questionTitle = document.getElementById("questionTitle");
+      const quizStatus = document.getElementById("quizStatus");
+      const quizExplanation = document.getElementById("quizExplanation");
+      const submitQuizAnswerButton = document.getElementById("submitQuizAnswerButton");
+      const clearSelectionButton = document.getElementById("clearSelectionButton");
+      const nextQuestionButton = document.getElementById("nextQuestionButton");
+      const scoreRing = document.getElementById("scoreRing");
+      const summaryText = document.getElementById("summaryText");
+      const summaryList = document.getElementById("summaryList");
+      const restartGameButton = document.getElementById("restartGameButton");
+
+      const state = {
+        revealed: new Set(),
+        orderSlots: Array(planetCatalog.length).fill(null),
+        trayOrder: [],
+        stageOneComplete: false,
+        quizQuestions: [],
+        currentQuestionIndex: 0,
+        quizSelection: new Set(),
+        score: 0,
+        quizAnswered: false,
+        quizResults: [],
+      };
+
+      function shuffle(array) {
+        const cloned = [...array];
+        for (let index = cloned.length - 1; index > 0; index -= 1) {
+          const swapIndex = Math.floor(Math.random() * (index + 1));
+          [cloned[index], cloned[swapIndex]] = [cloned[swapIndex], cloned[index]];
+        }
+        return cloned;
+      }
+
+      function createPlanetCard(planet, context) {
+        const card = document.createElement("div");
+        card.className = `planet-card${context === "slot" ? " slot-card" : ""}`;
+        card.draggable = context === "tray" || context === "slot";
+        card.dataset.planetId = planet.id;
+        const showName = context === "quiz" || context === "tray" || state.stageOneComplete;
+        const showHintButton = context === "tray" && !state.stageOneComplete;
+        const isRevealed = state.revealed.has(planet.id) || state.stageOneComplete || context === "quiz";
+        const nameText = isRevealed ? planet.name : "";
+        card.innerHTML = `
+          <div class="planet-visual ${planet.visualClass}" style="${planet.visualStyle}">
+            <span class="planet-visual-sphere">
+              <span class="planet-texture"></span>
+              <span class="planet-clouds"></span>
+              <span class="planet-detail"></span>
+            </span>
+          </div>
+          ${showName ? `<div class="planet-name ${nameText ? "" : "is-hidden"}">${nameText}</div>` : ""}
+          ${showHintButton ? '<button class="hint-button" type="button">提示</button>' : ""}
+        `;
+
+        if (isRevealed) {
+          card.classList.add("revealed");
+        }
+
+        if (context === "tray" || context === "slot") {
+          card.addEventListener("dragstart", (event) => {
+            card.classList.add("dragging");
+            event.dataTransfer.setData("text/plain", planet.id);
+          });
+          card.addEventListener("dragend", () => {
+            card.classList.remove("dragging");
+          });
+          const hintButton = card.querySelector(".hint-button");
+          if (hintButton) {
+            hintButton.addEventListener("click", (event) => {
+              event.stopPropagation();
+              state.revealed.add(planet.id);
+              renderStageOne();
+            });
+          }
+        } else {
+          card.addEventListener("click", () => {
+            if (state.quizAnswered) {
+              return;
+            }
+            toggleQuizSelection(planet.id);
+          });
+        }
+
+        return card;
+      }
+
+      function attachDropBehavior(target, onDropPlanet) {
+        target.addEventListener("dragover", (event) => {
+          event.preventDefault();
+          target.classList.add("drag-over");
+        });
+        target.addEventListener("dragleave", () => {
+          target.classList.remove("drag-over");
+        });
+        target.addEventListener("drop", (event) => {
+          event.preventDefault();
+          target.classList.remove("drag-over");
+          const planetId = event.dataTransfer.getData("text/plain");
+          if (!planetId) {
+            return;
+          }
+          onDropPlanet(planetId);
+        });
+      }
+
+      function movePlanetToSlot(planetId, slotIndex) {
+        const existingSlotIndex = state.orderSlots.findIndex((value) => value === planetId);
+        if (existingSlotIndex >= 0) {
+          state.orderSlots[existingSlotIndex] = null;
+        } else {
+          state.trayOrder = state.trayOrder.filter((id) => id !== planetId);
+        }
+
+        const displacedPlanet = state.orderSlots[slotIndex];
+        if (displacedPlanet) {
+          state.trayOrder.push(displacedPlanet);
+        }
+
+        state.orderSlots[slotIndex] = planetId;
+        renderStageOne();
+        if (!state.stageOneComplete && !state.orderSlots.includes(null)) {
+          evaluateOrderStage();
+        }
+      }
+
+      function movePlanetToTray(planetId) {
+        const existingSlotIndex = state.orderSlots.findIndex((value) => value === planetId);
+        if (existingSlotIndex >= 0) {
+          state.orderSlots[existingSlotIndex] = null;
+        }
+        if (!state.trayOrder.includes(planetId)) {
+          state.trayOrder.push(planetId);
+        }
+        renderStageOne();
+      }
+
+      function renderStageOne(feedback = null) {
+        slotGrid.innerHTML = "";
+        tray.innerHTML = "";
+
+        state.orderSlots.forEach((planetId, index) => {
+          const slot = document.createElement("div");
+          slot.className = "slot";
+          slot.dataset.filled = planetId ? "true" : "false";
+          if (feedback) {
+            if (feedback.correctSlots.includes(index)) {
+              slot.classList.add("correct");
+            } else if (planetId) {
+              slot.classList.add("wrong");
+            }
+          }
+          slot.innerHTML = `<div class="slot-index">第 ${index + 1} 位</div>`;
+          if (planetId) {
+            const planet = planetCatalog.find((item) => item.id === planetId);
+            slot.appendChild(createPlanetCard(planet, "slot"));
+          } else {
+            const placeholder = document.createElement("div");
+            placeholder.className = "slot-placeholder";
+            placeholder.textContent = index === 0 ? "离太阳最近" : index === 7 ? "离太阳最远" : "拖到这里";
+            slot.appendChild(placeholder);
+          }
+          attachDropBehavior(slot, (droppedPlanetId) => movePlanetToSlot(droppedPlanetId, index));
+          slotGrid.appendChild(slot);
+        });
+
+        const trayDropZone = document.createElement("div");
+        trayDropZone.className = "card-grid";
+        attachDropBehavior(trayDropZone, movePlanetToTray);
+        state.trayOrder.forEach((planetId) => {
+          const planet = planetCatalog.find((item) => item.id === planetId);
+          trayDropZone.appendChild(createPlanetCard(planet, "tray"));
+        });
+        tray.appendChild(trayDropZone);
+      }
+
+      function evaluateOrderStage() {
+        if (state.orderSlots.includes(null)) {
+          stageOneStatus.className = "status-box bad";
+          stageOneStatus.textContent = "还有空位没填完，先把 8 张卡片都放进顺序槽里吧。";
+          renderStageOne();
+          return;
+        }
+
+        const correctSlots = [];
+        let allCorrect = true;
+        state.orderSlots.forEach((planetId, index) => {
+          const planet = planetCatalog.find((item) => item.id === planetId);
+          if (planet.order === index + 1) {
+            correctSlots.push(index);
+          } else {
+            allCorrect = false;
+          }
+        });
+
+        renderStageOne({ correctSlots });
+
+        if (!allCorrect) {
+          stageOneStatus.className = "status-box bad";
+          stageOneStatus.textContent = `目前有 ${correctSlots.length} 个位置正确。点击「重新开始」重置游戏。`;
+          return;
+        }
+
+        state.stageOneComplete = true;
+        planetCatalog.forEach((planet) => state.revealed.add(planet.id));
+        state.orderSlots = [...planetCatalog].sort((a, b) => a.order - b.order).map((planet) => planet.id);
+        state.trayOrder = [];
+        renderStageOne({ correctSlots: planetCatalog.map((_, index) => index) });
+        stageOneStatus.className = "status-box good";
+        stageOneStatus.textContent = "顺序完全正确。八大行星已经归位，下面进入第二轮小测验。";
+        unlockQuizStage();
+      }
+
+      function buildQuizQuestions() {
+        return shuffle(questionBank).slice(0, 10);
+      }
+
+      function unlockQuizStage() {
+        stageTwoLocked.classList.add("hidden");
+        quizArea.classList.remove("hidden");
+        quizSummary.classList.add("hidden");
+        state.quizQuestions = buildQuizQuestions();
+        state.currentQuestionIndex = 0;
+        state.quizSelection = new Set();
+        state.score = 0;
+        state.quizAnswered = false;
+        state.quizResults = [];
+        renderQuizQuestion();
+      }
+
+      function renderQuizCards() {
+        quizCards.innerHTML = "";
+        const currentQuestion = state.quizQuestions[state.currentQuestionIndex];
+        planetCatalog.forEach((planet) => {
+          const card = createPlanetCard(planet, "quiz");
+          card.classList.add("revealed");
+          if (state.quizSelection.has(planet.id)) {
+            card.classList.add("quiz-selected");
+          }
+          if (state.quizAnswered) {
+            const isCorrectAnswer = currentQuestion.answers.includes(planet.id);
+            if (isCorrectAnswer) {
+              card.classList.add("quiz-correct");
+            } else if (state.quizSelection.has(planet.id)) {
+              card.classList.add("quiz-wrong");
+            }
+          }
+          quizCards.appendChild(card);
+        });
+      }
+
+      function renderQuizQuestion() {
+        const currentQuestion = state.quizQuestions[state.currentQuestionIndex];
+        state.quizSelection = new Set();
+        state.quizAnswered = false;
+        quizExplanation.classList.add("hidden");
+        quizExplanation.textContent = "";
+        nextQuestionButton.classList.add("hidden");
+        submitQuizAnswerButton.disabled = false;
+
+        quizProgressTitle.textContent = `第 ${state.currentQuestionIndex + 1} / ${state.quizQuestions.length} 题`;
+        quizProgressMeta.textContent = `当前得分：${state.score}`;
+        questionTypeBadge.textContent = currentQuestion.type === "single" ? "单选题" : "多选题";
+        questionTitle.textContent = currentQuestion.prompt;
+        quizStatus.className = "status-box";
+        quizStatus.textContent = currentQuestion.type === "single"
+          ? "从 8 张行星卡里选出 1 张最符合题意的。"
+          : "这是一道多选题，可能有多颗行星同时符合。";
+
+        renderQuizCards();
+      }
+
+      function toggleQuizSelection(planetId) {
+        const currentQuestion = state.quizQuestions[state.currentQuestionIndex];
+        if (currentQuestion.type === "single") {
+          state.quizSelection = new Set([planetId]);
+        } else if (state.quizSelection.has(planetId)) {
+          state.quizSelection.delete(planetId);
+        } else {
+          state.quizSelection.add(planetId);
+        }
+        renderQuizCards();
+      }
+
+      function compareAnswers(actualAnswers, selectedAnswers) {
+        if (actualAnswers.length !== selectedAnswers.length) {
+          return false;
+        }
+        return actualAnswers.every((answer) => selectedAnswers.includes(answer));
+      }
+
+      function submitQuizAnswer() {
+        const currentQuestion = state.quizQuestions[state.currentQuestionIndex];
+        const selectedAnswers = [...state.quizSelection];
+
+        if (selectedAnswers.length === 0) {
+          quizStatus.className = "status-box bad";
+          quizStatus.textContent = "先选出你认为正确的行星，再提交答案。";
+          return;
+        }
+
+        state.quizAnswered = true;
+        submitQuizAnswerButton.disabled = true;
+        const isCorrect = compareAnswers(currentQuestion.answers, selectedAnswers);
+        if (isCorrect) {
+          state.score += 1;
+        }
+
+        state.quizResults.push({
+          prompt: currentQuestion.prompt,
+          isCorrect,
+          explanation: currentQuestion.explanation,
+        });
+
+        quizProgressMeta.textContent = `当前得分：${state.score}`;
+        quizStatus.className = `status-box ${isCorrect ? "good" : "bad"}`;
+        quizStatus.textContent = isCorrect
+          ? "回答正确。"
+          : `这道题没有答对，正确答案是：${currentQuestion.answers.map((id) => planetCatalog.find((planet) => planet.id === id).name).join("、")}。`;
+        quizExplanation.classList.remove("hidden");
+        quizExplanation.textContent = currentQuestion.explanation;
+        renderQuizCards();
+
+        if (state.currentQuestionIndex < state.quizQuestions.length - 1) {
+          nextQuestionButton.classList.remove("hidden");
+        } else {
+          nextQuestionButton.classList.add("hidden");
+          setTimeout(showQuizSummary, 450);
+        }
+      }
+
+      function nextQuestion() {
+        state.currentQuestionIndex += 1;
+        renderQuizQuestion();
+      }
+
+      function getSummaryComment(score) {
+        if (score === 10) {
+          return "满分通关。你已经熟练掌握太阳系的基础知识了。";
+        }
+        if (score >= 8) {
+          return "很不错，太阳系的基础知识你已经掌握得很扎实。";
+        }
+        if (score >= 6) {
+          return "你已经对太阳系有了基本的了解，继续努力！";
+        }
+        return "再复习一下太阳系的相关知识，争取下次做得更好！";
+      }
+
+      function showQuizSummary() {
+        quizArea.classList.add("hidden");
+        quizSummary.classList.remove("hidden");
+        scoreRing.textContent = `${state.score}/10`;
+        summaryText.textContent = getSummaryComment(state.score);
+        summaryList.innerHTML = "";
+        state.quizResults.forEach((result, index) => {
+          const item = document.createElement("div");
+          item.className = "summary-item";
+          item.innerHTML = `
+            <strong>第 ${index + 1} 题：${result.isCorrect ? "回答正确" : "回答有误"}</strong>
+            <div>${result.prompt}</div>
+            <div class="planet-hint">${result.explanation}</div>
+          `;
+          summaryList.appendChild(item);
+        });
+      }
+
+      function restartGame() {
+        state.revealed = new Set();
+        state.orderSlots = Array(planetCatalog.length).fill(null);
+        state.trayOrder = shuffle(planetCatalog.map((planet) => planet.id));
+        state.stageOneComplete = false;
+        state.quizQuestions = [];
+        state.currentQuestionIndex = 0;
+        state.quizSelection = new Set();
+        state.score = 0;
+        state.quizAnswered = false;
+        state.quizResults = [];
+
+        stageOneStatus.className = "status-box";
+        stageOneStatus.textContent = "新的一轮开始了。先把八大行星重新排好吧。";
+        stageTwoLocked.classList.remove("hidden");
+        quizArea.classList.add("hidden");
+        quizSummary.classList.add("hidden");
+        renderStageOne();
+      }
+
+      checkOrderButton.addEventListener("click", evaluateOrderStage);
+      resetOrderButton.addEventListener("click", restartGame);
+      submitQuizAnswerButton.addEventListener("click", submitQuizAnswer);
+      clearSelectionButton.addEventListener("click", () => {
+        if (state.quizAnswered) {
+          return;
+        }
+        state.quizSelection = new Set();
+        renderQuizCards();
+      });
+      nextQuestionButton.addEventListener("click", nextQuestion);
+      restartGameButton.addEventListener("click", restartGame);
+
+      restartGame();
+    </script>
+  </body>
+</html>
