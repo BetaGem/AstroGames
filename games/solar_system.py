@@ -7,7 +7,7 @@ GAME_INFO = {
     "slug": "solar-system",
     "title": "认识太阳系",
     "tagline": "难度：★☆☆☆☆",
-    "description": "先把八大行星按顺序归位，再完成 10 道太阳系小测验。",
+    "description": "太阳系基础知识小测验。快来试试你对太阳系的了解程度吧！",
     "status": "live",
     "badge": "已解锁",
     "available": True,

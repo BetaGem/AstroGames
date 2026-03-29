@@ -9,6 +9,9 @@
   --muted: #97a9c4;
   --accent: #8fc7ff;
   --accent-strong: #70a9ff;
+  --warm: #f1b56d;
+  --warm-soft: rgba(241, 181, 109, 0.12);
+  --warm-glow: rgba(216, 129, 68, 0.18);
 }
 
 * { box-sizing: border-box; }
@@ -23,7 +26,8 @@ body {
   background:
     radial-gradient(circle at top, rgba(56, 93, 165, 0.28), transparent 30%),
     radial-gradient(circle at 85% 15%, rgba(68, 119, 180, 0.18), transparent 22%),
-    radial-gradient(circle at bottom right, rgba(165, 102, 54, 0.2), transparent 26%),
+    radial-gradient(circle at bottom right, rgba(186, 116, 59, 0.24), transparent 26%),
+    radial-gradient(circle at 18% 82%, rgba(205, 143, 87, 0.09), transparent 20%),
     var(--bg);
 }
 
@@ -232,6 +236,7 @@ a {
   border-radius: 30px;
   background:
     linear-gradient(135deg, rgba(20, 38, 68, 0.98), rgba(11, 22, 40, 0.94)),
+    radial-gradient(circle at 82% 22%, rgba(236, 172, 102, 0.08), transparent 24%),
     var(--panel-strong);
   box-shadow: 0 24px 80px rgba(0, 0, 0, 0.35);
 }
@@ -243,7 +248,18 @@ a {
   width: 320px;
   height: 320px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(140, 199, 255, 0.2), transparent 65%);
+  background: radial-gradient(circle, rgba(140, 199, 255, 0.18), transparent 62%);
+  pointer-events: none;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: -22% auto auto 72%;
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(241, 181, 109, 0.16), transparent 68%);
   pointer-events: none;
 }
 
@@ -287,7 +303,8 @@ a {
   padding: 10px 14px;
   border-radius: 999px;
   border: 1px solid var(--line);
-  background: rgba(143, 199, 255, 0.05);
+  background:
+    linear-gradient(135deg, rgba(143, 199, 255, 0.05), rgba(241, 181, 109, 0.04));
   color: var(--muted);
   font-size: 14px;
 }
@@ -327,6 +344,7 @@ a {
   border-radius: 24px;
   background:
     linear-gradient(180deg, rgba(18, 35, 60, 0.92), rgba(11, 22, 38, 0.94)),
+    radial-gradient(circle at 88% 14%, rgba(241, 181, 109, 0.06), transparent 22%),
     var(--panel);
   box-shadow: 0 16px 44px rgba(0, 0, 0, 0.26);
   transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
@@ -334,8 +352,10 @@ a {
 
 .game-card.available:hover {
   transform: translateY(-4px);
-  border-color: var(--line-strong);
-  box-shadow: 0 20px 56px rgba(0, 0, 0, 0.34);
+  border-color: rgba(168, 187, 224, 0.44);
+  box-shadow:
+    0 20px 56px rgba(0, 0, 0, 0.34),
+    0 0 0 1px rgba(241, 181, 109, 0.08);
 }
 
 .game-card.locked {
@@ -368,14 +388,14 @@ a {
   border-radius: 999px;
   font-size: 12px;
   color: var(--text);
-  border: 1px solid rgba(143, 199, 255, 0.16);
-  background: rgba(143, 199, 255, 0.08);
+  border: 1px solid rgba(180, 196, 235, 0.18);
+  background: linear-gradient(135deg, rgba(143, 199, 255, 0.08), rgba(241, 181, 109, 0.07));
 }
 
 .game-status.locked {
   color: rgba(214, 210, 196, 0.86);
-  border-color: rgba(255, 207, 116, 0.12);
-  background: rgba(255, 207, 116, 0.05);
+  border-color: rgba(241, 181, 109, 0.18);
+  background: rgba(241, 181, 109, 0.06);
 }
 
 .game-icon {
@@ -384,8 +404,8 @@ a {
   display: grid;
   place-items: center;
   border-radius: 14px;
-  background: rgba(143, 199, 255, 0.08);
-  border: 1px solid rgba(143, 199, 255, 0.16);
+  background: linear-gradient(135deg, rgba(143, 199, 255, 0.08), rgba(241, 181, 109, 0.06));
+  border: 1px solid rgba(175, 193, 232, 0.18);
   color: var(--accent);
   font-size: 18px;
 }
@@ -425,8 +445,8 @@ a {
 
 .game-link {
   color: white;
-  background: linear-gradient(135deg, var(--accent-strong), #83c7ff);
-  box-shadow: 0 10px 24px rgba(112, 169, 255, 0.24);
+  background: linear-gradient(135deg, var(--accent-strong), #83c7ff 72%, #eab26e);
+  box-shadow: 0 10px 24px rgba(112, 169, 255, 0.22);
 }
 
 .game-disabled {
@@ -437,7 +457,7 @@ a {
 
 .coming-soon {
   margin-top: 8px;
-  color: rgba(255, 207, 116, 0.62);
+  color: rgba(241, 181, 109, 0.72);
   font-size: 13px;
 }
 
