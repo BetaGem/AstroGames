@@ -19,7 +19,7 @@
       <section class="hero">
         <div class="eyebrow">Astronomy Mini Games</div>
         <h2 class="hero-title">AstroGames 天文知识挑战</h2>
-        <p class="subtitle">通过小游戏学习天文知识。现在已经开放第一个挑战，更多内容会陆续加入。</p>
+        <p class="subtitle">通过小游戏学习天文知识，探索宇宙奥秘</p>
         <div class="hero-meta">
           <div class="hero-pill">当前已解锁：{{ games|selectattr('available')|list|length }} / {{ games|length }}</div>
           <button
@@ -47,7 +47,7 @@
 
       <section class="grid">
         {% for game in games %}
-        <article class="game-card {% if game.available %}available{% else %}locked{% endif %}">
+        <article class="game-card {% if game.available %}available{% else %}locked{% endif %}{% if game.featured %} featured{% endif %}">
           <div class="game-top">
             <div class="game-icon">{% if game.available %}✦{% else %}◎{% endif %}</div>
             <div class="game-status {% if not game.available %}locked{% endif %}">{{ game.badge }}</div>

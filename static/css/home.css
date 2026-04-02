@@ -233,7 +233,7 @@ a {
   overflow: hidden;
   padding: 30px;
   border: 1px solid var(--line);
-  border-radius: 30px;
+  border-radius: 18px;
   background:
     linear-gradient(135deg, rgba(20, 38, 68, 0.98), rgba(11, 22, 40, 0.94)),
     radial-gradient(circle at 82% 22%, rgba(236, 172, 102, 0.08), transparent 24%),
@@ -268,7 +268,7 @@ a {
   align-items: center;
   gap: 8px;
   padding: 8px 14px;
-  border-radius: 999px;
+  border-radius: 8px;
   border: 1px solid rgba(143, 199, 255, 0.22);
   background: rgba(143, 199, 255, 0.08);
   color: var(--accent);
@@ -301,7 +301,7 @@ a {
 
 .hero-pill {
   padding: 10px 14px;
-  border-radius: 999px;
+  border-radius: 8px;
   border: 1px solid var(--line);
   background:
     linear-gradient(135deg, rgba(143, 199, 255, 0.05), rgba(241, 181, 109, 0.04));
@@ -341,7 +341,7 @@ a {
   min-height: 260px;
   padding: 20px;
   border: 1px solid var(--line);
-  border-radius: 24px;
+  border-radius: 14px;
   background:
     linear-gradient(180deg, rgba(18, 35, 60, 0.92), rgba(11, 22, 38, 0.94)),
     radial-gradient(circle at 88% 14%, rgba(241, 181, 109, 0.06), transparent 22%),
@@ -358,6 +358,32 @@ a {
     0 0 0 1px rgba(241, 181, 109, 0.08);
 }
 
+.game-card.featured {
+  border-color: rgba(241, 181, 109, 0.38);
+  background:
+    linear-gradient(180deg, rgba(31, 35, 63, 0.95), rgba(12, 20, 39, 0.96)),
+    radial-gradient(circle at 86% 12%, rgba(246, 183, 90, 0.18), transparent 24%),
+    radial-gradient(circle at 14% 88%, rgba(139, 193, 255, 0.12), transparent 26%),
+    var(--panel);
+  box-shadow:
+    0 18px 52px rgba(0, 0, 0, 0.32),
+    0 0 0 1px rgba(241, 181, 109, 0.12);
+}
+
+.game-card.featured::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 14px;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(255, 216, 149, 0.64), rgba(128, 195, 255, 0.14) 55%, rgba(255, 216, 149, 0.08));
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  -webkit-mask-composite: xor;
+  pointer-events: none;
+}
+
 .game-card.locked {
   opacity: 0.76;
   border-color: rgba(129, 161, 226, 0.14);
@@ -371,7 +397,7 @@ a {
   content: "";
   position: absolute;
   inset: 0;
-  border-radius: 24px;
+  border-radius: 14px;
   background: linear-gradient(180deg, rgba(3, 7, 14, 0.08), rgba(3, 7, 14, 0.26));
   pointer-events: none;
 }
@@ -385,7 +411,7 @@ a {
 
 .game-status {
   padding: 7px 11px;
-  border-radius: 999px;
+  border-radius: 8px;
   font-size: 12px;
   color: var(--text);
   border: 1px solid rgba(180, 196, 235, 0.18);
@@ -413,6 +439,20 @@ a {
 .game-title {
   margin: 20px 0 8px;
   font-size: 24px;
+}
+
+.game-highlight {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 16px;
+  padding: 6px 10px;
+  border-radius: 8px;
+  border: 1px solid rgba(246, 183, 90, 0.24);
+  background: rgba(246, 183, 90, 0.1);
+  color: #ffd79a;
+  font-size: 12px;
+  letter-spacing: 0.04em;
 }
 
 .game-tagline {

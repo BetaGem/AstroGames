@@ -34,7 +34,7 @@ body {
 .card {
   background: var(--panel);
   border: 1px solid var(--line);
-  border-radius: 24px;
+  border-radius: 14px;
   padding: 24px;
   box-shadow: 0 24px 70px rgba(0, 0, 0, 0.34);
   backdrop-filter: blur(12px);
@@ -66,7 +66,7 @@ body {
   align-items: center;
   justify-content: center;
   padding: 10px 16px;
-  border-radius: 999px;
+  border-radius: 8px;
   border: 1px solid var(--line);
   background: rgba(121, 184, 255, 0.08);
   color: var(--muted);
@@ -105,7 +105,7 @@ h1 {
   min-width: 164px;
   padding: 11px 16px 11px 44px;
   border: 1px solid rgba(238, 184, 114, 0.26);
-  border-radius: 999px;
+  border-radius: 8px;
   background: linear-gradient(135deg, rgba(255, 227, 172, 0.12), rgba(118, 168, 255, 0.08));
   color: #f7d59a;
   font-size: 14px;
@@ -146,7 +146,7 @@ h1 {
 
 .hero-pill {
   padding: 14px 16px;
-  border-radius: 18px;
+  border-radius: 10px;
   border: 1px solid var(--line);
   background: rgba(121, 184, 255, 0.07);
 }
@@ -172,7 +172,7 @@ h1 {
 
 .panel {
   border: 1px solid var(--line);
-  border-radius: 22px;
+  border-radius: 12px;
   background: rgba(7, 14, 26, 0.86);
   padding: 18px;
 }
@@ -198,7 +198,7 @@ h1 {
 .slot {
   min-height: 132px;
   padding: 12px;
-  border-radius: 20px;
+  border-radius: 10px;
   border: 1px dashed rgba(157, 191, 255, 0.26);
   background: rgba(121, 184, 255, 0.05);
   display: flex;
@@ -244,7 +244,7 @@ h1 {
 .tray {
   min-height: 148px;
   padding: 12px;
-  border-radius: 22px;
+  border-radius: 12px;
   border: 1px solid var(--line);
   background: rgba(121, 184, 255, 0.05);
 }
@@ -265,7 +265,7 @@ h1 {
   position: relative;
   min-height: 108px;
   padding: 10px 10px 8px;
-  border-radius: 18px;
+  border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.08);
   background: linear-gradient(180deg, rgba(19, 35, 59, 0.96), rgba(10, 18, 31, 0.98));
   display: flex;
@@ -481,7 +481,7 @@ h1 {
 
 .hint-button {
   border: 1px solid rgba(157, 191, 255, 0.24);
-  border-radius: 999px;
+  border-radius: 8px;
   padding: 5px 9px;
   color: var(--accent);
   background: rgba(121, 184, 255, 0.08);
@@ -498,7 +498,7 @@ h1 {
 
 .button {
   border: 0;
-  border-radius: 999px;
+  border-radius: 8px;
   padding: 11px 18px;
   font-size: 15px;
   color: white;
@@ -516,7 +516,7 @@ h1 {
   margin-top: 14px;
   min-height: 52px;
   padding: 12px 14px;
-  border-radius: 16px;
+  border-radius: 8px;
   border: 1px solid rgba(157, 191, 255, 0.14);
   background: rgba(121, 184, 255, 0.06);
   color: var(--muted);
@@ -723,7 +723,7 @@ h1 {
 
 .atlas-card {
   border: 1px solid rgba(157, 196, 255, 0.14);
-  border-radius: 14px;
+  border-radius: 8px;
   background: linear-gradient(180deg, rgba(20, 34, 58, 0.9), rgba(10, 17, 30, 0.92));
   padding: 10px 12px;
   text-align: left;

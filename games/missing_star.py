@@ -29,7 +29,7 @@ blueprint = Blueprint("missing_star", __name__, url_prefix="/games/missing-star"
 GAME_INFO = {
     "slug": "missing-star",
     "title": "消失的恒星",
-    "tagline": "难度：★★★★☆",
+    "tagline": "难度：★★★★",
     "description": "根据星座轮廓和亮星位置，找出被藏起来的那颗恒星。",
     "status": "live",
     "badge": "已解锁",
