@@ -57,7 +57,7 @@
           <p class="game-description">{{ game.description }}</p>
           <div class="game-actions">
             {% if game.available %}
-            <a class="game-link" href="{{ url_for(game.endpoint) }}">进入游戏</a>
+            <a class="game-link" href="{{ url_for(game.endpoint) }}" data-loading-link>进入游戏</a>
             {% else %}
             <span class="game-disabled">尚未开放</span>
             <div class="coming-soon">更多内容，敬请期待...</div>
@@ -82,5 +82,14 @@
     </main>
 
     <script src="{{ url_for('static', filename='js/home-bgm.js') }}"></script>
+    <script>
+      for (const link of document.querySelectorAll("[data-loading-link]")) {
+        link.addEventListener("click", () => {
+          if (link.classList.contains("loading")) return;
+          link.classList.add("loading");
+          link.textContent = "加载中...";
+        });
+      }
+    </script>
   </body>
 </html>

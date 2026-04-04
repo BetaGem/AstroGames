@@ -498,6 +498,12 @@ a {
   box-shadow: 0 10px 24px rgba(112, 169, 255, 0.22);
 }
 
+.game-link.loading {
+  pointer-events: none;
+  background: linear-gradient(135deg, rgba(106, 137, 196, 0.92), rgba(131, 167, 214, 0.88));
+  box-shadow: 0 10px 24px rgba(112, 169, 255, 0.14);
+}
+
 .game-disabled {
   color: rgba(151, 169, 196, 0.8);
   border: 1px solid rgba(151, 169, 196, 0.1);
