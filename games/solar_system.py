@@ -7,7 +7,7 @@ GAME_INFO = {
     "slug": "solar-system",
     "title": "认识太阳系",
     "tagline": "难度：★",
-    "description": "太阳系基础知识小测验。快来试试你对太阳系的了解程度吧！",
+    "description": "太阳系基础知识小测试。",
     "status": "live",
     "badge": "已解锁",
     "available": True,

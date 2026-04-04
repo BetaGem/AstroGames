@@ -48,29 +48,33 @@ a {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 42px;
-  height: 42px;
+  width: 54px;
+  height: 54px;
   padding: 0;
-  border: 1px solid rgba(143, 199, 255, 0.16);
-  border-radius: 999px;
-  background: rgba(143, 199, 255, 0.06);
-  color: rgba(237, 244, 255, 0.8);
+  border: 1px solid rgba(241, 181, 109, 0.28);
+  border-radius: 10px;
+  background: linear-gradient(135deg, rgba(241, 181, 109, 0.16), rgba(143, 199, 255, 0.08));
+  color: rgba(255, 241, 221, 0.96);
   backdrop-filter: blur(12px);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    0 10px 28px rgba(0, 0, 0, 0.22),
+    0 0 22px rgba(241, 181, 109, 0.12);
   cursor: pointer;
   flex: 0 0 auto;
 }
 
 .bgm-control:hover {
-  background: rgba(143, 199, 255, 0.1);
-  color: rgba(237, 244, 255, 0.96);
+  background: linear-gradient(135deg, rgba(241, 181, 109, 0.22), rgba(143, 199, 255, 0.12));
+  color: #fff7e7;
 }
 
 .bgm-icon {
   position: relative;
-  width: 18px;
-  height: 18px;
+  width: 24px;
+  height: 24px;
   display: inline-block;
+  flex: 0 0 24px;
 }
 
 .bgm-icon svg,
@@ -80,17 +84,17 @@ a {
 }
 
 .bgm-icon svg {
-  width: 18px;
-  height: 18px;
+  width: 24px;
+  height: 24px;
   fill: currentColor;
 }
 
 .bgm-icon::after {
   content: "";
-  left: 8px;
+  left: 11px;
   top: -1px;
   width: 2px;
-  height: 20px;
+  height: 26px;
   border-radius: 999px;
   background: currentColor;
   transform: rotate(-35deg);
@@ -99,13 +103,18 @@ a {
 }
 
 .bgm-control.playing {
-  color: rgba(143, 199, 255, 0.96);
-  background: rgba(143, 199, 255, 0.12);
+  color: #fff7e7;
+  background: linear-gradient(135deg, rgba(241, 181, 109, 0.3), rgba(143, 199, 255, 0.16));
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 12px 30px rgba(0, 0, 0, 0.24),
+    0 0 28px rgba(241, 181, 109, 0.18);
 }
 
 .bgm-control.playing .bgm-icon::after {
   opacity: 0;
 }
+
 
 .meteor-field {
   position: fixed;
@@ -503,7 +512,10 @@ a {
 
 .footer {
   margin-top: 20px;
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
   font-size: 14px;
 }
 
@@ -514,11 +526,18 @@ a {
   color: rgba(157, 176, 202, 0.56);
   text-decoration: none;
   transition: color 0.2s ease;
+  line-height: 1;
 }
 
 .footer-link:hover {
   color: rgba(157, 176, 202, 0.74);
   text-decoration: underline;
+}
+
+.footer-separator {
+  margin: 0;
+  line-height: 1;
+  color: rgba(157, 176, 202, 0.4);
 }
 
 .footer-icon {

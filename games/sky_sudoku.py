@@ -7,7 +7,7 @@ GAME_INFO = {
     "slug": "sky-sudoku",
     "title": "星空数独",
     "tagline": "难度：★★★★★",
-    "description": "天文学与数独的结合。",
+    "description": "多波段数独观测。",
     "status": "live",
     "badge": "已解锁",
     "available": True,
