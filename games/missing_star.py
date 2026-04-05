@@ -2,6 +2,7 @@ import base64
 import io
 import json
 import math
+import os
 import random
 from functools import lru_cache
 from pathlib import Path
@@ -61,6 +62,16 @@ LINES_KEY = "missing_star_show_constellation_lines"
 STAR_HISTORY_KEY = "missing_star_recent_star_ids"
 REGION_HISTORY_KEY = "missing_star_recent_region_keys"
 ERROR_KEY = "missing_star_difficulty_error"
+LOCAL_FONT_DIR = Path(__file__).resolve().parent.parent.joinpath("static", "fonts")
+LOCAL_CJK_FONT_FILES = [
+    "NotoSansSC-Regular.otf",
+    "NotoSansSC-Regular.ttf",
+    "NotoSansCJKsc-Regular.otf",
+    "NotoSansCJKsc-Regular.ttf",
+    "SourceHanSansSC-Regular.otf",
+    "SourceHanSansSC-Regular.ttf",
+    "SimHei.ttf",
+]
 PREFERRED_CJK_FONTS = [
     "PingFang SC",
     "Hiragino Sans GB",
@@ -73,7 +84,27 @@ PREFERRED_CJK_FONTS = [
 
 
 @lru_cache(maxsize=1)
+def get_local_cjk_font_path() -> Path | None:
+    configured = os.environ.get("ASTROGAMES_CJK_FONT")
+    if configured:
+        configured_path = Path(configured).expanduser()
+        if configured_path.exists():
+            return configured_path
+
+    for filename in LOCAL_CJK_FONT_FILES:
+        candidate = LOCAL_FONT_DIR.joinpath(filename)
+        if candidate.exists():
+            return candidate
+    return None
+
+
+@lru_cache(maxsize=1)
 def get_preferred_font_family() -> str | None:
+    local_font_path = get_local_cjk_font_path()
+    if local_font_path:
+        font_manager.fontManager.addfont(str(local_font_path))
+        return font_manager.FontProperties(fname=str(local_font_path)).get_name()
+
     available = {font.name for font in font_manager.fontManager.ttflist}
     for family in PREFERRED_CJK_FONTS:
         if family in available:
