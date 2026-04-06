@@ -11,7 +11,6 @@ GAME_INFO = {
     "status": "live",
     "badge": "已解锁",
     "available": True,
-    "featured": True,
     "endpoint": "sky_sudoku.index",
 }
 

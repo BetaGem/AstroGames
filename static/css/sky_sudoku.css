@@ -617,10 +617,63 @@ h1 {
   font-size: 15px;
 }
 
+@media (max-width: 980px) {
+  .wrap {
+    width: min(100vw - 22px, 1220px);
+    padding: 22px 0 30px;
+  }
+
+  .card {
+    padding: 18px;
+  }
+
+  .play-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .observe-dock {
+    padding: 12px;
+  }
+}
+
 @media (max-width: 720px) {
   .card {
     padding: 18px;
     border-radius: 12px;
+  }
+
+  .topbar {
+    align-items: flex-start;
+  }
+
+  .menu-link {
+    width: 100%;
+  }
+
+  .subtitle {
+    font-size: 14px;
+    line-height: 1.65;
+  }
+
+  .panel-head {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .board-actions {
+    justify-content: stretch;
+    width: 100%;
+  }
+
+  .template-picker,
+  .hint-btn,
+  .timer-chip,
+  .button.alt {
+    flex: 1 1 calc(50% - 6px);
+  }
+
+  .template-picker {
+    justify-content: space-between;
   }
 
   .submit-row {
@@ -645,5 +698,202 @@ h1 {
 
   .axis-top {
     grid-template-columns: 22px repeat(9, minmax(0, 1fr));
+  }
+
+  .selected-bar,
+  .result-banner,
+  .observation-meter {
+    padding: 10px 12px;
+    font-size: 14px;
+  }
+
+  .sudoku-shell {
+    margin-top: 12px;
+    padding: 10px 10px 8px;
+  }
+
+  .cell-icon {
+    width: 70%;
+    height: 70%;
+  }
+
+  .observe-dock-head h3 {
+    font-size: 16px;
+  }
+
+  .band-button {
+    gap: 6px;
+    padding: 10px 8px;
+    font-size: 13px;
+  }
+
+  .band-icon {
+    font-size: 16px;
+  }
+
+  .log-console {
+    min-height: 180px;
+    max-height: 260px;
+  }
+
+  .modal-card {
+    padding: 16px;
+  }
+}
+
+@media (max-width: 560px) {
+  .wrap {
+    width: min(100vw - 14px, 1220px);
+    padding: 16px 0 22px;
+  }
+
+  .card {
+    padding: 14px;
+  }
+
+  h1 {
+    font-size: clamp(28px, 8vw, 38px);
+  }
+
+  .brand-title {
+    font-size: 18px;
+  }
+
+  .selected-bar.compact {
+    font-size: 13px;
+  }
+
+  .board-actions {
+    gap: 8px;
+  }
+
+  .template-picker,
+  .hint-btn,
+  .timer-chip,
+  .button.alt {
+    flex: 1 1 100%;
+    width: 100%;
+  }
+
+  .template-picker {
+    font-size: 14px;
+    padding: 9px 10px;
+  }
+
+  .template-picker select {
+    min-width: 0;
+    flex: 1 1 auto;
+    font-size: 14px;
+    padding: 7px 8px;
+  }
+
+  .hint-btn,
+  .button,
+  .timer-chip {
+    font-size: 13px;
+  }
+
+  .timer-chip {
+    min-width: 0;
+    min-height: 36px;
+    padding: 8px 10px;
+  }
+
+  .sudoku-shell {
+    padding: 8px 8px 6px;
+  }
+
+  .axis-top,
+  .axis-left {
+    font-size: 11px;
+  }
+
+  .axis-top {
+    margin-bottom: 6px;
+  }
+
+  .axis-top span,
+  .axis-left span {
+    min-height: 20px;
+  }
+
+  .board-row {
+    grid-template-columns: 20px minmax(0, 1fr);
+    gap: 4px;
+  }
+
+  .cell {
+    min-width: 0;
+  }
+
+  .cell-icon {
+    width: 66%;
+    height: 66%;
+  }
+
+  .observe-dock {
+    padding: 10px;
+  }
+
+  .palette-grid,
+  .legend-list {
+    gap: 6px;
+  }
+
+  .palette-card,
+  .legend-card {
+    padding: 7px 5px;
+  }
+
+  .palette-card img {
+    width: 34px;
+    height: 34px;
+    margin-bottom: 5px;
+  }
+
+  .legend-card img {
+    width: 46px;
+    height: 46px;
+    margin-bottom: 6px;
+  }
+
+  .palette-name,
+  .legend-name,
+  .legend-copy {
+    font-size: 10px;
+  }
+
+  .band-grid {
+    gap: 8px;
+  }
+
+  .band-button {
+    flex-direction: column;
+    padding: 9px 6px;
+    text-align: center;
+  }
+
+  .log-console {
+    min-height: 160px;
+    max-height: 220px;
+    padding: 10px;
+    font-size: 11px;
+  }
+
+  .submit-button {
+    width: 100%;
+  }
+
+  .modal {
+    padding: 12px;
+  }
+
+  .modal-card {
+    max-height: 88vh;
+    padding: 14px;
+  }
+
+  .modal-head h2 {
+    font-size: 20px;
   }
 }

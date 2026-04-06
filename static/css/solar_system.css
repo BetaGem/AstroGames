@@ -836,8 +836,39 @@ h1 {
   text-align: left;
 }
 
-@media (max-width: 920px) {
+@media (max-width: 1040px) {
   .stage-shell { grid-template-columns: 1fr; }
+
+  .panel {
+    padding: 16px;
+  }
+}
+
+@media (max-width: 920px) {
+  .wrap {
+    width: min(100vw - 22px, 1120px);
+    padding: 20px 0 28px;
+  }
+
+  .card {
+    padding: 18px;
+  }
+
+  .subtitle {
+    margin-bottom: 14px;
+  }
+
+  .page-tools {
+    margin-bottom: 18px;
+  }
+
+  .panel-note {
+    font-size: 14px;
+  }
+
+  .action-row {
+    gap: 8px;
+  }
 }
 
 @media (max-width: 860px) {
@@ -845,13 +876,136 @@ h1 {
 }
 
 @media (max-width: 760px) {
+  .topbar {
+    align-items: flex-start;
+  }
+
+  .menu-link {
+    width: 100%;
+  }
+
+  .atlas-launch {
+    width: 100%;
+    min-width: 0;
+  }
+
   .slot-grid,
   .quiz-cards {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+
+  .slot {
+    min-height: 118px;
+    padding: 10px;
+  }
+
+  .tray {
+    padding: 10px;
+  }
+
+  .card-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .planet-card {
+    min-height: 96px;
+    padding: 8px 8px 7px;
+    gap: 6px;
+  }
+
+  .planet-card.slot-card {
+    min-height: 64px;
+  }
+
+  .planet-visual {
+    width: 42px;
+    height: 42px;
+  }
+
+  .planet-visual.ringed::before {
+    width: 60px;
+    height: 14px;
+  }
+
+  .planet-name {
+    min-height: 16px;
+    font-size: 13px;
+  }
+
+  .progress {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .question-title {
+    font-size: 20px;
+  }
+
+  .score-ring {
+    width: 116px;
+    height: 116px;
+    font-size: 30px;
+  }
 }
 
 @media (max-width: 640px) {
+  h1 {
+    font-size: clamp(28px, 8vw, 38px);
+  }
+
+  .panel-title {
+    font-size: 17px;
+  }
+
+  .action-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .button {
+    width: 100%;
+    padding: 12px 14px;
+  }
+
+  .status-box {
+    min-height: 0;
+    padding: 11px 12px;
+    font-size: 14px;
+  }
+
+  .atlas-dialog {
+    max-height: 92vh;
+  }
+
+  .atlas-head {
+    padding: 16px 16px 14px;
+  }
+
+  .atlas-body {
+    gap: 14px;
+    padding: 14px 16px 18px;
+  }
+
+  .atlas-detail {
+    padding: 14px;
+    border-radius: 16px;
+  }
+
+  .atlas-detail-head {
+    align-items: flex-start;
+  }
+
+  .atlas-planet-visual {
+    width: 60px;
+    height: 60px;
+  }
+
+  .atlas-planet-visual.ringed::before {
+    width: 82px;
+    height: 18px;
+  }
+
   .atlas-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -862,11 +1016,81 @@ h1 {
 }
 
 @media (max-width: 520px) {
-  .wrap { width: min(100vw - 18px, 1000px); }
-  .card { padding: 18px; }
+  .wrap { width: min(100vw - 14px, 1000px); }
+  .card { padding: 14px; }
+
+  .brand-title {
+    font-size: 18px;
+  }
+
+  .subtitle {
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  .panel {
+    padding: 14px;
+  }
+
+  .slot-grid {
+    gap: 8px;
+  }
+
   .slot-grid,
   .quiz-cards,
   .card-grid {
     grid-template-columns: 1fr 1fr;
+  }
+
+  .slot {
+    min-height: 104px;
+    gap: 6px;
+  }
+
+  .slot-index,
+  .slot-placeholder {
+    font-size: 12px;
+  }
+
+  .planet-card {
+    min-height: 88px;
+    padding: 7px 6px 6px;
+  }
+
+  .planet-card.slot-card {
+    min-height: 58px;
+  }
+
+  .planet-visual {
+    width: 38px;
+    height: 38px;
+  }
+
+  .planet-visual.ringed::before {
+    width: 56px;
+    height: 13px;
+    border-width: 2px;
+  }
+
+  .hint-button {
+    padding: 5px 8px;
+    font-size: 10px;
+  }
+
+  .question-title {
+    font-size: 18px;
+  }
+
+  .progress {
+    padding: 10px 12px;
+    border-radius: 12px;
+  }
+
+  .quiz-cards .planet-card {
+    min-height: 92px;
+  }
+
+  .summary-item {
+    padding: 10px 12px;
   }
 }

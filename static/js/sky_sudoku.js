@@ -122,7 +122,7 @@ const bandLabels = {
   radio: "射电",
 };
 
-const MAX_OBSERVATIONS = 5;
+const MAX_OBSERVATIONS = 8;
 const MAX_TIMER_SECONDS = 99 * 60 * 60 + 59 * 60 + 59;
 const OBSERVATION_TIME_COST = 5 * 60;
 const DEFAULT_TEMPLATE = "template_b";
@@ -165,8 +165,8 @@ function getPuzzle(templateKey = state.currentTemplate) {
 }
 
 function getObservationLimit(templateKey = state.currentTemplate) {
-  if (templateKey === "template_c") return 2;
-  if (templateKey === "template_b") return 3;
+  if (templateKey === "template_c") return 3;
+  if (templateKey === "template_b") return 5;
   return MAX_OBSERVATIONS;
 }
 

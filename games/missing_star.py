@@ -8,7 +8,7 @@ from functools import lru_cache
 from pathlib import Path
 from typing import Any
 
-from flask import Blueprint, redirect, render_template, request, session, url_for
+from flask import Blueprint, abort, make_response, redirect, render_template, request, session, url_for
 import matplotlib
 
 matplotlib.use("Agg")
@@ -35,6 +35,7 @@ GAME_INFO = {
     "status": "live",
     "badge": "已解锁",
     "available": True,
+    "featured": True,
     "endpoint": "missing_star.index",
 }
 
@@ -218,6 +219,20 @@ def build_star_atlas_entries() -> list[dict[str, str]]:
         }
         for name in sorted(knowledge)
     ]
+
+
+def build_constellation_atlas_entries() -> list[dict[str, str]]:
+    entries: list[dict[str, str]] = []
+    for key, region in CONSTELLATION_REGIONS.items():
+        named_count = sum(1 for star in region["stars"] if star.get("name_cn"))
+        entries.append(
+            {
+                "key": key,
+                "name": region.get("display_name_cn") or region.get("display_name_en") or key,
+                "named_count": str(named_count),
+            }
+        )
+    return entries
 
 
 def get_recent_history() -> tuple[list[str], list[str]]:
@@ -519,8 +534,25 @@ def build_round() -> dict[str, Any]:
     candidate_pool = preferred_candidates or named_candidates
     missing_star = random.choice(candidate_pool)
 
-    distractors = [name for name in get_all_named_star_names(option_star_max_mag) if name != missing_star["name_cn"]]
-    random.shuffle(distractors)
+    regional_distractors = [
+        star["name_cn"]
+        for star in region["stars"]
+        if star.get("name_cn") and star["name_cn"] != missing_star["name_cn"] and star["mag"] <= option_star_max_mag
+    ]
+    random.shuffle(regional_distractors)
+
+    distractors: list[str] = []
+    if regional_distractors:
+        distractors.append(regional_distractors[0])
+
+    random_distractors = [
+        name
+        for name in get_all_named_star_names(option_star_max_mag)
+        if name != missing_star["name_cn"] and name not in distractors
+    ]
+    random.shuffle(random_distractors)
+    distractors.extend(random_distractors[: max(0, 2 - len(distractors))])
+
     options = distractors[:2] + [missing_star["name_cn"]]
     random.shuffle(options)
 
@@ -576,14 +608,140 @@ def add_constellation_lines(
         )
 
 
-def render_chart(round_data: dict[str, Any], reveal_missing: bool = False, show_constellation_lines: bool = False) -> str:
-    region = get_constellation_region(round_data["region_key"])
-    missing_id = round_data["missing_star_id"]
+def add_named_star_labels(
+    ax: Any,
+    stars: list[dict[str, Any]],
+    projected: dict[str, tuple[float, float]],
+    bounds: tuple[float, float, float, float],
+    target_star_id: str | None = None,
+) -> None:
+    x_min, x_max, y_min, y_max = bounds
+    span = max((x_max - x_min), (y_max - y_min)) or 1.0
+
+    for star in stars:
+        name_cn = star.get("name_cn")
+        if not name_cn:
+            continue
+
+        x, y = projected[star["id"]]
+        dx = span * 0.016 if x <= (x_min + x_max) / 2 else -span * 0.016
+        dy = span * 0.014 if y <= (y_min + y_max) / 2 else -span * 0.014
+        is_target = star["id"] == target_star_id
+        ax.text(
+            x + dx,
+            y + dy,
+            name_cn,
+            color="#ffe7af" if is_target else "#d7e4ff",
+            fontsize=8.0 if is_target else 6.2,
+            ha="left" if dx > 0 else "right",
+            va="center",
+            zorder=5 if is_target else 4,
+            path_effects=[patheffects.withStroke(linewidth=1.3, foreground="#07111f")],
+        )
+
+
+def add_highlighted_target_label(
+    ax: Any,
+    star: dict[str, Any],
+    position: tuple[float, float],
+    bounds: tuple[float, float, float, float],
+) -> None:
+    x_min, x_max, y_min, y_max = bounds
+    mx, my = position
+    span = max((x_max - x_min), (y_max - y_min))
+    label_dx = span * 0.1 if mx <= (x_min + x_max) / 2 else -span * 0.1
+    label_dy = span * 0.08 if my <= (y_min + y_max) / 2 else -span * 0.08
+    label_x = mx + label_dx
+    label_y = my + label_dy
+    name_cn = star.get("name_cn", "")
+    name_en = star.get("name_en", "")
+    if name_cn and name_en:
+        bilingual_name = f"{name_cn} / {name_en}"
+    else:
+        bilingual_name = name_cn or name_en or "Missing star"
+
+    ax.scatter(
+        mx,
+        my,
+        s=star_size_from_magnitude(star["mag"]) * 7.0,
+        c="#ffe28a",
+        alpha=0.2,
+        edgecolors="none",
+        zorder=4,
+    )
+    ax.scatter(
+        mx,
+        my,
+        s=star_size_from_magnitude(star["mag"]) * 1.7,
+        c=star["color"],
+        alpha=0.98,
+        edgecolors="#ffe28a",
+        linewidths=1.4,
+        zorder=5,
+    )
+    ax.scatter(
+        mx,
+        my,
+        s=star_size_from_magnitude(star["mag"]) * 3.4,
+        facecolors="none",
+        edgecolors="#ffe28a",
+        linewidths=1.2,
+        alpha=0.7,
+        zorder=5,
+    )
+    ax.scatter(
+        mx,
+        my,
+        s=star_size_from_magnitude(star["mag"]) * 5.0,
+        facecolors="none",
+        edgecolors="#ffd15c",
+        linewidths=0.9,
+        alpha=0.42,
+        zorder=5,
+    )
+    ax.plot(
+        [mx, label_x],
+        [my, label_y],
+        color="#ffe28a",
+        linewidth=1.1,
+        alpha=0.9,
+        zorder=5,
+    )
+    ax.text(
+        label_x,
+        label_y,
+        bilingual_name,
+        color="#fff4c3",
+        fontsize=9.2,
+        ha="left" if label_dx > 0 else "right",
+        va="center",
+        zorder=6,
+        bbox={
+            "boxstyle": "round,pad=0.34,rounding_size=0.22",
+            "facecolor": "#0a1322",
+            "edgecolor": "#ffe28a",
+            "linewidth": 1.0,
+            "alpha": 0.94,
+        },
+        path_effects=[patheffects.withStroke(linewidth=1.2, foreground="#07111f")],
+    )
+
+
+def render_chart_png(
+    region_key: str,
+    missing_star_id: str | None = None,
+    hide_missing_star: bool = False,
+    show_constellation_lines: bool = False,
+    label_named_stars: bool = False,
+    target_star_id: str | None = None,
+    highlight_target: bool = False,
+) -> bytes:
+    region = get_constellation_region(region_key)
 
     fig, ax = plt.subplots(figsize=(6.2, 6.2), facecolor="#07111f")
     ax.set_facecolor("#07111f")
 
-    stars = sorted(get_chart_stars(round_data["region_key"]), key=lambda star: star["mag"], reverse=True)
+    stars = sorted(get_chart_stars(region_key), key=lambda star: star["mag"], reverse=True)
     star_map = {star["id"]: star for star in stars}
     proj = project_region(region, stars)
     ra0, dec0, use_polar_projection = get_projection_settings(region, stars)
@@ -595,10 +753,10 @@ def render_chart(round_data: dict[str, Any], reveal_missing: bool = False, show_
     add_ra_dec_grid(ax, region, ra0, dec0, (x_min, x_max, y_min, y_max), use_polar_projection)
 
     if show_constellation_lines:
-        add_constellation_lines(ax, round_data["region_key"], star_map, proj)
+        add_constellation_lines(ax, region_key, star_map, proj)
 
     for star in stars:
-        if star["id"] == missing_id:
+        if hide_missing_star and star["id"] == missing_star_id:
             continue
         if star["mag"] <= 1.5:
             x, y = proj[star["id"]]
@@ -613,7 +771,7 @@ def render_chart(round_data: dict[str, Any], reveal_missing: bool = False, show_
             )
 
     for star in stars:
-        if star["id"] == missing_id:
+        if hide_missing_star and star["id"] == missing_star_id:
             continue
         x, y = proj[star["id"]]
         alpha = 0.98 if star["mag"] <= 2.0 else 0.84 if star["mag"] <= 3.0 else 0.66
@@ -628,88 +786,14 @@ def render_chart(round_data: dict[str, Any], reveal_missing: bool = False, show_
             zorder=3,
         )
 
-    if reveal_missing:
-        missing_star = star_map.get(missing_id)
-        if missing_star:
-            mx, my = proj[missing_id]
-            span = max((x_max - x_min), (y_max - y_min))
-            label_dx = span * 0.1 if mx <= (x_min + x_max) / 2 else -span * 0.1
-            label_dy = span * 0.08 if my <= (y_min + y_max) / 2 else -span * 0.08
-            label_x = mx + label_dx
-            label_y = my + label_dy
-            name_cn = missing_star.get("name_cn", "")
-            name_en = missing_star.get("name_en", "")
-            if name_cn and name_en:
-                bilingual_name = f"{name_cn} / {name_en}"
-            else:
-                bilingual_name = name_cn or name_en or "Missing star"
+    if label_named_stars:
+        add_named_star_labels(ax, stars, proj, (x_min, x_max, y_min, y_max), target_star_id=target_star_id)
 
-            # Add a stronger glow and multiple rings so the missing star reads immediately.
-            ax.scatter(
-                mx,
-                my,
-                s=star_size_from_magnitude(missing_star["mag"]) * 7.0,
-                c="#ffe28a",
-                alpha=0.2,
-                edgecolors="none",
-                zorder=4,
-            )
-            ax.scatter(
-                mx,
-                my,
-                s=star_size_from_magnitude(missing_star["mag"]) * 1.7,
-                c=missing_star["color"],
-                alpha=0.98,
-                edgecolors="#ffe28a",
-                linewidths=1.4,
-                zorder=5,
-            )
-            ax.scatter(
-                mx,
-                my,
-                s=star_size_from_magnitude(missing_star["mag"]) * 3.4,
-                facecolors="none",
-                edgecolors="#ffe28a",
-                linewidths=1.2,
-                alpha=0.7,
-                zorder=5,
-            )
-            ax.scatter(
-                mx,
-                my,
-                s=star_size_from_magnitude(missing_star["mag"]) * 5.0,
-                facecolors="none",
-                edgecolors="#ffd15c",
-                linewidths=0.9,
-                alpha=0.42,
-                zorder=5,
-            )
-            ax.plot(
-                [mx, label_x],
-                [my, label_y],
-                color="#ffe28a",
-                linewidth=1.1,
-                alpha=0.9,
-                zorder=5,
-            )
-            ax.text(
-                label_x,
-                label_y,
-                bilingual_name,
-                color="#fff4c3",
-                fontsize=9.2,
-                ha="left" if label_dx > 0 else "right",
-                va="center",
-                zorder=6,
-                bbox={
-                    "boxstyle": "round,pad=0.34,rounding_size=0.22",
-                    "facecolor": "#0a1322",
-                    "edgecolor": "#ffe28a",
-                    "linewidth": 1.0,
-                    "alpha": 0.94,
-                },
-                path_effects=[patheffects.withStroke(linewidth=1.2, foreground="#07111f")],
-            )
+    if highlight_target and target_star_id:
+        target_star = star_map.get(target_star_id)
+        target_pos = proj.get(target_star_id)
+        if target_star and target_pos:
+            add_highlighted_target_label(ax, target_star, target_pos, (x_min, x_max, y_min, y_max))
 
     ax.tick_params(colors="#dce8ff")
     ax.set_xticks([])
@@ -722,7 +806,26 @@ def render_chart(round_data: dict[str, Any], reveal_missing: bool = False, show_
     fig.tight_layout()
     fig.savefig(buffer, format="png", dpi=145, facecolor=fig.get_facecolor(), bbox_inches="tight")
     plt.close(fig)
-    return base64.b64encode(buffer.getvalue()).decode("utf-8")
+    return buffer.getvalue()
+
+
+def render_chart(
+    round_data: dict[str, Any],
+    reveal_missing: bool = False,
+    show_constellation_lines: bool = False,
+    label_named_stars: bool = False,
+    highlight_target: bool = False,
+) -> str:
+    image_bytes = render_chart_png(
+        region_key=round_data["region_key"],
+        missing_star_id=round_data["missing_star_id"],
+        hide_missing_star=not reveal_missing,
+        show_constellation_lines=show_constellation_lines,
+        label_named_stars=label_named_stars,
+        target_star_id=round_data["missing_star_id"] if label_named_stars and reveal_missing else None,
+        highlight_target=highlight_target,
+    )
+    return base64.b64encode(image_bytes).decode("utf-8")
 
 
 @blueprint.route("/", methods=["GET"])
@@ -739,6 +842,7 @@ def index():
         options=round_data["options"],
         region_name=region["display_name_cn"],
         star_atlas_entries=build_star_atlas_entries(),
+        constellation_atlas_entries=build_constellation_atlas_entries(),
         current_difficulty=round_data["missing_star_max_mag"],
         difficulty_error=session.pop(ERROR_KEY, ""),
         show_constellation_lines=show_constellation_lines,
@@ -787,6 +891,22 @@ def answer():
     return redirect(url_for("missing_star.result"))
 
 
+@blueprint.route("/atlas/constellation/<region_key>.png", methods=["GET"])
+def constellation_atlas_chart(region_key: str):
+    if region_key not in CONSTELLATION_REGIONS:
+        abort(404)
+
+    image_bytes = render_chart_png(
+        region_key=region_key,
+        show_constellation_lines=True,
+        label_named_stars=True,
+    )
+    response = make_response(image_bytes)
+    response.headers["Content-Type"] = "image/png"
+    response.headers["Cache-Control"] = "public, max-age=3600"
+    return response
+
+
 @blueprint.route("/result", methods=["GET"])
 def result():
     result_data = session.get(RESULT_KEY)
@@ -799,7 +919,13 @@ def result():
 
     selected = result_data.get("selected", "")
     region = get_constellation_region(round_data["region_key"])
-    chart = render_chart(round_data, reveal_missing=True, show_constellation_lines=True)
+    chart = render_chart(
+        round_data,
+        reveal_missing=True,
+        show_constellation_lines=True,
+        label_named_stars=True,
+        highlight_target=True,
+    )
     is_correct = selected == round_data["missing_star_name"]
     answer_name = round_data["missing_star_name"]
     knowledge_text = load_star_knowledge().get(answer_name, DEFAULT_KNOWLEDGE_TEXT)
