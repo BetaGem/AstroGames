@@ -57,7 +57,7 @@
           <p class="game-description">{{ game.description }}</p>
           <div class="game-actions">
             {% if game.available %}
-            <a class="game-link" href="{{ url_for(game.endpoint) }}" data-loading-link>进入游戏</a>
+            <a class="game-link" href="{{ url_for(game.endpoint) }}" data-loading-link data-default-label="进入游戏">进入游戏</a>
             {% else %}
             <span class="game-disabled">尚未开放</span>
             <div class="coming-soon">更多内容，敬请期待...</div>
@@ -83,6 +83,13 @@
 
     <script src="{{ url_for('static', filename='js/home-bgm.js') }}"></script>
     <script>
+      function resetLoadingLinks() {
+        for (const link of document.querySelectorAll("[data-loading-link]")) {
+          link.classList.remove("loading");
+          link.textContent = link.dataset.defaultLabel || "进入游戏";
+        }
+      }
+
       for (const link of document.querySelectorAll("[data-loading-link]")) {
         link.addEventListener("click", () => {
           if (link.classList.contains("loading")) return;
@@ -90,6 +97,14 @@
           link.textContent = "加载中...";
         });
       }
+
+      window.addEventListener("pageshow", resetLoadingLinks);
+      window.addEventListener("focus", resetLoadingLinks);
+      document.addEventListener("visibilitychange", () => {
+        if (!document.hidden) resetLoadingLinks();
+      });
+
+      resetLoadingLinks();
     </script>
   </body>
 </html>

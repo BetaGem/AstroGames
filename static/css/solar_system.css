@@ -249,6 +249,14 @@ h1 {
   background: rgba(121, 184, 255, 0.05);
 }
 
+#tray {
+  width: 100%;
+}
+
+#tray > .card-grid {
+  width: 100%;
+}
+
 .tray-title {
   margin: 0 0 12px;
   font-size: 15px;
@@ -257,8 +265,11 @@ h1 {
 
 .card-grid {
   display: grid;
+  width: 100%;
   grid-template-columns: repeat(auto-fit, minmax(124px, 1fr));
   gap: 12px;
+  justify-items: stretch;
+  align-items: stretch;
 }
 
 .planet-card {
@@ -890,47 +901,56 @@ h1 {
   }
 
   .slot-grid,
+  #tray > .card-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
   .quiz-cards {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .slot {
-    min-height: 118px;
-    padding: 10px;
+    min-height: 96px;
+    padding: 8px 6px;
   }
 
   .tray {
     padding: 10px;
   }
 
-  .card-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 10px;
+  #tray > .card-grid {
+    gap: 8px;
   }
 
   .planet-card {
-    min-height: 96px;
-    padding: 8px 8px 7px;
-    gap: 6px;
+    min-height: 84px;
+    padding: 7px 5px 6px;
+    gap: 5px;
   }
 
   .planet-card.slot-card {
-    min-height: 64px;
+    min-height: 52px;
   }
 
   .planet-visual {
-    width: 42px;
-    height: 42px;
+    width: 32px;
+    height: 32px;
   }
 
   .planet-visual.ringed::before {
-    width: 60px;
-    height: 14px;
+    width: 48px;
+    height: 11px;
+    border-width: 2px;
   }
 
   .planet-name {
-    min-height: 16px;
-    font-size: 13px;
+    min-height: 14px;
+    font-size: 11px;
+  }
+
+  .slot-index,
+  .slot-placeholder {
+    font-size: 11px;
   }
 
   .progress {
@@ -1033,48 +1053,55 @@ h1 {
   }
 
   .slot-grid {
-    gap: 8px;
+    gap: 6px;
   }
 
   .slot-grid,
-  .quiz-cards,
-  .card-grid {
+  #tray > .card-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .quiz-cards {
     grid-template-columns: 1fr 1fr;
   }
 
   .slot {
-    min-height: 104px;
-    gap: 6px;
+    min-height: 88px;
+    gap: 4px;
   }
 
   .slot-index,
   .slot-placeholder {
-    font-size: 12px;
+    font-size: 10px;
   }
 
   .planet-card {
-    min-height: 88px;
-    padding: 7px 6px 6px;
+    min-height: 78px;
+    padding: 6px 4px 5px;
   }
 
   .planet-card.slot-card {
-    min-height: 58px;
+    min-height: 48px;
   }
 
   .planet-visual {
-    width: 38px;
-    height: 38px;
+    width: 28px;
+    height: 28px;
   }
 
   .planet-visual.ringed::before {
-    width: 56px;
-    height: 13px;
+    width: 42px;
+    height: 10px;
     border-width: 2px;
   }
 
-  .hint-button {
-    padding: 5px 8px;
+  .planet-name {
     font-size: 10px;
+  }
+
+  .hint-button {
+    padding: 4px 6px;
+    font-size: 9px;
   }
 
   .question-title {

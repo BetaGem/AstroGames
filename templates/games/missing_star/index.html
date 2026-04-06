@@ -445,19 +445,22 @@
           overflow: auto;
         }
         .atlas-body {
-          grid-template-columns: 1fr;
+          display: block;
           height: auto;
         }
         .atlas-grid {
-          grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
-          overflow: visible;
+          grid-template-columns: 1fr;
+          max-height: 210px;
+          overflow-y: auto;
           padding-right: 0;
+          margin-bottom: 14px;
         }
         .atlas-stats {
           grid-template-columns: 1fr;
         }
         .atlas-detail {
           height: auto;
+          overflow: auto;
         }
       }
     </style>
