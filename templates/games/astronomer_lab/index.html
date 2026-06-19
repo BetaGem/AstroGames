@@ -22,11 +22,10 @@
           <div>
             <div class="eyebrow">Scientist Case</div>
             <h1>天文工作室</h1>
-            <p class="subtitle">像天文学家一样工作。</p>
+            <p class="subtitle">像天文学家一样丈量宇宙。</p>
           </div>
           <div class="page-actions">
-            <span class="level-indicator" id="levelIndicator">关卡 1/5</span>
-            <button type="button" class="ghost-button" id="nextCaseButton">下一关</button>
+            <span class="level-indicator" id="levelIndicator">关卡 1/4</span>
           </div>
         </header>
 
@@ -36,7 +35,7 @@
           <p class="panel-text" id="scientistIntro">你将读取一张星系距离与退行速度关系图，从数据趋势中判断宇宙正在发生什么。</p>
         </section>
 
-        <section class="panel">
+        <section class="panel" id="experimentPanel">
           <div class="panel-kicker">实验操作</div>
           <div class="chart-meta">
             <span id="experimentTitle">观测图：星系距离 vs 退行速度</span>
@@ -57,15 +56,15 @@
           </div>
         </section>
 
-        <section class="panel">
+        <section class="panel" id="answerPanel">
           <div class="panel-kicker">答题</div>
 
-          <div class="question-block">
+          <div class="question-block" id="questionBlockOne">
             <p class="question-title" id="questionOneTitle">1. 这张图最支持哪个结论？</p>
             <div class="option-list" id="conclusionOptions"></div>
           </div>
 
-          <div class="question-block">
+          <div class="question-block" id="questionBlockTwo">
             <p class="question-title" id="questionTwoTitle">2. 从你现在的拟合看，哈勃常数更接近哪个范围？</p>
             <div class="option-list" id="constantOptions"></div>
           </div>
@@ -74,8 +73,6 @@
             <button type="button" class="primary-button" id="submitAnswerButton">提交答案</button>
             <button type="button" class="ghost-button" id="resetModuleButton">重新观测</button>
           </div>
-
-          <div class="result-box" id="resultBox"></div>
         </section>
 
         <div class="footer">
@@ -92,6 +89,29 @@
         </div>
       </section>
     </main>
+
+    <div class="result-overlay" id="resultOverlay">
+      <div class="result-dialog">
+        <h2 id="resultOverlayTitle"></h2>
+        <p id="resultOverlayText"></p>
+        <div class="result-actions" id="resultActions">
+          <button type="button" class="ghost-button" id="resultBtnRetry">再试一次</button>
+          <button type="button" class="ghost-button" id="resultBtnNext">下一关</button>
+          <button type="button" class="ghost-button" id="resultBtnClose">关闭</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="completion-overlay" id="completionOverlay">
+      <div class="completion-dialog">
+        <h2>🎉 恭喜通关！</h2>
+        <p>你完成了全部 4 个关卡，从三角视差到哈勃定律，一步步丈量了宇宙的距离阶梯。</p>
+        <div class="completion-actions">
+          <button type="button" class="ghost-button" onclick="document.getElementById('completionOverlay').classList.remove('show')">继续浏览</button>
+          <a class="primary-button" href="{{ url_for('home') }}">返回主菜单</a>
+        </div>
+      </div>
+    </div>
 
     <script src="{{ url_for('static', filename='js/astronomer_lab.js') }}"></script>
   </body>
