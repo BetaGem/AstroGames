@@ -727,7 +727,8 @@ def add_highlighted_target_label(
     )
 
 
-def render_chart_png(
+@lru_cache(maxsize=256)
+def _render_chart_png_cached(
     region_key: str,
     missing_star_id: str | None = None,
     hide_missing_star: bool = False,
@@ -809,6 +810,48 @@ def render_chart_png(
     return buffer.getvalue()
 
 
+def render_chart_png(
+    region_key: str,
+    missing_star_id: str | None = None,
+    hide_missing_star: bool = False,
+    show_constellation_lines: bool = False,
+    label_named_stars: bool = False,
+    target_star_id: str | None = None,
+    highlight_target: bool = False,
+) -> bytes:
+    return _render_chart_png_cached(
+        region_key=region_key,
+        missing_star_id=missing_star_id,
+        hide_missing_star=hide_missing_star,
+        show_constellation_lines=show_constellation_lines,
+        label_named_stars=label_named_stars,
+        target_star_id=target_star_id,
+        highlight_target=highlight_target,
+    )
+
+
+@lru_cache(maxsize=256)
+def _render_chart_base64_cached(
+    region_key: str,
+    missing_star_id: str | None = None,
+    hide_missing_star: bool = False,
+    show_constellation_lines: bool = False,
+    label_named_stars: bool = False,
+    target_star_id: str | None = None,
+    highlight_target: bool = False,
+) -> str:
+    image_bytes = render_chart_png(
+        region_key=region_key,
+        missing_star_id=missing_star_id,
+        hide_missing_star=hide_missing_star,
+        show_constellation_lines=show_constellation_lines,
+        label_named_stars=label_named_stars,
+        target_star_id=target_star_id,
+        highlight_target=highlight_target,
+    )
+    return base64.b64encode(image_bytes).decode("utf-8")
+
+
 def render_chart(
     round_data: dict[str, Any],
     reveal_missing: bool = False,
@@ -816,7 +859,7 @@ def render_chart(
     label_named_stars: bool = False,
     highlight_target: bool = False,
 ) -> str:
-    image_bytes = render_chart_png(
+    return _render_chart_base64_cached(
         region_key=round_data["region_key"],
         missing_star_id=round_data["missing_star_id"],
         hide_missing_star=not reveal_missing,
@@ -825,7 +868,6 @@ def render_chart(
         target_star_id=round_data["missing_star_id"] if label_named_stars and reveal_missing else None,
         highlight_target=highlight_target,
     )
-    return base64.b64encode(image_bytes).decode("utf-8")
 
 
 @blueprint.route("/", methods=["GET"])

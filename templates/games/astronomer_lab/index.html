@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>天文工作室</title>
+    <link rel="icon" href="{{ url_for('static', filename='favicon.svg') }}" type="image/svg+xml">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/astronomer_lab.css') }}">
+  </head>
+  <body>
+    <main class="wrap">
+      <section class="card">
+        <div class="topbar">
+          <div>
+            <div class="brand-kicker">AstroGames</div>
+            <p class="brand-title">小游戏 04</p>
+          </div>
+          <a class="menu-link" href="{{ url_for('home') }}">返回主菜单</a>
+        </div>
+
+        <header class="page-head">
+          <div>
+            <div class="eyebrow">Scientist Case</div>
+            <h1>天文工作室</h1>
+            <p class="subtitle">像天文学家一样工作。</p>
+          </div>
+          <div class="page-actions">
+            <span class="level-indicator" id="levelIndicator">关卡 1/5</span>
+            <button type="button" class="ghost-button" id="nextCaseButton">下一关</button>
+          </div>
+        </header>
+
+        <section class="panel">
+          <div class="panel-kicker">科学家</div>
+          <h2 id="scientistName">埃德温·哈勃</h2>
+          <p class="panel-text" id="scientistIntro">你将读取一张星系距离与退行速度关系图，从数据趋势中判断宇宙正在发生什么。</p>
+        </section>
+
+        <section class="panel">
+          <div class="panel-kicker">实验操作</div>
+          <div class="chart-meta">
+            <span id="experimentTitle">观测图：星系距离 vs 退行速度</span>
+          </div>
+          <svg class="chart" id="hubbleChart" viewBox="0 0 640 420" role="img" aria-label="天文学观测关系图"></svg>
+
+          <div class="controls">
+            <label class="slider-card" for="slopeSlider">
+              <span id="slopeLabel">斜率 / 哈勃常数</span>
+              <strong id="slopeValue">100 千米/秒/百万秒差距</strong>
+              <input id="slopeSlider" type="range" min="0" max="1000" step="10" value="100">
+            </label>
+            <label class="slider-card" for="interceptSlider">
+              <span>截距微调</span>
+              <strong id="interceptValue">0 千米/秒</strong>
+              <input id="interceptSlider" type="range" min="-180" max="180" step="10" value="0">
+            </label>
+          </div>
+        </section>
+
+        <section class="panel">
+          <div class="panel-kicker">答题</div>
+
+          <div class="question-block">
+            <p class="question-title" id="questionOneTitle">1. 这张图最支持哪个结论？</p>
+            <div class="option-list" id="conclusionOptions"></div>
+          </div>
+
+          <div class="question-block">
+            <p class="question-title" id="questionTwoTitle">2. 从你现在的拟合看，哈勃常数更接近哪个范围？</p>
+            <div class="option-list" id="constantOptions"></div>
+          </div>
+
+          <div class="action-row">
+            <button type="button" class="primary-button" id="submitAnswerButton">提交答案</button>
+            <button type="button" class="ghost-button" id="resetModuleButton">重新观测</button>
+          </div>
+
+          <div class="result-box" id="resultBox"></div>
+        </section>
+
+        <div class="footer">
+          <a class="footer-link" href="https://github.com/BetaGem/AstroGames" target="_blank" rel="noreferrer" aria-label="Project source on GitHub">
+            <svg class="footer-icon" viewBox="0 0 16 16" aria-hidden="true">
+              <path d="M8 0C3.58 0 0 3.58 0 8a8 8 0 0 0 5.47 7.59c.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.5-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82A7.7 7.7 0 0 1 8 4.77c.68 0 1.37.09 2.01.27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8 8 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/>
+            </svg>
+            <span>Source</span>
+          </a>
+          <span class="footer-separator">|</span>
+          <a class="footer-link" href="https://zhuanlan.zhihu.com/p/2024577046404154162" target="_blank" rel="noreferrer" aria-label="Zhihu article">
+            <span>知乎</span>
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <script src="{{ url_for('static', filename='js/astronomer_lab.js') }}"></script>
+  </body>
+</html>
