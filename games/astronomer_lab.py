@@ -10,7 +10,7 @@ blueprint = Blueprint("astronomer_lab", __name__, url_prefix="/games/astronomer-
 GAME_INFO = {
     "slug": "astronomer-lab",
     "title": "天文工作室",
-    "tagline": "难度：★★",
+    "tagline": "难度：★★★",
     "description": "化身科学家，从观测数据读出宇宙奥秘。",
     "status": "live",
     "badge": "新游戏",
